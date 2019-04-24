@@ -33,7 +33,7 @@ Note: Alaways check what branch you are currently on before pushing your changes
 8. Removing all the changes:
 git stash
 
-This is perticularly in the situation when you have by mistake made all the changes on the master branch and now you realize before pushing that you have been making
+This is perticularly useful in the situation when you have by mistake made all the changes on the master branch and now you realize before pushing that you have been making
 these changes on the master branch instead of the branch that you had created. In that case, you simply to "git stash", then checkout to your branch and do "git stash apply"
 
 9. Applying stashed changes:
