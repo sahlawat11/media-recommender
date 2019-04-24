@@ -2,7 +2,6 @@ const rootRoutes = require("./root")
 const loginRoutes = require("./login")
 const registerRoutes = require("./register")
 const homeRoutes = require("./home")
-// const postsRoutes = require("./posts")
 
 const constructorMethod = app => {
   app.use("/", rootRoutes);
