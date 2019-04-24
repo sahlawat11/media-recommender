@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 app.use(express.json())
+const static = express.static(__dirname + "/views");
 const configRoutes = require("./routes");
+
+app.use("/views", static);
 
 configRoutes(app);
 
