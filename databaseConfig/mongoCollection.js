@@ -13,7 +13,7 @@ const getCollectionFn = collection => {
 
     return _col;
   };
-};
+};  
 
 /* Now, you can list your collections here: */
 module.exports = {
