@@ -60,7 +60,7 @@ body{
 	-moz-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
     -webkit-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
     box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
-    margin:9% auto 0;
+    margin:3% auto 0;
 	width: 93%;
 }
 .login-head {
@@ -89,7 +89,7 @@ form {
 	padding: 3em 2em;
 	background: #F2F2F2;
 }
-form li{
+form p{
 	border: 2px ridge rgba(187, 185, 189, 0.11);
 	border-radius: 0.3em;
 	-webkit-border-radius:0.3em;
@@ -114,6 +114,19 @@ form li{
 }
 .lock{
 	background: url(../images/icons.png) no-repeat -22px 1px;
+}
+.alert-close {
+	background: url('../images/into.png') no-repeat 0px 3px;
+	cursor: pointer;
+	height: 30px;
+	position: absolute;
+	right: 12px;
+	top: 34px;
+	-webkit-transition: color 0.2s ease-in-out;
+	-moz-transition: color 0.2s ease-in-out;
+	-o-transition: color 0.2s ease-in-out;
+	transition: color 0.2s ease-in-out;
+	width: 30px;
 }
 
 input[type="text"], input[type="password"] {
