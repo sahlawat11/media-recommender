@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <title>Media Recommender - Login</title>
     <link rel="stylesheet" href="./../styles/site.css" />
@@ -16,16 +14,17 @@
         <h1>Media Recommender - Login</h1>
           <form action="/login" method="POST" id="login-form">
             <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email" />
+              <label for="userEmail">Email address:
+              <input type="email" name="userEmail" class="form-control" id="userEmail" />
+              </label>
             </div>
             <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" id="pwd" />
+              <label for="pwd">Password:
+              <input type="password" class="form-control" name="pwd" id="pwd" />
+              </label>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
       </section>
     </main>
   </body>
-</html>

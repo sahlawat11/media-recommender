@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const data = require("../data");
+const path = require("path")
 const bcrypt = require("bcryptjs");
+const data = require("../data");
 
 router.get("/", async (req, res) => {
-    res.sendFile(path.join(__dirname, "../views", "login.html"));
+    res.render("login");
   });
 
   router.post("/", async (req, res) => {
@@ -13,20 +14,20 @@ router.get("/", async (req, res) => {
     let selectedUser;
     const users = data.users;
   
-    if (!loginData.username) {
-      error = "The username or the password is not correct.";
+    if (!loginData.userEmail) {
+      error = "The email or the password is not correct.";
     }
     if (!loginData.password) {
-      error = "The username or the password is not correct.";
+      error = "The email or the password is not correct.";
     }
     
     for(i=0; i<users.length; i++) {
-        if(loginData.username === users[i].username) {
+        if(loginData.userEmail === users[i].userEmail) {
             selectedUser = Object.assign({}, users[i]);
         }
     }
     if(typeof selectedUser === 'undefined') {
-        error = "The username or the password is not correct."
+        error = "The email or the password is not correct."
     } else {
         const isMatch = await bcrypt.compare(loginData.password, selectedUser.hashedPassword)
         if(isMatch) {
@@ -41,12 +42,12 @@ router.get("/", async (req, res) => {
                 console.log("Error.", e)
             }
         } else {
-          error = "The username or the password is not correct.";
+          error = "The email or the password is not correct.";
         }
       }
   
     if (error) {
-      res.status(401).render("login/index", {
+      res.status(401).render(path.join(__dirname, "../views", "login.html"), {
         error: error,
         hasErrors: true,
         data: loginData
