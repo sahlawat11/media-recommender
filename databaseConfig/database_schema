@@ -1,9 +1,9 @@
-Playlists:
+Playlists
 [
   {
     "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
     “name”: “to be calm”,
-    “type”: “music”,
+    “type”: “music”,// music/movie
     “Owner”: “Sunii Kim”,
     “status”: “public”,
 
@@ -11,7 +11,7 @@ Playlists:
     “_id”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”,
     “name”: “DO-RE_MI”,
     “comment”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6323”
-    }]
+    }],
 
     "Comments":[{
     “_id”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”,
