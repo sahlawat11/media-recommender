@@ -4,10 +4,28 @@
 <title>Profile</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script src="js/jquery.min.js"></script>
 <!-- -->
+<body>
+    <div class="top">
+		<center> 
+			<ul>
+				<li><a href="#">Hompage</a></li>
+				<li><a href="#"><strong>Profile</strong></a></li>
+				<li><a href="#">first</a></li>
+				<li>
+					<a href="#">first</a>
+					<ul>
+						<li><a href="#">second</a></li>
+                        <li><a href="#">second</a></li>
+                    </ul>
+                </li> 
+                <li class="right"><a href="#">logout</a></li>       
+            </ul>
+        </center>      
+    </div>
+</body>
+
 </head>
 <body>
 <!-- contact-form -->	
@@ -33,22 +51,40 @@
 				AboutMe:
 			</p>
 			<div class="clear"> </div>
-			<div class="music-playlist">
-				<ul>
-					<li>&nbsp;</li>
-				</ul>
-			</div>
+			<p>
+				Movie playlist:
+			</p>
 			<div class="clear"> </div>
-			<div class="movie-playlist">
-				<ul>
-					<li>&nbsp;</li>
-				</ul>
+			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+			<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+				<div class="jp-type-playlist">
+					<div class="jp-playlist">
+						<ul>
+							<li>&nbsp;</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<br>
+			<p>
+				Music playlist:
+			</p>
+			<div class="clear"> </div>
+			<div id="jquery_jplayer_2" class="jp-jplayer"></div>
+			<div id="jp_container_2" class="jp-audio" role="application" aria-label="media player">
+				<div class="jp-type-playlist">
+					<div class="jp-playlist">
+						<ul>
+							<li>&nbsp;</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</form>
 		</div>					
 	</div>
 	</div>
-	<div class="clear"> </div>
 <link href="css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jplayer.playlist.min.js"></script>
@@ -60,53 +96,37 @@ $(document).ready(function(){
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
 		{
-			title:"Cro Magnon Man",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+			title:"Cro Magnon Man"
 		},
 		{
-			title:"Your Face",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg"
+			title:"Your Face"
 		},
 		{
-			title:"Cyber Sonnet",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg"
-		},
-		{
-			title:"Tempered Song",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
-		},
-		{
-			title:"Hidden",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
-		},
-		{
-			title:"Lismore",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-04-Lismore.ogg"
-		},
-		{
-			title:"The Separation",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-05-The-separation.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-05-The-separation.ogg"
-		},
-		{
-			title:"Thin Ice",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg"
+			title:"Cyber Sonnet"
 		}
 	], {
-		swfPath: "../../dist/jplayer",
-		supplied: "oga, mp3",
-		wmode: "window",
-		useStateClassSkin: true,
-		autoBlur: false,
-		smoothPlayBar: true,
-		keyEnabled: true
+	});
+
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_2",
+		cssSelectorAncestor: "#jp_container_2"
+	}, [
+		{
+			title:"Tempered Song"
+		},
+		{
+			title:"Hidden"
+		},
+		{
+			title:"Lismore"
+		},
+		{
+			title:"The Separation"
+		},
+		{
+			title:"Thin Ice"
+		}
+	], {
 	});
 });
 //]]>
