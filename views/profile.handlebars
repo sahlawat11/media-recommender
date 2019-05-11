@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>Lab 10 - Private</title>
+    <title>My Profile</title>
     <link rel="stylesheet" href="/public/site.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
 </head>
@@ -8,7 +8,8 @@
 <body>
     <main>
         <section>
-            <h1 class="home-page-header">Lab 10 - Private Access</h1>
+            <div class="container">
+            <h1 class="home-page-header">Welcome!</h1>
             <article class="user-data">
                 <h3>User Info</h3>
                 <p>Id: {{userData._id}}</p>
@@ -18,9 +19,12 @@
                 <p>Profession: {{userData.Profession}}</p>
                 <p>Bio: {{userData.Bio}}</p>
             </article>
+            </div>
         </section>
         <section>
-            <a class="logout-btn" href="/logout">Logout</a>
+            <div class="container">
+                <a class="logout-btn" href="/logout">Logout</a>
+            </div>
         </section>
     </main>
 </body>

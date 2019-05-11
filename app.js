@@ -9,7 +9,17 @@ const configRoutes = require("./routes");
 
 const exphbs = require("express-handlebars");
 
+app.set('trust proxy', 1)
+app.use(session({
+  name: 'AuthCookie',
+  secret: 'This is a secret string.',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use("/views", static);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");

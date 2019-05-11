@@ -4,10 +4,10 @@ const data = require("../data");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
-    res.status(403).render("not-allowed/index")
+    res.status(403).render("unauthorized")
     return;
   } else {
-    res.render("profile/index", {
+    res.render("profile", {
       userData: req.session.userData
     });
   }
