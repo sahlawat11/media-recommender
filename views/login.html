@@ -1,31 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Media Recommender - Login</title>
-    <link rel="stylesheet" href="./../styles/site.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
-    />
-  </head>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Media Recommender - Login</title>
+<link href="../styles/login.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="../styles/js/jquery-1.11.3.min.js"></script>
+<script>
+	function checkLogin(){
+		var checkName = document.getElementById("Username").value;
+		if (checkName == "" || checkName == "Username") {
+			alert("Please input Username");
+			return false;
+		}
+		var checkPwd = document.getElementById("Password").value;
+		if (checkPwd == "" || checkPwd == "password") {
+			alert("Please input Password");
+			return false;
+		}
+		alert("Good");
+	}
+</script>
+<!-- -->
+</head>
+<body>
+<!-- login-form -->	
+<div class="message login" id="login">
+	<div class="inset">
+		<div class="login-head">
+			<h1>Login</h1>	
+		</div>
+		<form action="#" method="POST" onsubmit="checkLogin()">
+			<p>
+				<input type="text" class="text" id="Username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><i class="fas fa-user"></i>
+			</p>
+				<div class="clear"> </div>
+			<p>
+				<input type="password" value="Password" id="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"> <i class="fas fa-lock"></i>
+			</p>
+			<div class="clear"> </div>
+			<div class="submit">
+				<input type="submit"  value="Sign in" >
+				<h4><a href="register.html">Register</a></h4>
+				<div class="clear">  </div>	
+			</div>
+		</form>
+	</div>					
+</div>
 
-  <body>
-    <main>
-      <section class="container">
-        <h1>Media Recommender - Login</h1>
-          <form>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email" />
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" id="pwd" />
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-      </section>
-    </main>
-  </body>
+<!--- footer --->
+<div class="footer">
+	<p>Copyright &copy; 2019S_CS546_Group3 &nbsp; &nbsp; &nbsp;</p>
+</div>
+</body>
 </html>
