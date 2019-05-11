@@ -1,9 +1,7 @@
-const userRoutes = require("./users");
+const users = require("./users");
+const playlists = require("./playlists");
 
-let constructorMethod = app => {
-  app.use("/user", userRoutes);
-};
-
-module.exports = {
-  users: require("./users"),
-};
+module.exports={
+    users,
+    playlists
+}

@@ -1,0 +1,50 @@
+Playlists
+[
+  {
+    "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    “name”: “to be calm”,
+    “type”: “music”,// music/movie
+    “Owner”: “Sunii Kim”,
+    “status”: “public”,
+
+    "Media": [{
+    “_id”: "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    “Name”: “Nonstop”
+    “Artist”: “Drake”
+    “Type”: “Music”
+    “Link”:
+    “https://open.spotify.com/album/1ATL5GLyefJaxhQzSPVrLX?si=4PqBwHBHRo2d0UpJe2wgJQ”
+    “Genres”: [“Rap”, “Hip-Hop”, “Pop”]
+    }],
+
+    "Comments":[{
+    “_id”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”,
+    “User_id”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b8124”,
+    “User_name”: “Tianxin Liu”,
+    “Comment”: “Good music!”
+    }]
+  }
+]
+
+Users:
+[
+  {
+    "firstName": "John”
+    “lastName”: “Doe",
+    "Email": "JDoe@gmail.com",
+    "Gender": "M",
+    "Location": "Hoboken",
+    "aboutMe": "description",
+    "Age": "25",
+    "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    "Password": “ljksdajflkj” //Note: save hashed Password here
+    "favoriteMusicGenres", [“Pop”, “Rap”]
+    “favoriteMovieGenres”: [“Thriller”, “Romance”]
+    “Favorites: [“Pulp Fiction”, “The Breakfast Club”]
+    “musicLists”: [“7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”, 
+                   “7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710”]
+    “movieLists”: [“7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”,
+                   “7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710”]
+    “watchLater”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”
+  }
+]    
