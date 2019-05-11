@@ -2,21 +2,30 @@
     <main>
         <section>
             <div class="container">
+                <button><a href="/profile/my-profile">Home</a></button>
                 <button><a href="/search">Search</a></button>
             </div>
         </section>
         <section>
             <div class="container">
-            <h1 class="home-page-header">Welcome!</h1>
-            <article class="user-data">
-                <h3>User Info</h3>
-                <p>Id: {{userData._id}}</p>
-                <p>Username: {{userData.username}}</p>
-                <p>First Name: {{userData.firstName}}</p>
-                <p>Last Name: {{userData.lastName}}</p>
-                <p>Profession: {{userData.Profession}}</p>
-                <p>Bio: {{userData.Bio}}</p>
-            </article>
+                {{!-- <h1 class="home-page-header">Welcome!</h1> --}}
+                <div class="user-info">
+                <article class="user-data">
+                    <h3>User Info</h3>
+                    <p>Id: {{userData._id}}</p>
+                    <p>Username: {{userData.username}}</p>
+                    <p>First Name: {{userData.firstName}}</p>
+                    <p>Last Name: {{userData.lastName}}</p>
+                    <p>Profession: {{userData.Profession}}</p>
+                    <p>Bio: {{userData.Bio}}</p>
+                </article>
+                </div>
+
+                <div class="recommendations">
+                    <article>
+                        <h3>Recommendations</h3>
+                    </article>
+                </div>
             </div>
         </section>
         <section>

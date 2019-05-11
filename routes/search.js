@@ -7,9 +7,7 @@ router.get("/", async (req, res) => {
     res.status(403).render("unauthorized")
     return;
   } else {
-    res.render("search", {
-      userData: req.session.userData
-    });
+    res.render("search");
   }
 });
 

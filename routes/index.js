@@ -10,7 +10,7 @@ const constructorMethod = app => {
   app.use("/login", loginRoutes);
   app.use("/register", registerRoutes);
   app.use("/home", homeRoutes);
-  app.use("/my-profile", myProfileRoutes);
+  app.use("/profile", myProfileRoutes);
   app.use("/search", searchRoutes);
 
   app.use("*", (req, res) => {
