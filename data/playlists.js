@@ -1,8 +1,15 @@
 const mongoCollections = require("../databaseConfig/mongoCollection");
+const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
 module.exports={
+    getAllPlaylists(){
+      return playlists().then(playlistCollection => {
+        return playlistCollection.find({}).toArray();
+      });
+    },
+
     getPlaylistById(id) {
         return playlists().then(playlistCollection => {
           return playlistCollection.findOne({ _id: id }).then(playlist => {
@@ -11,19 +18,35 @@ module.exports={
           });
         });
     },
-    getPlaylistByName(name){
-      return playlists().then(playlistCollection => {
-        return playlistCollection.findOne({ Name: name }).then(playlist => {
-          if (!playlist) throw "Playlist "+name+" not found";
-          return playlist;
+    
+    search(name){
+      const allLists=this.getAllPlaylists();
+      allLists.forEach(element => {
+        const media = element.Media;
+        let obj = media.find(o => o.Name === name);
+        if(obj!=undefined){
+          return obj;
+        }
+      });
+      throw "not found"
+    },
+
+    setPlaylistStatus(id,status){
+      //status can be either public of private
+      if(!status){
+        return
+      }
+      return this.getPlaylistById(id).then(currentList => {
+        let updatedList = {
+          Status:status
+        };
+  
+        return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+          return this.getUserById(id);
         });
       });
     },
-/*
-    sharePlaylist(id){
-  
-    },
-*/
+
     //for testing
     addPlayList(info){
         return playlists().then(playlistCollection => {
