@@ -1,6 +1,7 @@
 const dbConnection = require("./databaseConfig/mongoConnection");
 const data = require("./data/");
 const users = data.users;
+const playlists = data.playlists;
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
@@ -26,6 +27,28 @@ const main = async () => {
     }
     const user = await users.addUser(userinfo);
     console.log(user);
+    let listinfo ={
+        "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+        "name": "to be calm",
+        "type": "music",
+        "Owner": "Sunii Kim",
+        "status": "public",
+
+        "Items":[{
+            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+            "name": "DO-RE_MI",
+            "comment": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6323"
+        }],
+
+        "comments":[{
+            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+            "User_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b8124",
+            "User_name": "Tianxin Liu",
+            "Comment": "Good music!"
+        }]
+    }
+    const playlist = await playlists.addPlayList(listinfo);
+    console.log(playlist);
     console.log("Done seeding database");
     await db.serverConfig.close();
   };
