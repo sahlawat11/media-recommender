@@ -1,41 +1,40 @@
 <body>
   <main>
     <section class="container">
-        <h1>Media Recommender - Registeration</h1>
-          <!-- -->
-          <div class="card text-black mb-3" style="max-width: 20rem;margin-left: auto;margin-right: auto;">
-            <div class="card-header text-white bg-purple">Register</div>
-            <div class="card-body">
-                    <form>
-                            <div class="form-group">
-                                    <label for="fname">First Name:</label>
-                                    <input type="text" class="form-control" id="fname" />
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="lname">Last Name:</label>
-                                    <input type="text" class="form-control" id="lname" />
-                                  </div>
-                            <div class="form-group">
-                              <label for="email">Email address:</label>
-                              <input type="email" class="form-control" id="email" />
-                            </div>
-                            <div class="form-group">
-                              <label for="pwd">Password:</label>
-                              <input type="password" class="form-control" id="pwd" />
-                            </div>
-                            <div class="form-group">
-                                    <label for="cnfpwd">Confirm Password:</label>
-                                    <input type="password" class="form-control" id="cnfpwd" />
-                                  </div>
-      
-                            
-                            <button type="submit" class="btn btn-default bg-purple text-white">Submit</button>
-                          </form> 
+      <h1>Media Recommender - Registeration</h1>
+      <!-- -->
+      <div class="card text-black mb-3" style="max-width: 20rem;margin-left: auto;margin-right: auto;">
+        <div class="card-body">
+          <form action="/register" method="POST" id="registeration-form">
+            <div class="form-group">
+              <label for="fname">First Name:</label>
+              <input type="text" class="form-control" id="fname" name="fname" />
             </div>
-          </div>
-          <br><br>
+            <div class="form-group">
+              <label for="lname">Last Name:</label>
+              <input type="text" name="lname" class="form-control" id="lname" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" name="email" class="form-control" id="email" />
+            </div>
+            <div class="form-group">
+              <label for="password1">Password:</label>
+              <input type="password" name="password1" class="form-control" id="password1" />
+            </div>
+            <div class="form-group">
+              <label for="password2">Confirm Password:</label>
+              <input type="password" name="password2" class="form-control" id="password2" />
+            </div>
 
-      </section>
+
+            <button type="submit" class="btn btn-default text-white">Submit</button>
+          </form>
+        </div>
+      </div>
+      <br><br>
+
+    </section>
   </main>
 </body>
 
