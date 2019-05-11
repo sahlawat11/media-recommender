@@ -1,5 +1,5 @@
 const OmdbApi = require("omdb-api-pt");
-const keys = require("./keys");
+const keys = require("./keys/keys");
 
 // Create instance of the module
 const omdb = new OmdbApi({
