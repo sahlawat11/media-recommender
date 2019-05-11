@@ -6,6 +6,7 @@ const app = express();
 const guid = require("guid")
 const static = express.static(__dirname + "/views");
 const configRoutes = require("./routes");
+const path = require("path");
 
 const exphbs = require("express-handlebars");
 
@@ -17,9 +18,10 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.use("/views", static);
+app.use("/public", static);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
