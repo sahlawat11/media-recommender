@@ -3,16 +3,16 @@
         <section class="container">
             <h1>Search - Media Recommender</h1>
             <div class="search-category">
-                <span><a href="/">User</a></span> |
-                <span><a href="/">Music</a></span> |
-                <span><a href="/">Movies</a></span>
+                <span><a href="/search/user">User</a></span> |
+                <span><a href="/search/music">Music</a></span> |
+                <span><a href="/search/movies">Movies</a></span>
             </div>
 
 
         {{#if searchType}}
             <form action="/search" method="POST" id="search-form">
                 <div class="form-group">
-                    <label for="keyword">Enter {{searchType}}:
+                    <label for="keyword">Enter {{searchType}} Name:
                         <input type="text" name="keyword" class="form-control" id="keyword" />
                     </label>
                 </div>

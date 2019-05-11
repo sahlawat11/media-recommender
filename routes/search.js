@@ -11,6 +11,40 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/user", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
+      return;
+    } else {
+      res.render("search", {
+          searchType: "User"
+      });
+    }
+  });
+
+  router.get("/music", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
+      return;
+    } else {
+      res.render("search", {
+          searchType: "Music"
+      });
+    }
+  });
+
+  router.get("/movies", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
+      return;
+    } else {
+      res.render("search", {
+          searchType: "Movie"
+      });
+    }
+  });
+
+
 router.post("/", async (req, res) => {
     let loginData = req.body;
     let error;
@@ -29,7 +63,8 @@ router.post("/", async (req, res) => {
     console.log("***********:", result);
     res.render("search", {
         hasResults: true,
-        resultList: result
+        resultList: result,
+        searchType: "User"
     });
     // console.log(
     //   "this is the data:",
