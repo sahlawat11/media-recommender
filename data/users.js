@@ -10,8 +10,8 @@ module.exports={
             return user;
           });
         });
-      },
-      
+    },
+
     addUser(info){
       return users().then(usersCollection => {
         let newUser={
@@ -25,6 +25,9 @@ module.exports={
             favoriteMusicGenres: info.favoriteMusicGenres,
             favoriteMovieGenres: info.favoriteMovieGenres,
             Favorites: info.Favorites,
+            musicLists: info.musicLists,
+            movieLists: info.movieLists,
+            watchLater: info.watchLater,
             _id: uuid.v4()
         };
 
