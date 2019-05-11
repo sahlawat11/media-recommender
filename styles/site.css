@@ -5,3 +5,7 @@ a {
 input[type=text] {
     width: 100px;
   }
+
+.search-category {
+    margin-top: 20px;
+}

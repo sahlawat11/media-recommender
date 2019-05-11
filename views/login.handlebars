@@ -1,30 +1,21 @@
-<head>
-    <meta charset="utf-8" />
-    <title>Media Recommender - Login</title>
-    <link rel="stylesheet" href="./../styles/site.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
-    />
-  </head>
+<body>
+  <main>
+    <section class="container">
+      <h1>Media Recommender - Login</h1>
+      <form action="/login" method="POST" id="login-form">
+        <div class="form-group">
+          <label for="userEmail">Email address:
+            <input type="email" name="userEmail" class="form-control" id="userEmail" />
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:
+            <input type="password" class="form-control" name="password" id="password" />
+          </label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </section>
 
-  <body>
-    <main>
-      <section class="container">
-        <h1>Media Recommender - Login</h1>
-          <form action="/login" method="POST" id="login-form">
-            <div class="form-group">
-              <label for="userEmail">Email address:
-              <input type="email" name="userEmail" class="form-control" id="userEmail" />
-              </label>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:
-              <input type="password" class="form-control" name="password" id="password" />
-              </label>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-      </section>
-    </main>
-  </body>
+  </main>
+</body>
