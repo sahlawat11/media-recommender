@@ -12,6 +12,7 @@ module.exports={
         });
     },
 
+    //for testing
     addUser(info){
       return users().then(usersCollection => {
         let newUser={

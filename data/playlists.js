@@ -11,6 +11,7 @@ module.exports={
           });
         });
     },
+    //for testing
     addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
@@ -19,7 +20,7 @@ module.exports={
             "type": info.type,
             "Owner": info.Owner,
             "status": info.status,
-            "Items": info.Items,
+            "media": info.media,
             "comments":info.comments
           };
   

@@ -34,11 +34,14 @@ const main = async () => {
         "Owner": "Sunii Kim",
         "status": "public",
 
-        "Items":[{
+        "Media": [{
             "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
-            "name": "DO-RE_MI",
-            "comment": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6323"
-        }],
+            "Name": "Nonstop",
+            "Artist": "Drake",
+            "Type": "Music",
+            "Link": "https://open.spotify.com/album/1ATL5GLyefJaxhQzSPVrLX?si=4PqBwHBHRo2d0UpJe2wgJQ",
+            "Genres": ["Rap", "Hip-Hop", "Pop"]
+            }],
 
         "comments":[{
             "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
