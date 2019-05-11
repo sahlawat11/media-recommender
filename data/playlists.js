@@ -11,17 +11,22 @@ module.exports={
           });
         });
     },
+    getPlaylistByName(){
+      return playlists().then(playlistCollection => {
+        return playlistCollection.find({}).toArray();
+      });
+    },
     //for testing
     addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
             "_id": uuid.v4(),
-            "name": info.name,
-            "type": info.type,
+            "Name": info.Name,
+            "Type": info.Type,
             "Owner": info.Owner,
-            "status": info.status,
-            "media": info.media,
-            "comments":info.comments
+            "Status": info.Status,
+            "Media": info.Media ,
+            "Comments":info.Comments
           };
   
           return playlistCollection

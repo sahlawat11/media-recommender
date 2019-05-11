@@ -16,19 +16,19 @@ module.exports={
     addUser(info){
       return users().then(usersCollection => {
         let newUser={
-            firstName: info.firstName,
-            lastName: info.lastName,
+            FirstName: info.firstName,
+            LastName: info.lastName,
             Email: info.Email,
             Gender: info.Gender,
             Location: info.Location,
-            Age: info.age,
-            Password: info.hashedPassward,
-            favoriteMusicGenres: info.favoriteMusicGenres,
-            favoriteMovieGenres: info.favoriteMovieGenres,
+            Age: info.Age,
+            HashedPassword: info.HashedPassward,
+            FavoriteMusicGenres: info.FavoriteMusicGenres,
+            FavoriteMovieGenres: info.FavoriteMovieGenres,
             Favorites: info.Favorites,
-            musicLists: info.musicLists,
-            movieLists: info.movieLists,
-            watchLater: info.watchLater,
+            MusicLists: info.MusicLists,
+            MovieLists: info.MovieLists,
+            WatchLater: info.MatchLater,
             _id: uuid.v4()
         };
 
@@ -41,5 +41,5 @@ module.exports={
                 return this.getUserById(newId);
               });
       });
-    }
+    },
 }
