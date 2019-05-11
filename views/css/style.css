@@ -47,6 +47,10 @@ body{
 	background-position: center;
 	background-size: cover;
 }
+.message {
+	box-shadow: 0 0 0 1px rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.1) inset, 0 1px 2px rgba(0,0,0,0.4);
+	position: relative;
+}
 .message.login  {
 	background: rgba(255, 255, 255, 0.33);
 	-moz-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
@@ -98,22 +102,6 @@ form p{
 	list-style:none;
 	margin-bottom:12px;
 	background:#F0EEF0;
-
-}
-.icon{
-	background:url(../images/icons.png)  no-repeat 0px 0px;
-	height:30px;
-	width:30px;
-	display: block;
-	float: right;
-	margin: 12px 9px 9px 0px;
-}
-.user{
-	background: url(../images/icons.png) no-repeat 7px 1px;
-	
-}
-.lock{
-	background: url(../images/icons.png) no-repeat -22px 1px;
 }
 
 input[type="text"], input[type="password"] {
@@ -185,72 +173,4 @@ input[type="submit"]:hover {
 	text-align:center;
 	padding-top:2em;
 }
-
-.message {
-	box-shadow: 0 0 0 1px rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.1) inset, 0 1px 2px rgba(0,0,0,0.4);
-	position: relative;
-}
-
-.top{
-    height: auto; 
-    width:100%;
-    margin-left: 0;
-    background:#696969;
-    position: fixed; 
-    top: 0;
-    margin-bottom: 5px;
-    z-index:999;
-    opacity: 0.6;
-}
-.top ul{
-    width: auto;
-    list-style-type: none;
-    white-space:nowrap;
-    overflow: hidden;
-    margin-left: 5%;
-    padding: 0;
-
-}
-.top li {
-    float:left; 
-    margin-right:2%; 
-    position: relative;
-    overflow: hidden;
-}
-
-.top li.right {
-    float:right; 
-    margin-right:2%; 
-    position: relative;
-    overflow: hidden;
-}
-
-.top li a{
-    display: block; 
-    color:white;
-    text-align: center;
-    padding: 3px;
-    overflow: hidden;
-    text-decoration: none;
-    
-}
-.top li a:hover{
-    background-color: #111;
-}
-.top ul li ul{
-    margin-left: -0.2px;
-    background:#828282;
-    position: relative;
-    display: none; 
-
-}
-.top ul li ul li{
-    float:none;
-    text-align: center;
-}
-.top ul li:hover ul{
-    display: block;
-}
-.top strong{
-	color:#6C496F; 
-}
+/*--footer--*/

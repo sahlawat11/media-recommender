@@ -1,31 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Profile</title>
+<title>Media Recommender - Profile</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery.min.js"></script>
 <!-- -->
-<body>
-    <div class="top">
-		<center> 
-			<ul>
-				<li><a href="#">Hompage</a></li>
-				<li><a href="#"><strong>Profile</strong></a></li>
-				<li><a href="#">first</a></li>
-				<li>
-					<a href="#">first</a>
-					<ul>
-						<li><a href="#">second</a></li>
-                        <li><a href="#">second</a></li>
-                    </ul>
-                </li> 
-                <li class="right"><a href="#">logout</a></li>       
-            </ul>
-        </center>      
-    </div>
-</body>
-
 </head>
 <body>
 <!-- contact-form -->	
@@ -38,21 +18,32 @@
 			<p>
 				Name:
 			</p>
-				<div class="clear"> </div>
+			<p>
+				Password: <input type="password" value="" id="Password">  
+				<input type="submit"  value="Change">
+			</p>
+			<div class="clear"> </div>
 			<p>
 				Email:
 			</p>
-			<div class="clear"> </div>
 			<p>
 				Location:
 			</p>
-			<div class="clear"> </div>
+			<p>
+				Gender:
+			</p>
 			<p>
 				AboutMe:
 			</p>
+			<p>
+				Favorite Music Genres:
+			</p>
+			<p>
+				Favorite Movie Genres:
+			</p>
 			<div class="clear"> </div>
 			<p>
-				Movie playlist:
+				Favorites:
 			</p>
 			<div class="clear"> </div>
 			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
@@ -68,10 +59,25 @@
 			<div class="clear"></div>
 			<br>
 			<p>
-				Music playlist:
+				Movie playlist:
+				<ul class="list-group list-group-flush">
+                	<li class="list-group-item">Movie 1</li>
+                	<li class="list-group-item">Movie 2</li>
+                	<li class="list-group-item">Movie 3</li>
+            	</ul>
 			</p>
-			<div class="clear"> </div>
-			<div id="jquery_jplayer_2" class="jp-jplayer"></div>
+			<p>
+				Music playlist:
+				<ul class="list-group list-group-flush">
+                	<li class="list-group-item">Music 1</li>
+                	<li class="list-group-item">Music 2</li>
+                	<li class="list-group-item">Music 3</li>
+            	</ul>
+			</p>
+			<p>
+				WatchLater:
+            </p>
+            <div id="jquery_jplayer_2" class="jp-jplayer"></div>
 			<div id="jp_container_2" class="jp-audio" role="application" aria-label="media player">
 				<div class="jp-type-playlist">
 					<div class="jp-playlist">
@@ -96,13 +102,13 @@ $(document).ready(function(){
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
 		{
-			title:"Cro Magnon Man"
+			title:"1-1"
 		},
 		{
-			title:"Your Face"
+			title:"1-2"
 		},
 		{
-			title:"Cyber Sonnet"
+			title:"1-3"
 		}
 	], {
 	});
@@ -112,19 +118,19 @@ $(document).ready(function(){
 		cssSelectorAncestor: "#jp_container_2"
 	}, [
 		{
-			title:"Tempered Song"
+			title:"2-1"
 		},
 		{
-			title:"Hidden"
+			title:"2-2"
 		},
 		{
-			title:"Lismore"
+			title:"2-3"
 		},
 		{
-			title:"The Separation"
+			title:"2-4"
 		},
 		{
-			title:"Thin Ice"
+			title:"2-5"
 		}
 	], {
 	});

@@ -1,47 +1,53 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Login</title>
+<title>Media Recommender - Login</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
 <script src="js/jquery.min.js"></script>
-<script>$(document).ready(function(c) {
-	$('.alert-close').on('click', function(c){
-		$('.message').fadeOut('slow', function(c){
-	  		$('.message').remove();
-		});
-	});
-});
+<script>
+	function checkLogin(){
+		var checkName = document.getElementById("Username").value;
+		if (checkName == "" || checkName == "Username") {
+			alert("Please input Username");
+			return false;
+		}
+		var checkPwd = document.getElementById("Password").value;
+		if (checkPwd == "" || checkPwd == "password") {
+			alert("Please input Password");
+			return false;
+		}
+		alert("Good");
+	}
 </script>
 <!-- -->
 </head>
 <body>
-<!-- contact-form -->	
-<div class="message login">
-<div class="inset">
-	<div class="login-head">
-		<h1>Login</h1>	
-	</div>
-		<form>
+<!-- login-form -->	
+<div class="message login" id="login">
+	<div class="inset">
+		<div class="login-head">
+			<h1>Login</h1>	
+		</div>
+		<form action="#" method="POST" onsubmit="checkLogin()">
 			<p>
-				<input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class="icon user"></a>
+				<input type="text" class="text" id="Username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><i class="fas fa-user"></i>
 			</p>
 				<div class="clear"> </div>
 			<p>
-				<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+				<input type="password" value="Password" id="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"> <i class="fas fa-lock"></i>
 			</p>
-			<div class="clear"> </div>
+			<div class="clear"> </div>a
 			<div class="submit">
-				<input type="submit" onclick="function()" value="Sign in" >
+				<input type="submit"  value="Sign in" >
 				<h4><a href="#">Register</a></h4>
 				<div class="clear">  </div>	
 			</div>
 		</form>
-		</div>					
-	</div>
-	</div>
-	<div class="clear"> </div>
+	</div>					
+</div>
+
 <!--- footer --->
 <div class="footer">
 	<p>Copyright &copy; 2019S_CS546_Group3 &nbsp; &nbsp; &nbsp;</p>
