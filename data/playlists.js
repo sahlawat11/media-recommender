@@ -11,11 +11,19 @@ module.exports={
           });
         });
     },
-    getPlaylistByName(){
+    getPlaylistByName(name){
       return playlists().then(playlistCollection => {
-        return playlistCollection.find({}).toArray();
+        return playlistCollection.findOne({ Name: name }).then(playlist => {
+          if (!playlist) throw "Playlist "+name+" not found";
+          return playlist;
+        });
       });
     },
+/*
+    sharePlaylist(id){
+  
+    },
+*/
     //for testing
     addPlayList(info){
         return playlists().then(playlistCollection => {

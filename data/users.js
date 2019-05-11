@@ -11,24 +11,33 @@ module.exports={
           });
         });
     },
+    getUserByName(name){      
+      return users().then(userCollection => {
+        return userCollection.findOne({ FullName: name }).then(user => {
+          if (!user) throw "User "+name+" not found";
+          return user;
+        });
+      });
+    },
 
     //for testing
     addUser(info){
       return users().then(usersCollection => {
         let newUser={
-            FirstName: info.firstName,
-            LastName: info.lastName,
+            FirstName: info.FirstName,
+            LastName: info.LastName,
+            FullName: info.FirstName+" "+info.LastName,
             Email: info.Email,
             Gender: info.Gender,
             Location: info.Location,
             Age: info.Age,
-            HashedPassword: info.HashedPassward,
+            HashedPassword: info.HashedPassword,
             FavoriteMusicGenres: info.FavoriteMusicGenres,
             FavoriteMovieGenres: info.FavoriteMovieGenres,
             Favorites: info.Favorites,
             MusicLists: info.MusicLists,
             MovieLists: info.MovieLists,
-            WatchLater: info.MatchLater,
+            WatchLater: info.WatchLater,
             _id: uuid.v4()
         };
 

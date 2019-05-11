@@ -17,7 +17,7 @@ const main = async () => {
         "AboutMe": "description",
         "Age": "25",
         "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
-        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt), //Note: save hashed Password here
+        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
         "FavoriteMusicGenres": ["Pop","Rap"],
         "FavoriteMovieGenres": ["Thriller","Romance"],
         "Favorites": ["Pulp Fiction", "The Breakfast Club"],
@@ -32,7 +32,7 @@ const main = async () => {
         "Name": "to be calm",
         "Type": "music",
         "Owner": "Sunii Kim",
-        "Status": "public",
+        "Status": "private",
 
         "Media": [{
             "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
@@ -53,10 +53,17 @@ const main = async () => {
     const playlist = await playlists.addPlayList(listinfo);
     console.log(playlist);
     console.log("Done seeding database");
+
     //for testing
-    let id = playlist._id;
-    let result = await playlists.getPlaylistById(id);
+/*
+    let result = await playlists.sharePlaylist(playlist._id);
     console.log(result)
+*/
+
+    console.log(await users.getUserById(user._id))
+
+    console.log(await users.getUserByName(user.FullName))
+
     await db.serverConfig.close();
   };
   
