@@ -30,13 +30,13 @@
 		<div class="login-head">
 			<h1>Login</h1>	
 		</div>
-		<form action="#" method="POST" onsubmit="checkLogin()">
+		<form action="/login" method="POST" onsubmit="checkLogin()">
 			<p>
-				<input type="text" class="text" id="Username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><i class="fas fa-user"></i>
+				<input type="email" class="text" name="userEmail" id="userEmail" value="Email address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address';}"><i class="fas fa-user"></i>
 			</p>
 				<div class="clear"> </div>
 			<p>
-				<input type="password" value="Password" id="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"> <i class="fas fa-lock"></i>
+				<input type="password" value="Password" id="password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"> <i class="fas fa-lock"></i>
 			</p>
 			<div class="clear"> </div>
 			<div class="submit">
