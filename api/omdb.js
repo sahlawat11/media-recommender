@@ -21,7 +21,6 @@ const getByName = async name => {
       search: name,
       plot: "full",
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -43,14 +42,28 @@ const getById = async id => {
       imdb: id,
       plot: "full",
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
   }
 };
 
+/**
+ * Combines the above functions to show more detailed results, since the name function shows limited results.
+ * For example, calling with ("house", 0) shows detailed information for the show 'House of Cards'
+ * @param {string} name Name of show to search for
+ * @param {number} num Index of result to fetch detailed information for
+ * @returns {object} detailed JSON of a particular show via id
+ */
+const getByIdByName = async (name, num) => {
+  const list = await getByName(name);
+  // Powerful line to make a second call via the first, allows us to 'get by id by name'
+  const show = await getById(list.Search[num].imdbID);
+  return show;
+}
+
 module.exports = {
   getByName,
-  getById
+  getById,
+  getByIdByName
 };
