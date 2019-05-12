@@ -23,7 +23,7 @@ let authOptions = {
  * @param {function} callback
  * @returns JSON of most relevant search results
  */
-const searchByTrack = async (track, callback) => {
+const searchByTrack = async (track) => {
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       // use the access token to access the Spotify Web API
@@ -39,7 +39,8 @@ const searchByTrack = async (track, callback) => {
         json: true
       };
       request.get(options, function(error, response, body) {
-        callback(body);
+        console.log(arguments);
+        return body;
       });
     }
   });
@@ -127,9 +128,36 @@ const getByArtistId = async (artistId, callback) => {
   return;
 };
 
+/**
+ * Gets music from the Spotify API by artist ID
+ * @param {string} artistId song artist ID
+ * @param {function} callback
+ * @returns JSON of artist info
+ */
+const getRecs = async (artistId, callback) => {
+  request.post(authOptions, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      // use the access token to access the Spotify Web API
+      var token = body.access_token;
+      var options = {
+        url: "https://api.spotify.com/v1/artists/" + artistId,
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        json: true
+      };
+      request.get(options, function(error, response, body) {
+        callback(body);
+      });
+    }
+  });
+  return;
+};
+
 module.exports = {
   searchByTrack,
   searchByArtist,
   getByTrackId,
-  getByArtistId
+  getByArtistId,
+  getRecs
 };

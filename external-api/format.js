@@ -40,8 +40,8 @@ const artistCallback = async res => {
 
 // Runner for the Spotify and IMDB APIs
 const main = async () => {
-  const res = await spotify.searchByTrack("Nonstop", trackCallback);
-  const spot = await spotify.searchByArtist("Drake", artistCallback);
+  const res = await spotify.searchByTrack("Nonstop");
+  //const spot = await spotify.searchByArtist("Drake", artistCallback);
   //omdbRunner();
 };
 

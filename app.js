@@ -6,7 +6,7 @@ const app = express();
 const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const path = require("path");
-const api = require("./api/format");
+const api = require("./external-api/format");
 
 const exphbs = require("express-handlebars");
 
