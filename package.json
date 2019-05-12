@@ -25,6 +25,8 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.16.1",
     "mongodb": "^2.2.36",
-    "node-uuid": "^1.4.8"
+    "node-uuid": "^1.4.8",
+    "omdb-api-pt": "^2.0.1",
+    "request": "^2.88.0"
   }
 }
