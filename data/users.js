@@ -1,4 +1,5 @@
 const mongoCollections = require("../databaseConfig/mongoCollection");
+const { ObjectId } = require('mongodb')
 const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
@@ -10,6 +11,16 @@ async function getAllUsers(){
 }
 
 async function getUserById(id) {
+  const parsedId = ObjectId.createFromHexString(id);
+  return users().then(userCollection => {
+    return userCollection.findOne({ _id: parsedId }).then(user => {
+      if (!user) throw "User not found";
+      return user;
+    });
+  });
+}
+
+async function getUserByObjId(id) {
   return users().then(userCollection => {
     return userCollection.findOne({ _id: id }).then(user => {
       if (!user) throw "User not found";
@@ -18,11 +29,12 @@ async function getUserById(id) {
   });
 }
 
-async function getUserByName(name){      
+
+async function getUserByName(name) {      
   return users().then(userCollection => {
-    return userCollection.findOne({ FullName: name }).then(user => {
-      if (!user) throw "User "+name+" not found";
-      return user;
+  return userCollection.find({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
+      if (!users1) throw "User "+name+" not found";
+      return users1;
     });
   });
 }
@@ -99,7 +111,7 @@ async function addUser(info){
             return newInsertInformation.insertedId;
           })
           .then(newId => {
-            return this.getUserById(newId);
+            return getUserByObjId(newId);
           });
   });
 }

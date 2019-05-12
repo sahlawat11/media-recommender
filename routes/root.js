@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
   router.get("/logout", async (req, res) => {
     req.session.destroy(() => {
-      res.render("logout/index");
+      res.render("logout");
     });
   });
 
