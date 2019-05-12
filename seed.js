@@ -60,7 +60,7 @@ const main = async () => {
     
     //const MovieLists;
     console.log("Done seeding database");
-
+  
     await db.serverConfig.close();
   };
   
