@@ -303,11 +303,11 @@ const getRecs = async (callback, ...genres) => {
   // Build string from inputs
   let genreString = "";
   for (let i = 0; i < genres.length - 1; i++) {
-    if (genreObj.genres.includes(genres[i])) {
-      genreString += genres[i] + "%2C";
+    if (genreObj.genres.includes(genres[i].toLowerCase())) {
+      genreString += genres[i].toLowerCase() + "%2C";
     }
   }
-  genreString += genres[genres.length - 1];
+  genreString += genres[genres.length - 1].toLowerCase();
 
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
