@@ -4,7 +4,13 @@ const path = require("path")
 
 
 router.get("/", async (req, res) => {
-    res.sendFile(path.join(__dirname, "../views", "root.html"));
+    res.render("root");
+  });
+
+  router.get("/logout", async (req, res) => {
+    req.session.destroy(() => {
+      res.render("logout/index");
+    });
   });
 
 

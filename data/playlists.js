@@ -3,23 +3,22 @@ const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
-module.exports={
-    async getAllPlaylists(){
+    async function getAllPlaylists(){
       return playlists().then(playlistCollection => {
         return playlistCollection.find({}).toArray();
       });
-    },
+    }
 
-    async getPlaylistById(id) {
+    async function getPlaylistById(id) {
         return playlists().then(playlistCollection => {
           return playlistCollection.findOne({ _id: id }).then(playlist => {
             if (!playlist) throw "User not found";
             return playlist;
           });
         });
-    },
+    }
 
-    async watchLater(id,movie){
+    async function watchLater(id,movie){
       if(!id||!movie){
         throw "invaild input"
       }
@@ -36,9 +35,9 @@ module.exports={
       return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
         return this.getUserById(id);}
       );
-    },
+    }
 
-    async search(name){
+    async function search(name){
       const allLists=this.getAllPlaylists();
       allLists.forEach(element => {
         const media = element.Media;
@@ -48,9 +47,9 @@ module.exports={
         }
       });
       throw "not found"
-    },
+    }
 
-    async setPlaylistStatus(id,status){
+    async function setPlaylistStatus(id,status){
       //status can be either public of private
       if(!status){
         return
@@ -64,10 +63,10 @@ module.exports={
           return this.getUserById(id);
         });
       });
-    },
+    }
 
     //for testing
-    async addPlayList(info){
+    async function addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
             "_id": uuid.v4(),
@@ -89,4 +88,12 @@ module.exports={
                 });
         });
       }
-}
+
+      module.exports={
+        getAllPlaylists,
+        getPlaylistById,
+        watchLater,
+        search,
+        setPlaylistStatus,
+        addPlayList
+      }

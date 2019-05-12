@@ -1,60 +1,71 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path")
-const data = require("../data")
-const bcrypt = require("bcryptjs");
-const { ObjectId } = require('mongodb')
+const data = require("../data");
 
 router.get("/", async (req, res) => {
-    res.render("register");
-  });
+  if (!req.session.loggedIn) {
+    res.status(403).render("unauthorized")
+    return;
+  } else {
+    res.render("search");
+  }
+});
 
-
-  router.post("/", async (req, res) => {
-    let registrationData = req.body;
-    let error;
-    let hashedPass;
-    console.log('THIS IS THE REGISTRATION FOR DATA:', req.body);
-
-    if(registrationData.password1.toLowerCase() !== registrationData.password2.toLowerCase()) {
-      console.log("Passwords do not match.");
+router.get("/user", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
       return;
+    } else {
+      res.render("search", {
+          searchType: "User"
+      });
     }
-    
-    bcrypt.hash(registrationData.password1, 8, async function(err, hash) {
-      hashedPass = hash;
-
-      console.log('THIS IS THE HASHED PASSWORD:', hashedPass);
-
-    const newUserObj = {
-      FirstName: registrationData.fname,
-      LastName: registrationData.lname,
-      Email: registrationData.email,
-      Gender: registrationData.gender,
-      Location: registrationData.location,
-      Age: registrationData.age,
-      HashedPassword: hashedPass,
-      FavoriteMusicGenres: [],
-      FavoriteMovieGenres: [],
-      Favorites: "",
-      MusicLists: [],
-      MovieLists: [],
-      WatchLater: []
-    }
-
-    const createdUser = await data.users.registration(newUserObj);
-    console.log("PLEASE CONFIRM THIS INFORMATION FOR THE USER CREATED:", createdUser)
-    newUser = Object.assign({}, createdUser);
-    req.session.loggedIn = true;
-    
-        const tmp_user_obj = newUser;
-        delete tmp_user_obj.hashedPassword;
-        req.session.userData = tmp_user_obj;
-        console.log('BEFORE REDIERCTING:', req.session.userData);
-    res.redirect("/profile/my-profile");
   });
 
-    
+  router.get("/music", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
+      return;
+    } else {
+      res.render("search", {
+          searchType: "Music"
+      });
+    }
+  });
+
+  router.get("/movies", async (req, res) => {
+    if (!req.session.loggedIn) {
+      res.status(403).render("unauthorized")
+      return;
+    } else {
+      res.render("search", {
+          searchType: "Movie"
+      });
+    }
+  });
+
+
+router.post("/", async (req, res) => {
+    let loginData = req.body;
+    let error;
+    let selectedUser;
+    console.log('THIS IS THE DEAL:', req.body);
+    const users = data.users;
+    const searchQuery = req.body['keyword'];
+    let result = [];
+    for(i=0;i<users.length;i++) {
+        if(users[i].firstName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].lastName.toLowerCase().includes(searchQuery.toLowerCase())) {
+            if(result.indexOf(users[i]) < 0) {
+                result.push(users[i]);
+            }
+        }
+    }
+    console.log("***********:", result);
+    res.render("search", {
+        hasResults: true,
+        resultList: result,
+        searchType: "User"
+    });
     // console.log(
     //   "this is the data:",
     //   req.body,
@@ -90,7 +101,7 @@ router.get("/", async (req, res) => {
     //       delete tmp_user_obj.hashedPassword;
     //       req.session.userData = tmp_user_obj;
   
-    //       res.redirect("/profile/my-profile");
+    //       res.redirect("/my-profile");
     //     } catch (e) {
     //       console.log("Error.", e);
     //     }

@@ -3,46 +3,47 @@ const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
-module.exports={
-    async getAllUsers(){
-      return users().then(userCollection => {
-        return userCollection.find({}).toArray();
+async function getAllUsers(){
+  return users().then(userCollection => {
+    return userCollection.find({}).toArray();
+  });
+}
+async function getUserById(id) {
+    return users().then(userCollection => {
+      return userCollection.findOne({ _id: id }).then(user => {
+        if (!user) throw "User not found";
+        return user;
       });
-    },
-    async getUserById(id) {
-        return users().then(userCollection => {
-          return userCollection.findOne({ _id: id }).then(user => {
-            if (!user) throw "User not found";
-            return user;
-          });
-        });
-    },
-    async getUserByName(name){      
-      return users().then(userCollection => {
-        return userCollection.findOne({ FullName: name }).then(user => {
-          if (!user) throw "User "+name+" not found";
-          return user;
-        });
+  });
+}
+    
+async function getUserByName(name){      
+    return users().then(userCollection => {
+      return userCollection.findOne({ FullName: name }).then(user => {
+        if (!user) throw "User "+name+" not found";
+        return user;
       });
-    },
-    async loginMatch(Email,HashedPassword){
-      if(!Email){
-        throw "must provide a user name"
-      }
-      if(!HashedPassword){
-        throw "must provide a password"
-      }
-      const AllUsers = this.getAllUsers();
-      AllUsers.forEach(element => {
-        if(element.Email===Email&&element.HashedPassword){
-          return true;
-        }
-      });
+    });
+}
 
-      throw "UserName or password incorrect"
-    },
-    async registration(Userinfo){
-      const profile = addUser(Userinfo);
+async function loginMatch(Email,HashedPassword){
+    if(!Email){
+      throw "must provide a user name"
+    }
+    if(!HashedPassword){
+      throw "must provide a password"
+    }
+    const AllUsers = this.getAllUsers();
+    AllUsers.forEach(element => {
+      if(element.Email===Email&&element.HashedPassword){
+        return true;
+      }
+    });
+    throw "UserName or password incorrect"
+  }
+
+  async function registration(Userinfo){
+      const profile = await addUser(Userinfo);
       //things you want to show on webpage, definately not include password
       return {
         Name: profile.FullName,
@@ -57,9 +58,9 @@ module.exports={
         MovieLists: profile.MovieLists,
         WatchLater: profile.WatchLater,
       }
-    },
+    }
     
-    async accessProfile(UserId){
+    async function accessProfile(UserId){
       const profile = this.getUserById(UserId);
       if(!profile){throw "not found"}
       let music=[],movie=[];
@@ -89,9 +90,9 @@ module.exports={
         MovieLists: movie,
         WatchLater: profile.WatchLater
       }
-    },
+    }
 
-    async WatchLater(id,movie){
+    async function WatchLater(id,movie){
       //status can be either public of private
       if(!id||!movie){
         throw "imcomplete info"
@@ -105,10 +106,10 @@ module.exports={
           return this.getUserById(id);
         });
       });
-    },
+    }
 
     //for testing
-    async addUser(info){
+    async function addUser(info){
       return users().then(usersCollection => {
         let newUser={
             FirstName: info.FirstName,
@@ -137,5 +138,14 @@ module.exports={
                 return this.getUserById(newId);
               });
       });
-    },
-}
+    }
+ module.exports={
+  getAllUsers,
+  getUserById,
+  getUserByName,
+  loginMatch,
+  registration,
+  accessProfile,
+  WatchLater,
+  addUser
+ }
