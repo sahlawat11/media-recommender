@@ -1,26 +1,45 @@
 <body>
     <main>
         <section>
-            <div class="container">
-                <button><a href="/profile/my-profile">Home</a></button>
-                <button><a href="/search">Search</a></button>
-            </div>
+            <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/profile/my-profile">Home</a>
+  <a class="navbar-brand" href="/search">Search</a>
+  <a class="navbar-brand" href="/logout">Logout</a>
+</nav>
+           
         </section>
         <section>
             <div class="container">
                 {{!-- <h1 class="home-page-header">Welcome!</h1> --}}
-                <div class="user-info">
-                <article class="user-data">
-                    <h3>User Info</h3>
-                    <p>First Name: {{userData.FirstName}}</p>
-                    <p>Last Name: {{userData.LastName}}</p>
-                    <p>Email: {{userData.Email}}</p>
-                    <p>Gender: {{userData.Gender}}</p>
-                    <p>Location: {{userData.Location}}</p>
-                    <p>Age: {{userData.Age}}</p>
-                </article>
+                <div class="row">
+                <div class="user-info col-md-6">
+                    <article class="user-data">
+                        {{#if isLoggedInUserProfile}}
+                        <h3>My Info</h3>
+                        {{else}}
+                        <h3>User Info</h3>
+                        {{/if}}
+                        
+                        <p>First Name: {{userData.FirstName}}</p>
+                        <p>Last Name: {{userData.LastName}}</p>
+                        <p>Email: {{userData.Email}}</p>
+                        <p>Gender: {{userData.Gender}}</p>
+                        <p>Location: {{userData.Location}}</p>
+                        <p>Age: {{userData.Age}}</p>
+                    </article>
                 </div>
 
+                <div class="playlists col-md-6">
+                    <article>
+                        <h3>Playlists</h3>
+                        {{#each userPlaylists}}
+                        <p id={{@index}}+"userPlaylist"><a href="/playlist/{{this._id}}">{{this.Name}}</a></p>
+                        {{/each}}
+                    </article>
+                </div>
+                </div>
+
+                {{#if isLoggedInUserProfile}}
                 <div class="recommendations">
                     <article>
                         <h3>Recommendations</h3>
@@ -61,6 +80,7 @@
         <section>
             <div class="container">
                 <a class="logout-btn" href="/logout">Logout</a>
+                {{/if}}
             </div>
         </section>
     </main>

@@ -16,8 +16,10 @@ router.get("/user", async (req, res) => {
       res.status(403).render("unauthorized")
       return;
     } else {
+    const users = await data.users.getAllUsers();
       res.render("search", {
-          searchType: "User"
+          searchType: "User",
+          userList: users
       });
     }
   });
@@ -49,23 +51,17 @@ router.post("/", async (req, res) => {
     let loginData = req.body;
     let error;
     let selectedUser;
-    console.log('THIS IS THE DEAL:', req.body);
-    const users = data.users;
+    // console.log('THESE ARE ALL THE USERS', users);
     const searchQuery = req.body['keyword'];
     let result = [];
-    for(i=0;i<users.length;i++) {
-        if(users[i].firstName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].lastName.toLowerCase().includes(searchQuery.toLowerCase())) {
-            if(result.indexOf(users[i]) < 0) {
-                result.push(users[i]);
-            }
-        }
-    }
+    result = await data.users.getUserByName(searchQuery);
+    
     console.log("***********:", result);
-    res.render("search", {
-        hasResults: true,
-        resultList: result,
-        searchType: "User"
-    });
+    // res.render("search", {
+    //     hasResults: true,
+    //     resultList: result,
+    //     searchType: "User"
+    // });
     // console.log(
     //   "this is the data:",
     //   req.body,

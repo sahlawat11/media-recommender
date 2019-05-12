@@ -1,7 +1,9 @@
 const mongoCollections = require("../databaseConfig/mongoCollection");
+const { ObjectId } = require('mongodb')
 const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
+
 
 async function getAllUsers(){
   return users().then(userCollection => {
@@ -151,7 +153,6 @@ async function addUser(info){
           });
   });
 }
-
 module.exports={
   getAllUsers,
   getUserById,

@@ -14,17 +14,16 @@ router.get("/", async (req, res) => {
     let registrationData = req.body;
     let error;
     let hashedPass;
-    console.log('THIS IS THE REGISTRATION FOR DATA:', req.body);
 
-    if(registrationData.password1.toLowerCase() !== registrationData.password2.toLowerCase()) {
+    console.log('THIS IS THE DATA RECEIVED:', req.body);
+
+    if(registrationData.password1 !== registrationData.password2) {
       console.log("Passwords do not match.");
       return;
     }
     
     bcrypt.hash(registrationData.password1, 8, async function(err, hash) {
       hashedPass = hash;
-
-      console.log('THIS IS THE HASHED PASSWORD:', hashedPass);
 
     const newUserObj = {
       FirstName: registrationData.fname,
@@ -34,23 +33,39 @@ router.get("/", async (req, res) => {
       Location: registrationData.location,
       Age: registrationData.age,
       HashedPassword: hashedPass,
-      FavoriteMusicGenres: [],
-      FavoriteMovieGenres: [],
+      FavoriteMusicGenres: typeof registrationData.musicGenre === 'undefined' ? [] : [].concat(registrationData.musicGenre),
+      FavoriteMovieGenres: typeof registrationData.movieGenre === 'undefined' ? [] : [].concat(registrationData.movieGenre),
       Favorites: "",
       MusicLists: [],
       MovieLists: [],
-      WatchLater: []
+      WatchLater: ""
     }
 
+    
+    const newFavPlaylistObj = {
+      "Name": "Favorites",
+      "Type": "music",
+      "Owner": registrationData.email,
+      "Status": "public",
+      "Media": []
+    }
+    const newWatchLaterPlaylistObj = {
+      "Name": "Watch Later",
+      "Type": "movies",
+      "Owner": registrationData.email,
+      "Status": "public",
+      "Media": []
+    }
+    const newFavsPlaylist = await data.playlists.addPlayList(newFavPlaylistObj)
+    const newWatchLaterPlaylist = await data.playlists.addPlayList(newWatchLaterPlaylistObj)
+    newUserObj.Favorites = newFavsPlaylist._id;
+    newUserObj.WatchLater = newWatchLaterPlaylist._id;
     const createdUser = await data.users.registration(newUserObj);
-    console.log("PLEASE CONFIRM THIS INFORMATION FOR THE USER CREATED:", createdUser)
     newUser = Object.assign({}, createdUser);
     req.session.loggedIn = true;
-    
         const tmp_user_obj = newUser;
         delete tmp_user_obj.hashedPassword;
         req.session.userData = tmp_user_obj;
-        console.log('BEFORE REDIERCTING:', req.session.userData);
     res.redirect("/profile/my-profile");
   });
 

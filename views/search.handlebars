@@ -23,10 +23,16 @@
             {{#if hasResults}}
             <div class="search-results">
                 {{#each resultList}}
-                    <p id={{@index}}><a href="/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></p>
+                    <p id={{@index}}><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
                 {{/each}}
             </div>
             {{/if}}
+
+            <div class="users-list">
+                {{#each userList}}
+                    <p id={{@index}}+"userlist"><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
+                {{/each}}
+            </div>
         </section>
     </main>
 </body>

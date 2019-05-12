@@ -7,15 +7,22 @@ router.get("/my-profile", async (req, res) => {
     res.status(403).render("unauthorized")
     return;
   } else {
-      console.log('THIS IS ANOTHER TEST:',req.session.userData);
+      userData = req.session.userData;
+      userPlaylists = [];
+      let favPlayListTmpObj = await data.playlists.getPlaylistById(userData.Favorites)
+      let watchLaterPlayListTmpObj = await data.playlists.getPlaylistById(userData.WatchLater)
+      userPlaylists.push(favPlayListTmpObj);
+      userPlaylists.push(watchLaterPlayListTmpObj);
+
     res.render("profile", {
-      userData: req.session.userData,userPlaylist:req.session.userPlaylist
+      userData: req.session.userData,
+      userPlaylists: userPlaylists,
+      isLoggedInUserProfile: true
     });
   }
 });
 
 router.get("/:id", async (req, res) => {
-    console.log('THIS HAS BEEN CALLED HERE', req.params);
     if (!req.session.loggedIn) {
       res.status(403).render("unauthorized")
       return;
@@ -27,16 +34,18 @@ router.get("/:id", async (req, res) => {
                 userData = users[i];
             }
         }
-        const playlists = data.playlists;
-        let userPlaylist=userData.musicLists.concat(movieLists);
-        for(i=0; i<userPlaylist.length; i++) {
+      //   const playlists = data.playlists;
+      //   let userPlaylist=userData.musicLists.concat(movieLists);
+      //   for(i=0; i<userPlaylist.length; i++) {
           
-          userPlaylist[i] = playlists.getPlaylistById(userPlaylist[i]);
+      //     userPlaylist[i] = playlists.getPlaylistById(userPlaylist[i]);
           
-      }
+      // }
         console.log('THIS IS THE USER DATA:', userData);
-      res.render("profile", {
-        userData: userData,userPlaylist:userPlaylist
+        const selectedUser = await data.users.getUserById(req.params.id);
+        res.render("profile", {
+          userData: selectedUser,
+          isLoggedInUserProfile: false
       });
     }
   });
