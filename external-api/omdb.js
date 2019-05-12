@@ -1,5 +1,6 @@
 const OmdbApi = require("omdb-api-pt");
 const keys = require("./keys/keys");
+const movies = require("../data/movies");
 
 // Create instance of the module
 const omdb = new OmdbApi({
@@ -62,8 +63,48 @@ const getByIdByName = async (name, num) => {
   return show;
 }
 
+/**
+ * Gets IDs of all movies with matching genres
+ * @param  {...string} genres movie genres to search for
+ * @returns {Array} list of ids of matching movies
+ */
+const getRecList = async (...genres) => {
+  // Get all movies
+  const idList = await movies.getAll();
+  let recList = [];
+  // Filter to match by genre
+  for (let i = 0; i < movieList.length; i++) {
+    let movieObj = movieList[i];
+    for (let j = 0; j < movieObj[i].genres.length; j++) {
+      if (genres.contains(movieObj[i].genres[j])) {
+        recList.append(movieObj[i].movieID);
+      }
+    }
+  }
+  return idList;
+}
+
+/**
+ * Returns a list of objects of the top recommendations
+ * @param {...string} genres
+ * @returns {Array} list of objects of matching movies
+ */
+const getRecs = async (...genres) => {
+  const idList = await getRecList(genres);
+  let recList = [];
+  // Use ids to get full objects of each rec
+  for (let i = 0 ; (i < recList.length && i < 10); i++) {
+    let rec = await getById(idList[i]);
+    recList.append(rec);
+  }
+  // Some kind of narrowing filter here
+  return recList;
+}
+
 module.exports = {
   getByName,
   getById,
-  getByIdByName
+  getByIdByName,
+  getRecList,
+  getRecs
 };
