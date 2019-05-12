@@ -20,13 +20,14 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "express": "^4.16.2",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
     "express-session": "^1.16.1",
-    "mongodb": "^3.2.2",
+    "mongodb": "^2.2.36",
     "node-uuid": "^1.4.8",
     "omdb-api-pt": "^2.0.1",
-    "request": "^2.88.0",
-    "uuid": "^3.3.2"
+    "request": "^2.88.0"
   }
 }
