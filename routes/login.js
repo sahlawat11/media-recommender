@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
   let loginData = req.body;
   let error;
   let selectedUser;
-  const users = data.users;
   console.log(
     "this is the data:",
     req.body,
@@ -26,11 +25,8 @@ router.post("/", async (req, res) => {
     error = "The email or the password is not correct.";
   }
 
-  for (i = 0; i < users.length; i++) {
-    if (loginData.userEmail === users[i].userEmail) {
-      selectedUser = Object.assign({}, users[i]);
-    }
-  }
+  selectedUser = await data.users.getUserByEmail(loginData.userEmail);
+
   console.log("this is the selected user:", selectedUser);
 
   if (typeof selectedUser === "undefined") {
@@ -38,14 +34,14 @@ router.post("/", async (req, res) => {
   } else {
     const isMatch = await bcrypt.compare(
       loginData.password,
-      selectedUser.hashedPassword
+      selectedUser.HashedPassword
     );
     console.log("THIS IS A MATCH", isMatch);
     if (isMatch) {
       try {
         req.session.loggedIn = true;
         const tmp_user_obj = selectedUser;
-        delete tmp_user_obj.hashedPassword;
+        delete tmp_user_obj.HashedPassword;
         req.session.userData = tmp_user_obj;
 
         res.redirect("/profile/my-profile");

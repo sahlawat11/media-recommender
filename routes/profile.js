@@ -7,6 +7,7 @@ router.get("/my-profile", async (req, res) => {
     res.status(403).render("unauthorized")
     return;
   } else {
+      console.log('THIS IS ANOTHER TEST:',req.session.userData);
     res.render("profile", {
       userData: req.session.userData
     });

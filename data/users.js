@@ -27,6 +27,15 @@ async function getUserByName(name){
   });
 }
 
+async function getUserByEmail(email){      
+  return users().then(userCollection => {
+    return userCollection.findOne({ Email: email }).then(user => {
+      if (!user) throw "User with email: "+value+" not found";
+      return user;
+    });
+  });
+}
+
 async function loginMatch(Email,HashedPassword){
   if(!Email){
     throw "must provide a user name"
@@ -46,10 +55,10 @@ async function loginMatch(Email,HashedPassword){
 
 async function registration(Userinfo){
   const profile = await this.addUser(Userinfo);
-  //things you want to show on webpage, definately not include password
   console.log("THIS IS HTE PROFILE:", profile);
   return {
-    Name: profile.FullName,
+    FirstName: profile.FirstName,
+    LastName: profile.LastName,
     Email: profile.Email,
     Gender: profile.Gender,
     Location: profile.Location,
@@ -99,6 +108,7 @@ module.exports={
   getAllUsers,
   getUserById,
   getUserByName,
+  getUserByEmail,
   loginMatch,
   registration,
   addUser

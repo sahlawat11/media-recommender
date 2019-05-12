@@ -7,5 +7,11 @@ router.get("/", async (req, res) => {
     res.render("root");
   });
 
+  router.get("/logout", async (req, res) => {
+    req.session.destroy(() => {
+      res.render("logout/index");
+    });
+  });
+
 
 module.exports = router;
