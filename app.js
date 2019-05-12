@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
-const guid = require("guid")
 const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const path = require("path");

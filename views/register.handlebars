@@ -8,25 +8,46 @@
           <form action="/register" method="POST" id="registeration-form">
             <div class="form-group">
               <label for="fname">First Name:</label>
-              <input type="text" class="form-control" id="fname" name="fname" />
+              <input type="text" class="form-control" id="fname" name="fname" required />
             </div>
             <div class="form-group">
               <label for="lname">Last Name:</label>
-              <input type="text" name="lname" class="form-control" id="lname" />
+              <input type="text" name="lname" class="form-control" id="lname" required />
             </div>
             <div class="form-group">
               <label for="email">Email address:</label>
-              <input type="email" name="email" class="form-control" id="email" />
+              <input type="email" name="email" class="form-control" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender:
+                <input type="radio" name="gender" value="male" checked> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="location">Location:</label>
+              <input type="text" name="location" class="form-control" id="location" required />
+            </div>
+            <div class="form-group">
+              <label for="age">Age:</label>
+              <input type="number" name="age" class="form-control" id="age" min="1" max="100" required />
+            </div>
+            <div class="form-group">
+              <label for="musicGenre">Favorite Music Genre:</label>
+              <input type="text" name="musicGenre" class="form-control" id="musicGenre" />
+            </div>
+            <div class="form-group">
+              <label for="musicGenre">Favorite Movie Genre:</label>
+              <input type="text" name="movieGenre" class="form-control" id="movieGenre" />
             </div>
             <div class="form-group">
               <label for="password1">Password:</label>
-              <input type="password" name="password1" class="form-control" id="password1" />
+              <input type="password" name="password1" class="form-control" id="password1" required />
             </div>
             <div class="form-group">
               <label for="password2">Confirm Password:</label>
-              <input type="password" name="password2" class="form-control" id="password2" />
+              <input type="password" name="password2" class="form-control" id="password2" required />
             </div>
-
 
             <button type="submit" class="btn btn-default text-white">Submit</button>
           </form>
