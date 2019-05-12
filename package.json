@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sahlawat11/media-recommender#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.4",

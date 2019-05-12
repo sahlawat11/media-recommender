@@ -6,6 +6,7 @@ const app = express();
 const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const path = require("path");
+const api = require("./external-api/format");
 
 const exphbs = require("express-handlebars");
 
@@ -31,3 +32,5 @@ app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log("Your routes will be running on http://localhost:3000");
 });
+
+api.main();
