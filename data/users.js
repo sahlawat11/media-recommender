@@ -1,7 +1,6 @@
 const mongoCollections = require("../databaseConfig/mongoCollection");
 const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
-const uuid = require("node-uuid");
 
 async function getAllUsers(){
   return users().then(userCollection => {
@@ -9,8 +8,15 @@ async function getAllUsers(){
   });
 }
 async function getUserById(id) {
+  const objId = require('mongodb').ObjectID;
+    var obj;
+    try {
+      obj=new objId(id);
+    } catch (error) {
+      throw "No animal with that id";
+    }
     return users().then(userCollection => {
-      return userCollection.findOne({ _id: id }).then(user => {
+      return userCollection.findOne({ _id: obj }).then(user => {
         if (!user) throw "User not found";
         return user;
       });
@@ -126,7 +132,7 @@ async function loginMatch(Email,HashedPassword){
             MusicLists: info.MusicLists,
             MovieLists: info.MovieLists,
             WatchLater: info.WatchLater,
-            _id: uuid.v4()
+            //_id: uuid.v4()
         };
 
         return usersCollection

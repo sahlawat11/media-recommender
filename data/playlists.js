@@ -10,8 +10,15 @@ const uuid = require("node-uuid");
     }
 
     async function getPlaylistById(id) {
+      const objId = require('mongodb').ObjectID;
+      var obj;
+      try {
+        obj=new objId(id);
+      } catch (error) {
+      throw "No animal with that id";
+      }
         return playlists().then(playlistCollection => {
-          return playlistCollection.findOne({ _id: id }).then(playlist => {
+          return playlistCollection.findOne({ _id: obj }).then(playlist => {
             if (!playlist) throw "User not found";
             return playlist;
           });
@@ -69,7 +76,6 @@ const uuid = require("node-uuid");
     async function addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
-            "_id": uuid.v4(),
             "Name": info.Name,
             "Type": info.Type,
             "Owner": info.Owner,
