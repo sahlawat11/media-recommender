@@ -72,6 +72,54 @@ async function registration(Userinfo){
   }
 }
 
+async function accessProfile(UserId){
+  const profile = this.getUserById(UserId);
+  if(!profile){throw "not found"}
+  let music=[],movie=[];
+  (profile.MusicLists).forEach(element => {
+    const info = playlists.getPlaylistById(id);
+    if(info.Status=="public"){
+      music.push(info);
+    }
+  });
+  (profile.MovieLists).forEach(element => {
+    const info = playlists.getPlaylistById(id);
+    if(info.Status=="public"){
+      movie.push(info);
+    }
+  });
+
+  return {
+    Name: profile.FullName,
+    Email: profile.Email,
+    Gender: profile.Gender,
+    Location: profile.Location,
+    Age: profile.Age,
+    FavoriteMusicGenres: profile.FavoriteMusicGenres,
+    FavoriteMovieGenres: profile.FavoriteMovieGenres,
+    Favorites: profile.Favorites,
+    MusicLists: music,
+    MovieLists: movie,
+    WatchLater: profile.WatchLater
+  }
+}
+
+async function WatchLater(id,movie){
+  //status can be either public of private
+  if(!id||!movie){
+    throw "imcomplete info"
+  }
+  return this.getPlaylistById(id).then(currentList => {
+    let updatedList = {
+      Status:status
+    };
+
+    return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+      return this.getUserById(id);
+    });
+  });
+}
+
 async function addUser(info){
   console.log('THIS IS THE PROBLEM HERE:', info);
   return users().then(usersCollection => {
@@ -111,5 +159,7 @@ module.exports={
   getUserByEmail,
   loginMatch,
   registration,
+  accessProfile,
+  WatchLater,
   addUser
 }

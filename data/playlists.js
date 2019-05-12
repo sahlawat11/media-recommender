@@ -3,23 +3,48 @@ const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
-module.exports={
-    getAllPlaylists(){
+    async function getAllPlaylists(){
       return playlists().then(playlistCollection => {
         return playlistCollection.find({}).toArray();
       });
-    },
+    }
 
-    getPlaylistById(id) {
+    async function getPlaylistById(id) {
+      const objId = require('mongodb').ObjectID;
+      var obj;
+      try {
+        obj=new objId(id);
+      } catch (error) {
+      throw "No animal with that id";
+      }
         return playlists().then(playlistCollection => {
-          return playlistCollection.findOne({ _id: id }).then(playlist => {
+          return playlistCollection.findOne({ _id: obj }).then(playlist => {
             if (!playlist) throw "User not found";
             return playlist;
           });
         });
-    },
-    
-    search(name){
+    }
+
+    async function watchLater(id,movie){
+      if(!id||!movie){
+        throw "invaild input"
+      }
+      let temp = this.getPlaylistById(id);
+
+      if(temp==undefined){throw "not found"}
+
+      temp.Media.push(movie);
+
+      let updatedList = {
+        Media :temp.Media
+      };
+      
+      return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+        return this.getUserById(id);}
+      );
+    }
+
+    async function search(name){
       const allLists=this.getAllPlaylists();
       allLists.forEach(element => {
         const media = element.Media;
@@ -29,9 +54,9 @@ module.exports={
         }
       });
       throw "not found"
-    },
+    }
 
-    setPlaylistStatus(id,status){
+    async function setPlaylistStatus(id,status){
       //status can be either public of private
       if(!status){
         return
@@ -45,13 +70,12 @@ module.exports={
           return this.getUserById(id);
         });
       });
-    },
+    }
 
     //for testing
-    addPlayList(info){
+    async function addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
-            "_id": uuid.v4(),
             "Name": info.Name,
             "Type": info.Type,
             "Owner": info.Owner,
@@ -70,4 +94,12 @@ module.exports={
                 });
         });
       }
-}
+
+      module.exports={
+        getAllPlaylists,
+        getPlaylistById,
+        watchLater,
+        search,
+        setPlaylistStatus,
+        addPlayList
+      }
