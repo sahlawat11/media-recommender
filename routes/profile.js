@@ -9,7 +9,7 @@ router.get("/my-profile", async (req, res) => {
   } else {
       console.log('THIS IS ANOTHER TEST:',req.session.userData);
     res.render("profile", {
-      userData: req.session.userData
+      userData: req.session.userData,userPlaylist:req.session.userPlaylist
     });
   }
 });
@@ -27,9 +27,16 @@ router.get("/:id", async (req, res) => {
                 userData = users[i];
             }
         }
+        const playlists = data.playlists;
+        let userPlaylist=userData.musicLists.concat(movieLists);
+        for(i=0; i<userPlaylist.length; i++) {
+          
+          userPlaylist[i] = playlists.getPlaylistById(userPlaylist[i]);
+          
+      }
         console.log('THIS IS THE USER DATA:', userData);
       res.render("profile", {
-        userData: userData
+        userData: userData,userPlaylist:userPlaylist
       });
     }
   });

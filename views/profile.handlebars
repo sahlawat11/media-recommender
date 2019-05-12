@@ -26,6 +26,36 @@
                         <h3>Recommendations</h3>
                     </article>
                 </div>
+
+                <div class="playlists">
+                    <article>
+                        <h3>Playlist</h3>
+                         <div style="float:left;">
+            <div class="float-panel" style="width:300px;font-size:14px;background:#111;">
+                <div id="accordion">
+                    <ul>
+                        <li>
+                             {{#each userPlaylist}}
+       
+                            <div>{{name}}{{type}}</div>
+                            <ul>
+                                 {{#each Media}}
+                                <li>
+                                    
+                                    <a href="#">{{Name}}</a></li>
+                                    {{/each}}
+                            </ul>
+                             {{/each}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                      
+                        
+                
+                    </article>
+                </div>
             </div>
         </section>
         <section>
