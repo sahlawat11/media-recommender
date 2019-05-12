@@ -4,12 +4,12 @@ const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
 module.exports={
-    getAllUsers(){
+    async getAllUsers(){
       return users().then(userCollection => {
         return userCollection.find({}).toArray();
       });
     },
-    getUserById(id) {
+    async getUserById(id) {
         return users().then(userCollection => {
           return userCollection.findOne({ _id: id }).then(user => {
             if (!user) throw "User not found";
@@ -17,7 +17,7 @@ module.exports={
           });
         });
     },
-    getUserByName(name){      
+    async getUserByName(name){      
       return users().then(userCollection => {
         return userCollection.findOne({ FullName: name }).then(user => {
           if (!user) throw "User "+name+" not found";
@@ -25,7 +25,7 @@ module.exports={
         });
       });
     },
-    loginMatch(Email,HashedPassword){
+    async loginMatch(Email,HashedPassword){
       if(!Email){
         throw "must provide a user name"
       }
@@ -41,26 +41,74 @@ module.exports={
 
       throw "UserName or password incorrect"
     },
-    registration(Userinfo){
+    async registration(Userinfo){
       const profile = addUser(Userinfo);
       //things you want to show on webpage, definately not include password
       return {
         Name: profile.FullName,
-        Email: info.Email,
-        Gender: info.Gender,
-        Location: info.Location,
-        Age: info.Age,
-        FavoriteMusicGenres: info.FavoriteMusicGenres,
-        FavoriteMovieGenres: info.FavoriteMovieGenres,
-        Favorites: info.Favorites,
-        MusicLists: info.MusicLists,
-        MovieLists: info.MovieLists,
-        WatchLater: info.WatchLater,
+        Email: profile.Email,
+        Gender: profile.Gender,
+        Location: profile.Location,
+        Age: profile.Age,
+        FavoriteMusicGenres: profile.FavoriteMusicGenres,
+        FavoriteMovieGenres: profile.FavoriteMovieGenres,
+        Favorites: profile.Favorites,
+        MusicLists: profile.MusicLists,
+        MovieLists: profile.MovieLists,
+        WatchLater: profile.WatchLater,
+      }
+    },
+    
+    async accessProfile(UserId){
+      const profile = this.getUserById(UserId);
+      if(!profile){throw "not found"}
+      let music=[],movie=[];
+      (profile.MusicLists).forEach(element => {
+        const info = playlists.getPlaylistById(id);
+        if(info.Status=="public"){
+          music.push(info);
+        }
+      });
+      (profile.MovieLists).forEach(element => {
+        const info = playlists.getPlaylistById(id);
+        if(info.Status=="public"){
+          movie.push(info);
+        }
+      });
+
+      return {
+        Name: profile.FullName,
+        Email: profile.Email,
+        Gender: profile.Gender,
+        Location: profile.Location,
+        Age: profile.Age,
+        FavoriteMusicGenres: profile.FavoriteMusicGenres,
+        FavoriteMovieGenres: profile.FavoriteMovieGenres,
+        Favorites: profile.Favorites,
+        MusicLists: music,
+        MovieLists: movie,
+        WatchLater: profile.WatchLater
       }
     },
 
+    async WatchLater(id,movie){
+      //status can be either public of private
+      if(!id||!movie){
+        throw "imcomplete info"
+      }
+      return this.getPlaylistById(id).then(currentList => {
+        let updatedList = {
+          Status:status
+        };
+  
+        return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+          return this.getUserById(id);
+        });
+      });
+    },
+
     //for testing
-    addUser(info){
+    async addUser(info){
       return users().then(usersCollection => {
         let newUser={
             FirstName: info.FirstName,

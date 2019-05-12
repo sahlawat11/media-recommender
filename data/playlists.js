@@ -4,13 +4,13 @@ const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
 
 module.exports={
-    getAllPlaylists(){
+    async getAllPlaylists(){
       return playlists().then(playlistCollection => {
         return playlistCollection.find({}).toArray();
       });
     },
 
-    getPlaylistById(id) {
+    async getPlaylistById(id) {
         return playlists().then(playlistCollection => {
           return playlistCollection.findOne({ _id: id }).then(playlist => {
             if (!playlist) throw "User not found";
@@ -18,8 +18,27 @@ module.exports={
           });
         });
     },
-    
-    search(name){
+
+    async watchLater(id,movie){
+      if(!id||!movie){
+        throw "invaild input"
+      }
+      let temp = this.getPlaylistById(id);
+
+      if(temp==undefined){throw "not found"}
+
+      temp.Media.push(movie);
+
+      let updatedList = {
+        Media :temp.Media
+      };
+      
+      return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+        return this.getUserById(id);}
+      );
+    },
+
+    async search(name){
       const allLists=this.getAllPlaylists();
       allLists.forEach(element => {
         const media = element.Media;
@@ -31,7 +50,7 @@ module.exports={
       throw "not found"
     },
 
-    setPlaylistStatus(id,status){
+    async setPlaylistStatus(id,status){
       //status can be either public of private
       if(!status){
         return
@@ -48,7 +67,7 @@ module.exports={
     },
 
     //for testing
-    addPlayList(info){
+    async addPlayList(info){
         return playlists().then(playlistCollection => {
           let newList={
             "_id": uuid.v4(),
