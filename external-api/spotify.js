@@ -162,7 +162,7 @@ const getByArtistId = async (artistId, callback) => {
  * @param {string} genres genres to search for recommendations
  * @returns JSON of artist info
  */
-const getRecs = async (callback, ...genres) => {
+const getRecs = async (genres) => {
   if (typeof genres === undefined) throw `Undefined argument`;
   if (!(genres instanceof Array)) throw `Invalid argument`;
   if (genres.length < 1 || genres.length > 10)
@@ -313,6 +313,7 @@ const getRecs = async (callback, ...genres) => {
     if (!error && response.statusCode === 200) {
       // use the access token to access the Spotify Web API
       var token = body.access_token;
+      console.log('THIS IS THE TOKEN:', token);
       var options = {
         url:
           "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_genres=" +
@@ -322,8 +323,11 @@ const getRecs = async (callback, ...genres) => {
         },
         json: true
       };
-      request.get(options, function(error, response, body) {
-        callback(body);
+      console.log('THIS ARE THE OP:', options);
+      return request.get(options, async function(error, response, body) {
+        // callback(body);
+        console.log('THIS IS THE VALUE IN THE FUNCTION:', body, response.body);
+        return body;
       });
     }
   });
