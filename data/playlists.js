@@ -18,7 +18,26 @@ module.exports={
           });
         });
     },
-    
+
+    async watchLater(id,movie){
+      if(!id||!movie){
+        throw "invaild input"
+      }
+      let temp = this.getPlaylistById(id);
+
+      if(temp==undefined){throw "not found"}
+
+      temp.Media.push(movie);
+
+      let updatedList = {
+        Media :temp.Media
+      };
+      
+      return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
+        return this.getUserById(id);}
+      );
+    },
+
     async search(name){
       const allLists=this.getAllPlaylists();
       allLists.forEach(element => {
