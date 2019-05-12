@@ -2,12 +2,15 @@ const dbConnection = require("./databaseConfig/mongoConnection");
 const data = require("./data/");
 const users = data.users;
 const playlists = data.playlists;
+const movies = data.movies;
+const movieInfo = require("./movieInfo")
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
 const main = async () => {
     const db = await dbConnection();
     await db.dropDatabase();
+    
     let userinfo ={
         "FirstName": "John",
         "LastName": "Doe",
@@ -52,18 +55,12 @@ const main = async () => {
     }
     const playlist = await playlists.addPlayList(listinfo);
     console.log(playlist);
+
+    await movies.addMovies(movieInfo)
+    
+    //const MovieLists;
     console.log("Done seeding database");
-
-    //for testing
-/*
-    let result = await playlists.sharePlaylist(playlist._id);
-    console.log(result)
-*/
-
-    console.log(await users.getUserById(user._id))
-
-    console.log(await users.getUserByName(user.FullName))
-
+  
     await db.serverConfig.close();
   };
   
