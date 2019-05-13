@@ -52,7 +52,11 @@ const main = async () => {
   //const res = await spotify.searchByTrack("Nonstop", trackCallback);
   //const spot = await spotify.searchByArtist("Drake", artistCallback);
   //omdbRunner();
-  const recs = await spotify.getRecs(recsCallback, "EDm");
+
+
+
+
+  //const recs = await spotify.getRecs(recsCallback, "EDm");
 };
 
 module.exports = {
