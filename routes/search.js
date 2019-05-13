@@ -52,23 +52,42 @@ router.post("/", async (req, res) => {
     let keyword = req.body.keyword;
     let searchType = req.body.searchType;
     let result;
+    let hasResult;
     console.log(searchType)
     switch(searchType){
       case "User":
         result = await users.getUserByName(keyword);
+        hasResult = (!result==undefined)
+        res.render("search", {
+          hasResults: hasResult,
+          resultList: result,
+          searchType: searchType
+      })
         break;
 
       case "Music":
         console.log(keyword);
         spotify.search(keyword,async function(body){
-//          console.log(body)
-
-          body.artists.items.forEach(element => {
-            console.log(element)
-          });
-
+          result = []
+          //console.log(body)
+          
+          console.log("------------------------------------------------");
           body.tracks.items.forEach(element => {
-            console.log(element)
+            let temp = {
+              Name:element.name,
+              Link:element.external_urls.spotify,
+              //Preview: element.preview_url,
+              Artist: element.artists[0].name,
+              ArtistLink: element.artists[0].external_urls.spotify
+            }
+            result.push(temp)
+          });
+          console.log(result)
+          hasResult = (result.length!=0)
+          res.render("search", {
+            hasResults: hasResult,
+            resultList: result,
+            searchType: searchType
           });
         })
 
@@ -77,6 +96,12 @@ router.post("/", async (req, res) => {
       case "Movie":
         console.log(keyword)
         result = await movies.searchMovieByName(keyword);
+        hasResult = (!result==undefined)
+        res.render("search", {
+          hasResults: hasResult,
+          resultList: result,
+          searchType: searchType
+        })
         break;
 
       default:
@@ -106,11 +131,8 @@ router.post("/", async (req, res) => {
     }*/
     console.log("***********:", result);
     console.log("------------------------------------------------");
-    res.render("search", {
-      hasResults: true,
-      resultList: result,
-      searchType: searchType
-  });
+
+
     // console.log(
     //   "this is the data:",
     //   req.body,
