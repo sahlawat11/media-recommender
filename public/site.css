@@ -1,0 +1,38 @@
+a {
+  cursor: pointer;
+}
+
+input[type="text"] {
+  width: 100px;
+}
+
+.search-category {
+  margin-top: 20px;
+}
+
+.bg-purple {
+  background-color: #6d4a70 !important;
+}
+
+.music-genre {
+  width: 520px;
+}
+.music-genre input[type=checkbox] {
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.music-genre span {
+  margin-right: 5px;
+}
+.user-data {
+  border: dotted 2px black;
+  padding: 10px;
+  margin: 10px;
+  width: 50%;
+  float: left;
+}
+.playlists {
+  border: dotted 2px black;
+  padding: 10px;
+  float: right;
+}

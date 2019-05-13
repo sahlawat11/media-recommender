@@ -1,0 +1,33 @@
+{
+  "name": "media-recommender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahlawat11/media-recommender.git"
+  },
+  "author": "Saransh Ahlawat, Justin Westley, Priyanka Vijayaraghavan, Song Xu, Tianxin Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahlawat11/media-recommender/issues"
+  },
+  "homepage": "https://github.com/sahlawat11/media-recommender#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.16.1",
+    "mongodb": "^2.2.36",
+    "node-uuid": "^1.4.8",
+    "omdb-api-pt": "^2.0.1",
+    "request": "^2.88.0"
+  }
+}
