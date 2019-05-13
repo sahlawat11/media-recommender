@@ -81,7 +81,7 @@ async function addPlayList(info){
             return newInsertInformation.insertedId;
           })
           .then(newId => {
-            return this.getPlaylistByObjectId(newId);
+            return getPlaylistByObjectId(newId);
           });
   });
 }

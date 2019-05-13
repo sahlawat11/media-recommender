@@ -162,7 +162,7 @@ const getByArtistId = async (artistId, callback) => {
  * @param {string} genres genres to search for recommendations
  * @returns JSON of artist info
  */
-const getRecs = async (callback, ...genres) => {
+const getRecs = async (genres, callback) => {
   if (typeof genres === undefined) throw `Undefined argument`;
   if (!(genres instanceof Array)) throw `Invalid argument`;
   if (genres.length < 1 || genres.length > 10)
@@ -322,7 +322,7 @@ const getRecs = async (callback, ...genres) => {
         },
         json: true
       };
-      request.get(options, function(error, response, body) {
+      request.get(options, async function(error, response, body) {
         callback(body);
       });
     }

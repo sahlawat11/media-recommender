@@ -14,8 +14,20 @@ async function searchMovieByName(name){
         });
       });
 }
+  async function getAllMovies(){
+    return movies().then(movieCollection => {
+      return movieCollection.find({}).toArray();
+    });
+  }
 
-module.exports={
+  async function getMovieByImdbId(id) {
+    return movies().then(movieCollection => {
+        return movieCollection.find({ MovieId: id });
+      });
+  }
+
+  module.exports={
       addMovies,
-      searchMovieByName
-}
+      getAllMovies,
+      getMovieByImdbId
+  }

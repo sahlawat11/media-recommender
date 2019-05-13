@@ -27,6 +27,10 @@ input[type="text"] {
   width: 100px;
 }
 
+img {
+  width: 200px;
+}
+
 .search-category {
   margin-top: 20px;
 }
@@ -155,4 +159,25 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
   color:#ffff;
   text-align: center;
   margin-top: 5%;
+}
+.song-name {
+  color: red;
+  font-weight: 500;
+}
+.artist-name {
+  font-weight: 500;
+}
+.italics-text {
+  font-style: italic;
+}
+.music-recommendation {
+  border: dotted 2px black;
+  width: 300px;
+  float: left;
+  margin-right: 10px;
+}
+.movie-recommendation {
+  border: dotted 2px black;
+  float: right;
+  width:
 }
