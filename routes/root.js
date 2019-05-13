@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     "email", //template goes here
     {
       to: "justinwestley11@gmail.com", // Send to. This can be a comma delimited string just like a normal email to field.
-      subject: "We have a new recommendation for you!", // REQUIRED.
+      subject: "We have a new recommendation for you!", // Email subject
       otherProperty: "Other Property" // All additional properties are also passed to the template as local variables.
     },
     function(err) {
@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
       }
     }
   );
+  // End test email, move this block as necessary
 });
 
 router.get("/logout", async (req, res) => {
