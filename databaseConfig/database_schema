@@ -48,3 +48,11 @@ Users:
     “watchLater”: “7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310”
   }
 ]    
+
+Movies:[{
+    “_id”: "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    "MovieId": "b773698c"
+    “Name”: “Nonstop”
+    “Artist”: “Drake”
+    “Genres”: "Comedy"
+}]

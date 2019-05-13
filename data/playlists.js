@@ -47,6 +47,17 @@ async function setPlaylistStatus(id,status){
     let updatedList = {
       Status:status
     };
+    async function search(name,type){
+      const allLists=this.getAllPlaylists();
+      allLists.forEach(element => {
+        const media = element.Media;
+        let obj = media.find(o => o.Name === name|| o.Type === type);
+        if(obj!=undefined){
+          return obj;
+        }
+      });
+      throw "not found"
+    }
 
     return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
       return this.getUserById(id);
@@ -94,6 +105,7 @@ async function addToPlaylist(media, playlistId) {
 
 module.exports = {
   getAllPlaylists,
+  getPlaylistByObjectId,
   getPlaylistById,
   search,
   setPlaylistStatus,
