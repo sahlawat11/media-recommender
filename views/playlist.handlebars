@@ -1,56 +1,37 @@
+<body>
     <main>
         <section>
             <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/profile/my-profile">Home</a>
-  <a class="navbar-brand" href="/search">Search</a>
-  <a class="navbar-brand" href="/logout">Logout</a>
-</nav>
-           
+                <a class="navbar-brand" href="/profile/my-profile">Home</a>
+                <a class="navbar-brand" href="/search">Search</a>
+                <a class="navbar-brand" href="/logout">Logout</a>
+            </nav>
+
         </section>
         <section>
             <div class="container">
-               
-
-                {{#if isLoggedInUserProfile}}
                 <div class="playlists">
                     <article>
-                        <h3>{{PlaylistName}}</h3>
-              
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Artist
-                                    </th>
-                                        <th>
-                                        Artist
-                                    </th>
-                                </tr>
-                            </thead>
-                                        {{#each Media}}
-                                     
-                                        
-                                                <tr>
-                                                    <td> <a href="{{Link}}">{{Name}}</a></td>
-                                                    <td>{{Artist}}</td>
-                                                    <td>{{Genres}}</td>
-                                                </tr>
-                                        
-                                       
-                                            {{/each}}
-                        </table>
-               
+                        <h3>Playlist: {{playlistInfo.Name}}</h3>
+                        {{#if playlistInfo.Media.length}}
+                            {{#each playlistInfo.Media}}
+                                <div class="playlist-tracks">
+                                <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by <span class="artist-name">{{this.artist}}</span></p>
+                                <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                                </div>
+                                {{/each}}
+                        {{else}}
+                            <p class="italics-text">This playlist is empty.</p>
+                        {{/if}}
+
                     </article>
                 </div>
             </div>
         </section>
         <section>
-            <div class="container">
+            {{!-- <div class="container">
                 <a class="logout-btn" href="/profile/my-profile">Back</a>
-                {{/if}}
-            </div>
+            </div> --}}
         </section>
     </main>
+</body>

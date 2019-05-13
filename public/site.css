@@ -167,7 +167,11 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
 }
 .song-name {
   color: red;
+  float: right;
+} */
+.song-name a {
   font-weight: 500;
+  font-size: 20px;
 }
 .artist-name {
   font-weight: 500;
@@ -184,6 +188,19 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
 .movie-recommendation {
   border: dotted 2px black;
   float: right;
+  
+}
+.playlists {
+  border: dotted 2px black;
+  padding: 10px;
+}
+.playlists table {
+  padding: 10px;
+}
+.playlist-tracks {
+  background-color: #ccf9fc;
+  padding: 20px;
+  margin: 20px;
 }
 .main-header{
   position: relative;
