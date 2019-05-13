@@ -1,31 +1,32 @@
-    <main>
-        <section class="container">
-            <h1>Search</h1>
-            <div class="search-category">
-                <span><a href="/search/user">User</a></span> |
-                <span><a href="/search/music">Music</a></span> |
-                <span><a href="/search/movies">Movies</a></span>
-            </div>
+<main>
+    <section class="container">
+        <h1>Search</h1>
+        <div class="search-category">
+            <span><a href="/search/user">User</a></span> |
+            <span><a href="/search/music">Music</a></span> |
+            <span><a href="/search/movies">Movies</a></span>
+        </div>
 
 
         {{#if searchType}}
-            <form action="/search/" method="POST" id="search-form">
-                <div class="form-group">
-                    <label for="keyword">Enter {{searchType}} Name:
-                        <input type="text" name="keyword" class="form-control" id="keyword" />
-                        <input type="hidden" name="searchType" value="{{searchType}}" class="form-control" id="searchType" />
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            {{/if}}
+        <form action="/search/" method="POST" id="search-form">
+            <div class="form-group">
+                <label for="keyword">Enter {{searchType}} Name:
+                    <input type="text" name="keyword" class="form-control" id="keyword" />
+                    <input type="hidden" name="searchType" value="{{searchType}}" class="form-control"
+                        id="searchType" />
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        {{/if}}
 
-            {{#if hasResults}}
-            <div class="search-results">
-                {{#each resultList}}
-                    <p id={{@index}}><a href="/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></p>
-                    <p>Name : {{this.Name}}</p>
-                    {{!-- <li>Email : {{this.Gender}}</li>
+        {{#if hasResults}}
+        <div class="search-results">
+            {{#each resultList}}
+            <p id={{@index}}><a href="/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></p>
+            <p>Name : {{this.Name}}</p>
+            {{!-- <li>Email : {{this.Gender}}</li>
                     <li>Location : {{this.Location}}</li>
                     <li>Age : {{this.Age}}</li>
                     <li>FavoriteMusicGenres : {{this.FavoriteMusicGenres}}</li>
@@ -34,15 +35,15 @@
                     <li>MosicLists : {{this.MusicLists}}</li>
                     <li>MovieLists : {{this.MovieLists}}</li>
                     <li>WatchLater : {{this.WatchLater}}</li> --}}
-                    {{!-- <p id={{@index}}><a href="/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></p> --}}
-                {{/each}}
-            </div>
-            {{/if}}
+            {{!-- <p id={{@index}}><a href="/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></p> --}}
+            {{/each}}
+        </div>
+        {{/if}}
 
-            <div class="users-list">
-                {{#each userList}}
-                    <p id={{@index}}+"userlist"><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
-                {{/each}}
-            </div>
-        </section>
-    </main>
+        <div class="users-list">
+            {{#each userList}}
+            <p id={{@index}}+"userlist"><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
+            {{/each}}
+        </div>
+    </section>
+</main>
