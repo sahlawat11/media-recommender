@@ -71,9 +71,26 @@ async function addPlayList(info){
             return newInsertInformation.insertedId;
           })
           .then(newId => {
-            return this.getPlaylistByObjectId(newId);
+            return getPlaylistByObjectId(newId);
           });
   });
+}
+
+async function addToPlaylist(media, playlistId) {
+  if(typeof media === 'undefined') {
+    return
+  }
+
+  return this.getPlaylistById(playlistId).then(currentList => {
+    updatedList = currentList;
+    updatedList.Media.push(media);
+
+  return playlists().then(playlistCollection => {
+    return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {
+      return this.getPlaylistById(playlistId);
+    });
+  })
+});
 }
 
 module.exports = {
@@ -82,5 +99,6 @@ module.exports = {
   getPlaylistById,
   search,
   setPlaylistStatus,
-  addPlayList
+  addPlayList,
+  addToPlaylist
 }

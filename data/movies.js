@@ -4,18 +4,22 @@ const movies = mongoCollections.movies;
 async function addMovies(info){
     const movieCollection = await movies();
         return movieCollection.insert(info);
-}
+  }  
 
-async function searchMovieByName(name){
+  async function getAllMovies(){
     return movies().then(movieCollection => {
-        return movieCollection.findOne({ Name: name }).then(movie => {
-          if (!movie) throw "Movie "+name+" not found";
-          return movie;
-        });
-      });
-}
+      return movieCollection.find({}).toArray();
+    });
+  }
 
-module.exports={
+  async function getMovieByImdbId(id) {
+    return movies().then(movieCollection => {
+        return movieCollection.find({ MovieId: id });
+      });
+  }
+
+  module.exports={
       addMovies,
-      searchMovieByName
-}
+      getAllMovies,
+      getMovieByImdbId
+  }

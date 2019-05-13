@@ -1,10 +1,15 @@
 const spotifyRecommender = require("../external-api/spotify");
+const omdbRecommender = require("../external-api/omdb");
 
 let globalRecommendedSongObj;
-
+let globalRecommendedMovieObj;
 
 async function recommendedMusicCallback(body) {
   globalRecommendedSongObj = body;
+}
+
+async function recommendedMovieCallback(body) {
+  globalRecommendedMovieObj = body;
 }
 
 async function getRecommendedMusic(genres) {
@@ -28,10 +33,13 @@ async function getRecommendedMusic(genres) {
   return promise;    
 }
 
-// async function getRecommendedMovie(genre) {
-
-// }
+async function getRecommendedMovie(genres) {
+  const recommendedMovie = await omdbRecommender.getRecs(genres);
+  console.log('********* movies:', recommendedMovie);
+  return recommendedMovie;
+}
 
 module.exports={
-  getRecommendedMusic
+  getRecommendedMusic,
+  getRecommendedMovie
 }
