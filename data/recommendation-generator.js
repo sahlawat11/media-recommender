@@ -28,7 +28,9 @@ async function getRecommendedMusic(genres) {
   return promise;    
 }
 
-async function 
+// async function getRecommendedMovie(genre) {
+
+// }
 
 module.exports={
   getRecommendedMusic
