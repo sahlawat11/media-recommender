@@ -44,11 +44,11 @@ const uuid = require("node-uuid");
       );
     }
 
-    async function search(name){
+    async function search(name,type){
       const allLists=this.getAllPlaylists();
       allLists.forEach(element => {
         const media = element.Media;
-        let obj = media.find(o => o.Name === name);
+        let obj = media.find(o => o.Name === name|| o.Type === type);
         if(obj!=undefined){
           return obj;
         }

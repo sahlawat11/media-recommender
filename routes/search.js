@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
+const users = data.users;
+const movies = data.movies;
+const spotify = require("../external-api/spotify");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -46,10 +49,51 @@ router.get("/user", async (req, res) => {
 
 
 router.post("/", async (req, res) => {
-    let loginData = req.body;
-    let error;
-    let selectedUser;
-    console.log('THIS IS THE DEAL:', req.body);
+    let keyword = req.body.keyword;
+    let searchType = req.body.searchType;
+    let result;
+    console.log(searchType)
+    switch(searchType){
+      case "User":
+        result = await users.getUserByName(keyword);
+        break;
+
+      case "Music":
+        console.log(keyword);
+        spotify.search(keyword,async function(body){
+//          console.log(body)
+
+          body.artists.items.forEach(element => {
+            console.log(element)
+          });
+
+          body.tracks.items.forEach(element => {
+            console.log(element)
+          });
+        })
+
+        break;
+
+      case "Movie":
+        console.log(keyword)
+        result = await movies.searchMovieByName(keyword);
+        break;
+
+      default:
+        break;
+    }
+    /*
+    if(searchType==="User"){
+      console.log("serch a user")
+      result = await users.getUserByName(keyword)
+    }
+    else{
+      console.log("search a media")
+      result = await playlists.search(keyword,searchType);
+    }
+    */
+
+/*
     const users = data.users;
     const searchQuery = req.body['keyword'];
     let result = [];
@@ -59,13 +103,14 @@ router.post("/", async (req, res) => {
                 result.push(users[i]);
             }
         }
-    }
+    }*/
     console.log("***********:", result);
+    console.log("------------------------------------------------");
     res.render("search", {
-        hasResults: true,
-        resultList: result,
-        searchType: "User"
-    });
+      hasResults: true,
+      resultList: result,
+      searchType: searchType
+  });
     // console.log(
     //   "this is the data:",
     //   req.body,
