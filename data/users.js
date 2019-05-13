@@ -42,7 +42,7 @@ async function getUserByName(name) {
 async function getUserByEmail(email){      
   return users().then(userCollection => {
     return userCollection.findOne({ Email: email }).then(user => {
-      if (!user) throw "User with email: "+value+" not found";
+      if (!user) throw "User with email: "+email+" not found";
       return user;
     });
   });
@@ -55,7 +55,7 @@ async function loginMatch(Email,HashedPassword){
   if(!HashedPassword){
     throw "must provide a password"
   }
-  const AllUsers = this.getAllUsers();
+  const AllUsers = getAllUsers();
   AllUsers.forEach(element => {
     if(element.Email===Email&&element.HashedPassword){
       return true;
@@ -66,8 +66,7 @@ async function loginMatch(Email,HashedPassword){
 }
 
 async function registration(Userinfo){
-  const profile = await this.addUser(Userinfo);
-  console.log("THIS IS HTE PROFILE:", profile);
+  const profile = await addUser(Userinfo);
   return {
     FirstName: profile.FirstName,
     LastName: profile.LastName,
@@ -119,6 +118,7 @@ async function addUser(info){
 module.exports={
   getAllUsers,
   getUserById,
+  getUserByObjId,
   getUserByName,
   getUserByEmail,
   loginMatch,

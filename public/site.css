@@ -46,3 +46,13 @@ input[type="text"] {
 .italics-text {
   font-style: italic;
 }
+.music-recommendation {
+  border: dotted 2px black;
+  width: 300px;
+  float: left;
+  margin-right: 10px;
+}
+.movie-recommendation {
+  border: dotted 2px black;
+  float: right;
+}

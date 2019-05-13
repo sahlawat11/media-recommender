@@ -40,9 +40,9 @@
                 </div>
 
                 {{#if isLoggedInUserProfile}}
-                <div class="recommendations">
-                    <article>
-                        <h3>Recommendations</h3>
+                <div class="recommendations row">
+                    <article class="music-recommendation col-sm-5">
+                        <h3>Music Recommendation</h3>
                         <p>Here is a track for you:</p>
                         <p><span class="song-name">{{recommendedSong.name}}</span> by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                         {{#if recommendedSong.previewUrl}}
@@ -52,7 +52,22 @@
                         {{/if}}
                         <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                     </article>
+
+                    <article class="movie-recommendation col-sm-6">
+                        <h3>Movie of the day</h3>
+                        <img src={{recommendedMovie.Poster}}>
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <p>Rating: {{recommendedMovie.imdbRating}}/5</p>
+                        <p>Actors: {{recommendedMovie.Actors}}</p>
+                        
+                        {{!-- <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p> --}}
+                    </article>
+
                 </div>
+
+                    
+
+                    
                 
                 {{/if}}
             </div>
