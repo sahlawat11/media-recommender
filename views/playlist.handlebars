@@ -1,0 +1,59 @@
+<body>
+    <main>
+        <section>
+            <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/profile/my-profile">Home</a>
+  <a class="navbar-brand" href="/search">Search</a>
+  <a class="navbar-brand" href="/logout">Logout</a>
+</nav>
+           
+        </section>
+        <section>
+            <div class="container">
+               
+
+                {{#if isLoggedInUserProfile}}
+                <div class="playlists">
+                    <article>
+                        <h3>{{PlaylistName}}</h3>
+              
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Artist
+                                    </th>
+                                        <th>
+                                        Artist
+                                    </th>
+                                </tr>
+                            </thead>
+                                        {{#each Media}}
+                                     
+                                        
+                                                <tr>
+                                                    <td> <a href="{{Link}}">{{Name}}</a></td>
+                                                    <td>{{Artist}}</td>
+                                                    <td>{{Genres}}</td>
+                                                </tr>
+                                        
+                                       
+                                            {{/each}}
+                                
+                        </table>
+               
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <a class="logout-btn" href="/profile/my-profile">Back</a>
+                {{/if}}
+            </div>
+        </section>
+    </main>
+</body>

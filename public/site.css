@@ -2,6 +2,10 @@
  margin: 0;
  padding: 0;
 }
+html
+{
+color:#fff;
+}
 body{
  background: -moz-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
 background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(109,74,112,1)), color-stop(100%, rgba(0,0,0,1))); /* safari4+,chrome */
@@ -13,6 +17,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d4a70', end
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  color: #ffff;
 }
 a {
   cursor: pointer;
@@ -50,9 +55,12 @@ input[type="text"] {
 .playlists {
   border: dotted 2px black;
   padding: 10px;
-  float: right;
 }
+.playlists table {
+  
+  padding: 10px;
 
+}
 .button {
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0px 1px #000;
@@ -138,4 +146,13 @@ background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 
 background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Opera 12+ */
 background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
 background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+}
+.centereddiv{
+  margin-right:auto;margin-left:auto;width:450px;margin-top: 10%
+}
+.headingtext-white
+{
+  color:#ffff;
+  text-align: center;
+  margin-top: 5%;
 }

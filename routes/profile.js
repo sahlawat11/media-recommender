@@ -8,14 +8,12 @@ router.get("/my-profile", async (req, res) => {
     return;
   } else {
       userData = req.session.userData;
-
       // initializing user playlists to show on the profile
       userPlaylists = [];
       let favPlayListTmpObj = await data.playlists.getPlaylistById(userData.Favorites)
       let watchLaterPlayListTmpObj = await data.playlists.getPlaylistById(userData.WatchLater)
       userPlaylists.push(favPlayListTmpObj);
       userPlaylists.push(watchLaterPlayListTmpObj);
-
       // generating the recommendation
 
     res.render("profile", {
