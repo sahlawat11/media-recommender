@@ -1,5 +1,6 @@
 const keys = require("./keys/keys");
 const request = require("request");
+const axios = require("axios");
 
 // Needed to fetch a Spotify API token
 let authOptions = {
@@ -308,9 +309,10 @@ const getRecs = async (genres) => {
     }
   }
   genreString += genres[genres.length - 1].toLowerCase();
-
-  request.post(authOptions, function(error, response, body) {
+  var testVar = request.post(authOptions, async function(error, response, body) {
+    let testValue;
     if (!error && response.statusCode === 200) {
+      
       // use the access token to access the Spotify Web API
       var token = body.access_token;
       console.log('THIS IS THE TOKEN:', token);
@@ -324,14 +326,23 @@ const getRecs = async (genres) => {
         json: true
       };
       console.log('THIS ARE THE OP:', options);
-      return request.get(options, async function(error, response, body) {
-        // callback(body);
-        console.log('THIS IS THE VALUE IN THE FUNCTION:', body, response.body);
-        return body;
-      });
+      const test = await axios.get(options.url, { headers: options.headers });
+      console.log('this is another test:', test.data.tracks);
+      window.localStorage.setItem("testItem", test.data.tracks);
+      
+      // return test.data.tracks;
+      //   async function(error, response, body) {
+      //   // callback(body);
+      //   console.log('THIS IS THE VALUE IN THE FUNCTION:', body, response.body);
+      //   testValue = body;
+      //   // return testValue;
+      // });
+      
     }
+    
+    // return testValue;
   });
-  return;
+  console.log('**********************ajfdhjfdsj', testVar);
 };
 
 module.exports = {

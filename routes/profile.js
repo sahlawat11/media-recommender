@@ -18,14 +18,14 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(watchLaterPlayListTmpObj);
 
       // generating the recommendation
-      let songs = data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres)
+      let songs = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres)
 
-
-    // res.render("profile", {
-    //   userData: req.session.userData,
-    //   userPlaylists: userPlaylists,
-    //   isLoggedInUserProfile: true
-    // });
+    console.log('RENDERING THIS PAGE:', songs);
+    res.render("profile", {
+      userData: req.session.userData,
+      userPlaylists: userPlaylists,
+      isLoggedInUserProfile: true
+    });
   }
 });
 
