@@ -1,19 +1,28 @@
-<main>
-  <section class="container">
-    <h1>Login</h1>
-    <form action="/login" method="POST" id="login-form">
-      <div class="form-group">
-        <label for="userEmail">Email address:
-          <input type="email" name="userEmail" class="form-control" id="userEmail" />
-        </label>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:
-          <input type="password" class="form-control" name="password" id="password" />
-        </label>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-  </section>
-
-</main>
+<!-- login-form -->
+<div class="message login" id="login">
+	<div class="inset">
+		<div class="login-head">
+			<h1>Media Recommender - Login</h1>
+		</div>
+		<form action="/login" method="POST">
+			<p class="form-inline row">
+				<input type="email" name="userEmail" class="form-control" id="userEmail" value="Email Address" onfocus="this.value = '';"
+				 onblur="if (this.value == '') {this.value = 'Email Address';}" required><i class="fas fa-user"></i>
+			</p>
+			<div class="clear"> </div>
+			<p class="form-inline row">
+				<input type="password" class="form-control" name="password" id="password" value="password" onfocus="this.value = '';"
+				 onblur="if (this.value == '') {this.value = 'password';}" required> <i class="fas fa-lock"></i>
+			</p>
+			<div class="clear"> </div>
+			<div class="submit">
+				<input type="submit" value="Sign in">
+				<h4><a href="/register">Register</a></h4>
+				<div class="clear"> </div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="footer">
+	<p>Copyright &copy; 2019S_CS546_Group3 &nbsp; &nbsp; &nbsp;</p>
+</div>
