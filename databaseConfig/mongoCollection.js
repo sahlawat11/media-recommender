@@ -20,4 +20,8 @@ module.exports = {
   playlists: getCollectionFn("playlists"),
   users: getCollectionFn("users"),
   movies: getCollectionFn("movies")
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 699318d2b1b60387591fb926a3423a4247ba378b

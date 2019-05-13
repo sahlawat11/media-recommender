@@ -68,20 +68,23 @@ const getByIdByName = async (name, num) => {
  * @param  {...string} genres movie genres to search for
  * @returns {Array} list of ids of matching movies
  */
-const getRecList = async (...genres) => {
+const getRecList = async (genres) => {
   // Get all movies
   const idList = await movies.getAllMovies();
+  console.log('THESE ARE ALL THE MOVIES', idList, genres);
   let recList = [];
   // Filter to match by genre
-  for (let i = 0; i < idList.length; i++) {
+  for (i = 0; i < idList.length; i++) {
     let movieObj = idList[i];
-    for (let j = 0; j < movieObj[i].Genres.length; j++) {
-      if (genres.contains(movieObj[i].genres[j])) {
-        recList.append(movieObj[i].movieID);
+    console.log("**************:", movieObj);
+    for (let j = 0; j < movieObj.Genres.length; j++) {
+      if (genres.includes(movieObj.Genres[j].toLowerCase())) {
+        recList.push(movieObj.MovieId);
       }
     }
   }
-  return idList;
+  console.log('RETURNING RECOMMENDATION LIST:', recList);
+  return recList;
 }
 
 /**
@@ -89,16 +92,20 @@ const getRecList = async (...genres) => {
  * @param {...string} genres
  * @returns {Array} list of objects of matching movies
  */
-const getRecs = async (...genres) => {
+const getRecs = async (genres) => {
+  console.log('THIS HAS BEEN NOT RECEIVED SUCCESSFULLY');
   const idList = await getRecList(genres);
+  console.log('THIS HAS BEEN RECEIVED SUCCESSFULLY', idList);
   let recList = [];
   // Use ids to get full objects of each rec
-  for (let i = 0 ; (i < recList.length && i < 10); i++) {
+  for (let i = 0 ; (i < idList.length && i < 10); i++) {
     let rec = await getById(idList[i]);
-    recList.append(rec);
+    recList.push(rec);
   }
+  // console.log('RETURNING THIS MOVIE RECOMMENDATION:', recList, recList.length);
   // Some kind of narrowing filter here
-  return recList;
+  recMovie = recList[Math.floor(Math.random()*recList.length)];
+  return recMovie;
 }
 
 module.exports = {

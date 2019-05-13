@@ -1,36 +1,82 @@
 <body>
     <main>
         <section>
-            <div class="container">
-                <button><a href="/profile/my-profile">Home</a></button>
-                <button><a href="/search">Search</a></button>
-            </div>
+            <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/profile/my-profile">Home</a>
+  <a class="navbar-brand" href="/search">Search</a>
+  <a class="navbar-brand" href="/logout">Logout</a>
+</nav>
+           
         </section>
         <section>
             <div class="container">
                 {{!-- <h1 class="home-page-header">Welcome!</h1> --}}
-                <div class="user-info">
-                <article class="user-data">
-                    <h3>User Info</h3>
-                    <p>First Name: {{userData.FirstName}}</p>
-                    <p>Last Name: {{userData.LastName}}</p>
-                    <p>Email: {{userData.Email}}</p>
-                    <p>Gender: {{userData.Gender}}</p>
-                    <p>Location: {{userData.Location}}</p>
-                    <p>Age: {{userData.Age}}</p>
-                </article>
-                </div>
-
-                <div class="recommendations">
-                    <article>
-                        <h3>Recommendations</h3>
+                <div class="row">
+                <div class="user-info col-md-6">
+                    <article class="user-data">
+                        {{#if isLoggedInUserProfile}}
+                        <h3>My Info</h3>
+                        {{else}}
+                        <h3>User Info</h3>
+                        {{/if}}
+                        
+                        <p>First Name: {{userData.FirstName}}</p>
+                        <p>Last Name: {{userData.LastName}}</p>
+                        <p>Email: {{userData.Email}}</p>
+                        <p>Gender: {{userData.Gender}}</p>
+                        <p>Location: {{userData.Location}}</p>
+                        <p>Age: {{userData.Age}}</p>
                     </article>
                 </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <a class="logout-btn" href="/logout">Logout</a>
+
+                <div class="playlists col-md-6">
+                    <article>
+                        <h3>Playlists</h3>
+                        {{#each userPlaylists}}
+                        <p id="{{@index}}userPlaylist"><a href="/playlist/{{this._id}}">{{this.Name}}</a></p>
+                        {{/each}}
+                    </article>
+                </div>
+                </div>
+
+                {{#if isLoggedInUserProfile}}
+                <div class="recommendations row">
+                    <article class="music-recommendation col-sm-5">
+                        <h3>Music Recommendation</h3>
+                        <p>Here is a track for you:</p>
+                        <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_black">{{recommendedSong.artist.name}}</a></span></p>
+                        {{#if recommendedSong.previewUrl}}
+                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                        {{else}}
+                        <p class="italics-text">Preview not available.</p>
+                        {{/if}}
+                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
+                        <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
+                            <input type="hidden" name="name" value="{{recommendedSong.name}}" />
+                            <input type="hidden" name="artistName" value="{{recommendedSong.artist.name}}" />
+                            <input type="hidden" name="artistUrl" value="{{recommendedSong.artist.artistUrl}}" />
+                            <input type="hidden" name="previewUrl" value="{{recommendedSong.previewUrl}}" />
+                            <a onclick="document.getElementById('add-music-form').submit();">Add to Favorites</a>
+                        </form>
+                    </article>
+
+                    <article class="movie-recommendation col-sm-6">
+                        <h3>Movie of the day</h3>
+                        <img src={{recommendedMovie.Poster}}>
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <p>Rating: {{recommendedMovie.imdbRating}}/5</p>
+                        <p>Actors: {{recommendedMovie.Actors}}</p>
+                        <p><a>Add to Watch Later</a></p>
+                        
+                    </article>
+
+                </div>
+
+                    
+
+                    
+                
+                {{/if}}
             </div>
         </section>
     </main>
