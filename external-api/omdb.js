@@ -104,7 +104,8 @@ const getRecs = async (genres) => {
   }
   // console.log('RETURNING THIS MOVIE RECOMMENDATION:', recList, recList.length);
   // Some kind of narrowing filter here
-  return recList[0];
+  recMovie = recList[Math.floor(Math.random()*recList.length)];
+  return recMovie;
 }
 
 module.exports = {
