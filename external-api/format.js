@@ -6,7 +6,7 @@ const spotify = require("./spotify");
  */
 const omdbRunner = async () => {
   // Grab the first show of the list
-  const id = await omdb.getByIdByName("House", 0);
+  const id = await omdb.getById("tt2582802");
   console.log(id);
 };
 
@@ -51,8 +51,8 @@ const recsCallback = async res => {
 const main = async () => {
   //const res = await spotify.searchByTrack("Nonstop", trackCallback);
   //const spot = await spotify.searchByArtist("Drake", artistCallback);
-  //omdbRunner();
-  const recs = await spotify.getRecs(recsCallback, "EDm");
+  omdbRunner();
+  //const recs = await spotify.getRecs(recsCallback, "EDm");
 };
 
 module.exports = {

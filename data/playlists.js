@@ -15,7 +15,7 @@ const uuid = require("node-uuid");
       try {
         obj=new objId(id);
       } catch (error) {
-      throw "No animal with that id";
+      throw "No playlist with that id";
       }
         return playlists().then(playlistCollection => {
           return playlistCollection.findOne({ _id: obj }).then(playlist => {

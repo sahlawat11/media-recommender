@@ -70,12 +70,12 @@ const getByIdByName = async (name, num) => {
  */
 const getRecList = async (...genres) => {
   // Get all movies
-  const idList = await movies.getAll();
+  const idList = await movies.getAllMovies();
   let recList = [];
   // Filter to match by genre
-  for (let i = 0; i < movieList.length; i++) {
-    let movieObj = movieList[i];
-    for (let j = 0; j < movieObj[i].genres.length; j++) {
+  for (let i = 0; i < idList.length; i++) {
+    let movieObj = idList[i];
+    for (let j = 0; j < movieObj[i].Genres.length; j++) {
       if (genres.contains(movieObj[i].genres[j])) {
         recList.append(movieObj[i].movieID);
       }
