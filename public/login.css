@@ -64,7 +64,7 @@
      margin: 7% auto 0;
      width: 33%;
  }
- .message.profile  {
+ .message.register  {
      background: rgba(255, 255, 255, 0.33);
      -moz-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
      -webkit-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
@@ -88,16 +88,16 @@
      text-align: left;
      margin: 0 23px;
  }
- .profile-head {
-     padding: 1.0em 0;
+ .register-head {
+     padding: 1.5em 0;
      background: #6D4A70;
      position:relative;
  }
- .profile-head h1 {
+ .register-head h1 {
      color: #fff;
-     font-size: 1.0em;
+     font-size: 1.5em;
      text-align: left;
-     margin: 0 22px;
+     margin: 0 23px;
  }
  form {
      padding: 3em 2em;
@@ -115,7 +115,7 @@
      z-index: aut;
  }
  
- input[type="email"], input[type="password"] {
+ input[type="number"], input[type="text"], input[type="email"], input[type="password"] {
      font-family: 'Droid Sans', sans-serif;
      width:70%;
      padding: 0.5em 2em 0.5em 1em;
@@ -125,7 +125,7 @@
      background: none;
      border:none;
  }
- input[type="email"]:hover, input[type="password"]:hover{
+ input[type="number"], input[type="text"], input[type="email"]:hover, input[type="password"]:hover{
      color:#9E61A3;
      
  }

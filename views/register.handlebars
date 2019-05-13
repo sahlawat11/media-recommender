@@ -1,39 +1,47 @@
 <body>
-  <main>
-    <section class="container">
-      <h1>Media Recommender - Registeration</h1>
-      <div class="card text-black mb-3" style="max-width: 20rem;margin-left: auto;margin-right: auto;">
-        <div class="card-body">
+
+    <div class="message register" id="register">
+      <div class="inset">
+      <div class="register-head">
+        <h1>Media Recommender - Registeration</h1>
+      </div>
+
           <form action="/register" method="POST" id="registeration-form">
-            <div class="form-group">
+            <p>
               <label for="fname">First Name:</label>
               <input type="text" class="form-control" id="fname" name="fname" required />
-            </div>
-            <div class="form-group">
+            </p>
+            <div class="clear"> </div>
+            <p>
               <label for="lname">Last Name:</label>
               <input type="text" name="lname" class="form-control" id="lname" required />
-            </div>
-            <div class="form-group">
+            </p>
+            <div class="clear"> </div>
+            <p>
               <label for="email">Email address:</label>
               <input type="email" name="email" class="form-control" id="email" required />
-            </div>
-            <div class="form-group">
-              <label for="gender">Gender:<br>
-                <input type="radio" name="gender" value="male" checked> Male<br>
-                <input type="radio" name="gender" value="female"> Female<br>
-              </label>
-            </div>
-            <div class="form-group">
+            </p>
+            <div class="clear"> </div>
+            <p>
+                Gender:<br>
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="male" checked><br>
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="female" ><br>
+            </p>
+            <div class="clear"> </div>
+            <p>
               <label for="location">Location:</label>
               <input type="text" name="location" class="form-control" id="location" required />
-            </div>
-            <div class="form-group">
+            </p>
+            <div class="clear"> </div>
+            <p>
               <label for="age">Age:</label>
               <input type="number" name="age" class="form-control" id="age" min="1" max="100" required />
-            </div>
+            </p>
 
-            <div class="form-group music-genre">
-              <label for="musicGenre">Favourate Music Genre:</label><br>
+            <p class="form-group music-genre">
+              <label>Favourate Music Genre:</label><br>
               <input type="checkbox" name="musicGenre" value="acoustic"><span>acoustic</span>
               <input type="checkbox" name="musicGenre" value="alternative"><span>alternative</span>
               <input type="checkbox" name="musicGenre" value="ambient"><span>ambient</span>
@@ -84,106 +92,33 @@
               <input type="checkbox" name="musicGenre" value="trance"><span>trance</span>
               <input type="checkbox" name="musicGenre" value="work-out"><span>work-out</span>
               <input type="checkbox" name="musicGenre" value="world-music"><span>world-music</span><br>
-            </div>
+            </p>
 
-            <div class="form-group">
-              <label for="movieGenre">Favourate Movie Genre:</label><br>
+            <p class="form-group">
+              <label>Favourate Movie Genre:</label><br>
               <input type="checkbox" name="movieGenre" value="romantic">Romantic<br>
               <input type="checkbox" name="movieGenre" value="thriller">Thriller<br>
               <input type="checkbox" name="movieGenre" value="action">Action<br>
               <input type="checkbox" name="movieGenre" value="comedy">Comedy<br>
               <input type="checkbox" name="movieGenre" value="family">Family<br>
-            </div>
+            </p>
 
-            <div class="form-group">
+            <p>
               <label for="password1">Password:</label>
               <input type="password" name="password1" class="form-control" id="password1" required />
-            </div>
-            <div class="form-group">
+            </p>
+            <p>
               <label for="password2">Confirm Password:</label>
               <input type="password" name="password2" class="form-control" id="password2" required />
+            </p>
+            <div class="submit">
+              <input type="submit"  value="Submit" >
+              <div class="clear">  </div> 
             </div>
-
-            <button type="submit" class="btn btn-default text-white">Submit</button>
           </form>
-        </div>
-      </div>
+
       <br><br>
+    </div>
+    </div>
 
-
-      {{!-- <div class="card text-black mb-3" style="max-width: 50rem;margin-left: auto;margin-right: auto;">
-        <div class="card-header text-white bg-purple">Register</div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <label for="fname">First Name:</label>
-              <input type="text" class="form-control" id="fname" required />
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name:</label>
-              <input type="text" class="form-control" id="lname" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email" required />
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control" id="pwd" required />
-            </div>
-            <div class="form-group">
-              <label for="cnfpwd">Confirm Password:</label>
-              <input type="password" class="form-control" id="cnfpwd" required />
-            </div>
-            <div class="form-group">
-              <label class="radio-inline">
-                <input type="radio" name="optradio" required>Male
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="optradio">Female
-              </label>
-            </div>
-            <div class="form-group">
-              <label for="loc">Location:</label>
-              <input type="text" class="form-control" id="loc" required />
-            </div>
-            <div class="form-group">
-              <label for="age">Age:</label>
-              <input type="text" class="form-control" id="age" required />
-            </div>
-            <div class="form-group">
-              <label for="abt">About Me:</label>
-              <input type="text" class="form-control" id="abt" required />
-            </div>
-            <div class="form-group">
-              <label for="gen">Favourate Music Genre:</label>
-              <select class="form-control" id="gen" required>
-                <option value="pop">Pop</option>
-                <option value="jazz">Jazz</option>
-                <option value="rap">Rap</option>
-                <option value="country" selected>Country</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="gen">Favourate Movie Genre:</label>
-              <select class="form-control" id="gen" required>
-                <option value="pop">Romantic</option>
-                <option value="jazz">Thriller</option>
-                <option value="rap">Comedy</option>
-                <option value="country" selected>Family</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-default bg-purple text-white">Submit</button>
-            <button type="submit" class="btn btn-default bg-white text-black">Cancel</button>
-          </form>
-        </div>
-      </div>
-      <br><br> --}}
-
-
-    </section>
-  </main>
 </body>
-
-</html>

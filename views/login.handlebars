@@ -1,32 +1,17 @@
-<link href="/public/login.css" rel="stylesheet" type="text/css" media="all" />
-<script>
-	function checkLogin(){
-		var checkName = document.getElementById("Username").value;
-		if (checkName == "" || checkName == "Email Address") {
-			alert("Please input Email Address");
-			return false;
-		}
-		var checkPwd = document.getElementById("Password").value;
-		if (checkPwd == "" || checkPwd == "password") {
-			alert("Please input Password");
-			return false;
-		}
-	}
-</script>
 <body>
 <!-- login-form -->	
 <div class="message login" id="login">
 	<div class="inset">
 		<div class="login-head">
-			<h1>Login</h1>	
+			<h1>Media Recommender - Login</h1>	
 		</div>
-		<form action="/login" method="POST" onsubmit="checkLogin()">
+		<form action="/login" method="POST">
 			<p class="form-inline row">
-				<input type="email" name="userEmail" class="form-control" id="userEmail" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}"><i class="fas fa-user"></i>
+				<input type="email" name="userEmail" class="form-control" id="userEmail" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}" required><i class="fas fa-user"></i>
 			</p>
 				<div class="clear"> </div>
 			<p class="form-inline row">
-				<input type="password" class="form-control" name="password" id="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"> <i class="fas fa-lock"></i>
+				<input type="password" class="form-control" name="password" id="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" required> <i class="fas fa-lock"></i>
 			</p>
 			<div class="clear"> </div>
 			<div class="submit">
@@ -37,7 +22,6 @@
 		</form>
 	</div>					
 </div>
-<!--- footer --->
 <div class="footer">
 	<p>Copyright &copy; 2019S_CS546_Group3 &nbsp; &nbsp; &nbsp;</p>
 </div>
