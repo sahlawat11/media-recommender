@@ -36,3 +36,13 @@ input[type="text"] {
   padding: 10px;
   float: right;
 }
+.song-name {
+  color: red;
+  font-weight: 500;
+}
+.artist-name {
+  font-weight: 500;
+}
+.italics-text {
+  font-style: italic;
+}

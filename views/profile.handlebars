@@ -43,8 +43,17 @@
                 <div class="recommendations">
                     <article>
                         <h3>Recommendations</h3>
+                        <p>Here is a track for you:</p>
+                        <p><span class="song-name">{{recommendedSong.name}}</span> by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
+                        {{#if recommendedSong.previewUrl}}
+                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                        {{else}}
+                        <p class="italics-text">Preview not available.</p>
+                        {{/if}}
+                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                     </article>
                 </div>
+                
                 {{/if}}
             </div>
         </section>
