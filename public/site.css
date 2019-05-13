@@ -18,6 +18,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d4a70', end
   background-size: cover;
   background-attachment: fixed;
   color: #ffff;
+  height: auto;
+  min-height: 100%;
 }
 a {
   cursor: pointer;
@@ -154,6 +156,9 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
 .centereddiv{
   margin-right:auto;margin-left:auto;width:450px;margin-top: 10%
 }
+.centered{
+  margin-right:auto;margin-left:auto;
+}
 .headingtext-white
 {
   color:#ffff;
@@ -179,5 +184,14 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
 .movie-recommendation {
   border: dotted 2px black;
   float: right;
-  width:
+}
+.main-header{
+  position: relative;
+  max-height: 120px;
+  z-index: 1030;
+  -webkit-box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+  height: 80px;
+  text-align: center;
+  padding-top: 5px;
 }
