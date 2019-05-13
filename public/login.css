@@ -74,6 +74,8 @@
  }
  i {
      float: right;
+     margin-right: 10px;
+     margin-top: 7px;
  }
  .login-head {
      padding: 2em 0;
