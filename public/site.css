@@ -6,6 +6,10 @@ input[type="text"] {
   width: 100px;
 }
 
+img {
+  width: 200px;
+}
+
 .search-category {
   margin-top: 20px;
 }
@@ -31,8 +35,41 @@ input[type="text"] {
   width: 50%;
   float: left;
 }
-.playlists {
+/* .playlists {
   border: dotted 2px black;
   padding: 10px;
   float: right;
+} */
+.song-name a {
+  font-weight: 500;
+  font-size: 20px;
+}
+.artist-name {
+  font-weight: 500;
+}
+.italics-text {
+  font-style: italic;
+}
+.music-recommendation {
+  border: dotted 2px black;
+  width: 300px;
+  float: left;
+  margin-right: 10px;
+}
+.movie-recommendation {
+  border: dotted 2px black;
+  float: right;
+  
+}
+.playlists {
+  border: dotted 2px black;
+  padding: 10px;
+}
+.playlists table {
+  padding: 10px;
+}
+.playlist-tracks {
+  background-color: #ccf9fc;
+  padding: 20px;
+  margin: 20px;
 }

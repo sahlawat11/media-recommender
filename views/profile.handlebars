@@ -40,11 +40,42 @@
                 </div>
 
                 {{#if isLoggedInUserProfile}}
-                <div class="recommendations">
-                    <article>
-                        <h3>Recommendations</h3>
+                <div class="recommendations row">
+                    <article class="music-recommendation col-sm-5">
+                        <h3>Music Recommendation</h3>
+                        <p>Here is a track for you:</p>
+                        <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_black">{{recommendedSong.artist.name}}</a></span></p>
+                        {{#if recommendedSong.previewUrl}}
+                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                        {{else}}
+                        <p class="italics-text">Preview not available.</p>
+                        {{/if}}
+                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
+                        <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
+                            <input type="hidden" name="name" value="{{recommendedSong.name}}" />
+                            <input type="hidden" name="artistName" value="{{recommendedSong.artist.name}}" />
+                            <input type="hidden" name="artistUrl" value="{{recommendedSong.artist.artistUrl}}" />
+                            <input type="hidden" name="previewUrl" value="{{recommendedSong.previewUrl}}" />
+                            <a onclick="document.getElementById('add-music-form').submit();">Add to Favorites</a>
+                        </form>
                     </article>
+
+                    <article class="movie-recommendation col-sm-6">
+                        <h3>Movie of the day</h3>
+                        <img src={{recommendedMovie.Poster}}>
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <p>Rating: {{recommendedMovie.imdbRating}}/5</p>
+                        <p>Actors: {{recommendedMovie.Actors}}</p>
+                        <p><a>Add to Watch Later</a></p>
+                        
+                    </article>
+
                 </div>
+
+                    
+
+                    
+                
                 {{/if}}
             </div>
         </section>

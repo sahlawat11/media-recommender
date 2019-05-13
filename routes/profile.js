@@ -12,20 +12,25 @@ router.get("/my-profile", async (req, res) => {
 
       // initializing user playlists to show on the profile
       userPlaylists = [];
-      let favPlayListTmpObj = await data.playlists.getPlaylistById(userData.Favorites)
-      let watchLaterPlayListTmpObj = await data.playlists.getPlaylistById(userData.WatchLater)
+      const favPlayListTmpObj = await data.playlists.getPlaylistById(userData.Favorites);
+      const watchLaterPlayListTmpObj = await data.playlists.getPlaylistById(userData.WatchLater);
       userPlaylists.push(favPlayListTmpObj);
       userPlaylists.push(watchLaterPlayListTmpObj);
 
       // generating the recommendation
-      let songs = data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres)
+      const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+      console.log('THIS IS THE SONG:', recommendedSong);
+      const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
+      console.log("TRHIS IS IT:", recommendedMovie);
 
-    // res.render("profile", {
-    //   userData: req.session.userData,
-    //   userPlaylists: userPlaylists,
-    //   isLoggedInUserProfile: true
-    // });
+    res.render("profile", {
+      userData: req.session.userData,
+      userPlaylists: userPlaylists,
+      recommendedSong: recommendedSong,
+      recommendedMovie: recommendedMovie,
+      isLoggedInUserProfile: true
+    });
   }
 });
 
