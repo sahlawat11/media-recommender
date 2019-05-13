@@ -75,10 +75,28 @@ async function addPlayList(info){
   });
 }
 
+async function addToPlaylist(media, playlistId) {
+  if(typeof media === 'undefined') {
+    return
+  }
+
+  return this.getPlaylistById(playlistId).then(currentList => {
+    updatedList = currentList;
+    updatedList.Media.push(media);
+
+  return playlists().then(playlistCollection => {
+    return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {
+      return this.getPlaylistById(playlistId);
+    });
+  })
+});
+}
+
 module.exports = {
   getAllPlaylists,
   getPlaylistById,
   search,
   setPlaylistStatus,
-  addPlayList
+  addPlayList,
+  addToPlaylist
 }

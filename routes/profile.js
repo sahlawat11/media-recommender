@@ -19,6 +19,7 @@ router.get("/my-profile", async (req, res) => {
 
       // generating the recommendation
       const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+      console.log('THIS IS THE SONG:', recommendedSong);
       const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
       console.log("TRHIS IS IT:", recommendedMovie);
