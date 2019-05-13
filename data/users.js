@@ -1,4 +1,5 @@
 const mongoCollections = require("../databaseConfig/mongoCollection");
+const ObjectId = require('mongodb').ObjectID
 const users = mongoCollections.users;
 const playlists = mongoCollections.playlists;
 const uuid = require("node-uuid");
@@ -10,6 +11,16 @@ async function getAllUsers(){
 }
 
 async function getUserById(id) {
+  const parsedId = ObjectId.createFromHexString(id);
+  return users().then(userCollection => {
+    return userCollection.findOne({ _id: parsedId }).then(user => {
+      if (!user) throw "User not found";
+      return user;
+    });
+  });
+}
+
+async function getUserByObjId(id) {
   return users().then(userCollection => {
     return userCollection.findOne({ _id: id }).then(user => {
       if (!user) throw "User not found";
@@ -18,11 +29,12 @@ async function getUserById(id) {
   });
 }
 
-async function getUserByName(name){      
+
+async function getUserByName(name) {      
   return users().then(userCollection => {
-    return userCollection.findOne({ FullName: name }).then(user => {
-      if (!user) throw "User "+name+" not found";
-      return user;
+  return userCollection.find({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
+      if (!users1) throw "User "+name+" not found";
+      return users1;
     });
   });
 }
@@ -45,7 +57,7 @@ async function loginMatch(Email,HashedPassword){
   }
   const AllUsers = this.getAllUsers();
   AllUsers.forEach(element => {
-    if(element.Email===Email&&element.HashedPassword){
+    if(element.Email===Email&&element.HashedPassword===HashedPassword){
       return true;
     }
   });
@@ -70,54 +82,6 @@ async function registration(Userinfo){
     MovieLists: profile.MovieLists,
     WatchLater: profile.WatchLater,
   }
-}
-
-async function accessProfile(UserId){
-  const profile = this.getUserById(UserId);
-  if(!profile){throw "not found"}
-  let music=[],movie=[];
-  (profile.MusicLists).forEach(element => {
-    const info = playlists.getPlaylistById(id);
-    if(info.Status=="public"){
-      music.push(info);
-    }
-  });
-  (profile.MovieLists).forEach(element => {
-    const info = playlists.getPlaylistById(id);
-    if(info.Status=="public"){
-      movie.push(info);
-    }
-  });
-
-  return {
-    Name: profile.FullName,
-    Email: profile.Email,
-    Gender: profile.Gender,
-    Location: profile.Location,
-    Age: profile.Age,
-    FavoriteMusicGenres: profile.FavoriteMusicGenres,
-    FavoriteMovieGenres: profile.FavoriteMovieGenres,
-    Favorites: profile.Favorites,
-    MusicLists: music,
-    MovieLists: movie,
-    WatchLater: profile.WatchLater
-  }
-}
-
-async function WatchLater(id,movie){
-  //status can be either public of private
-  if(!id||!movie){
-    throw "imcomplete info"
-  }
-  return this.getPlaylistById(id).then(currentList => {
-    let updatedList = {
-      Status:status
-    };
-
-    return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
-      return this.getUserById(id);
-    });
-  });
 }
 
 async function addUser(info){
@@ -147,7 +111,7 @@ async function addUser(info){
             return newInsertInformation.insertedId;
           })
           .then(newId => {
-            return this.getUserById(newId);
+            return getUserByObjId(newId);
           });
   });
 }
@@ -159,7 +123,5 @@ module.exports={
   getUserByEmail,
   loginMatch,
   registration,
-  accessProfile,
-  WatchLater,
   addUser
 }

@@ -19,26 +19,23 @@ const main = async () => {
         "Location": "Hoboken",
         "AboutMe": "description",
         "Age": "25",
-        "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
         "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
         "FavoriteMusicGenres": ["Pop","Rap"],
         "FavoriteMovieGenres": ["Thriller","Romance"],
         "Favorites": ["Pulp Fiction", "The Breakfast Club"],
-        "MusicLists": ["7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310","7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710"],
-        "MovieLists": ["7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310","7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710"],
-        "WatchLater": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310"
+        "MusicLists": ["7b7997a2-c0d22-4f2c-b24a","7b6916a2-dd0f2-4g8g-h23d"],
+        "MovieLists": ["7b7997a2-c0d12-4f8c-b17a","7b6936a2-dw0f2-4g8g-h16d"],
+        "WatchLater": "7b7997a2-c0d2-4f8c-b27a1"
     }
     const user = await users.addUser(userinfo);
     console.log(user);
     let listinfo ={
-        "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
         "Name": "to be calm",
         "Type": "music",
         "Owner": "Sunii Kim",
         "Status": "private",
 
         "Media": [{
-            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
             "Name": "Nonstop",
             "Artist": "Drake",
             "Type": "Music",
@@ -47,7 +44,6 @@ const main = async () => {
             }],
 
         "Comments":[{
-            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
             "User_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b8124",
             "User_name": "Tianxin Liu",
             "Comment": "Good music!"

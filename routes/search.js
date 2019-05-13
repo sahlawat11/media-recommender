@@ -19,8 +19,10 @@ router.get("/user", async (req, res) => {
       res.status(403).render("unauthorized")
       return;
     } else {
+    const users = await data.users.getAllUsers();
       res.render("search", {
-          searchType: "User"
+          searchType: "User",
+          userList: users
       });
     }
   });
@@ -58,11 +60,11 @@ router.post("/", async (req, res) => {
       case "User":
         result = await users.getUserByName(keyword);
         hasResult = (!result==undefined)
-        res.render("search", {
+        //res.render("search", {
+        res.render("profile",{
           hasResults: hasResult,
-          resultList: result,
-          searchType: searchType
-      })
+          UserData: result,
+      });
         break;
 
       case "Music":
@@ -87,7 +89,8 @@ router.post("/", async (req, res) => {
           res.render("search", {
             hasResults: hasResult,
             resultList: result,
-            searchType: searchType
+            searchType: searchType,
+            music: true
           });
         })
 
@@ -95,12 +98,22 @@ router.post("/", async (req, res) => {
 
       case "Movie":
         console.log(keyword)
-        result = await movies.searchMovieByName(keyword);
-        hasResult = (!result==undefined)
+        try{
+          result =[];
+          result.push(await movies.searchMovieByName(keyword));
+          hasResult = true;
+        }catch(e){
+          hasResult = false;
+        }
+
+        console.log(result)
+        console.log(hasResult)
+        
         res.render("search", {
           hasResults: hasResult,
           resultList: result,
-          searchType: searchType
+          searchType: searchType,
+          movie: true
         })
         break;
 
