@@ -22,6 +22,10 @@ router.get("/my-profile", async (req, res) => {
         userPlaylists.push(await data.playlists.getPlaylistById(userData.WatchLater))
       }catch(e){        }
 
+      try{
+        userPlaylists.push(await data.playlists.getPlaylistById(userData.Favorites))
+      }catch(e){        }
+
       
       // generating the recommendation
       const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
