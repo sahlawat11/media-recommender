@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 const data = require("../data");
 const bcrypt = require("bcryptjs");
-const { ObjectId } = require("mongodb");
+const xss = require("xss");
 
 router.get("/", async (req, res) => {
   if (req.session.loggedIn) {
@@ -18,11 +17,12 @@ router.post("/", async (req, res) => {
   let error;
   let hashedPass;
   const users = await data.users.getAllUsers();
-
+  registrationData.password1 = xss(registrationData.password1);
+  registrationData.password2 = xss(registrationData.password2);
   if (registrationData.password1 !== registrationData.password2) {
     return;
   }
-
+  registrationData.email = xss(registrationData.email);
   for(i=0; i<users.length; i++) {
     console.log('this is it:', users[i]);
     if(users[i].Email === registrationData.email) {
@@ -32,6 +32,13 @@ router.post("/", async (req, res) => {
   if(typeof error !== 'undefined') {
   bcrypt.hash(registrationData.password1, 8, async function(err, hash) {
     hashedPass = hash;
+    registrationData.fname = xss(registrationData.fname);
+    registrationData.lname = xss(registrationData.lname);
+    registrationData.gender = xss(registrationData.gender);
+    registrationData.location = xss(registrationData.location);
+    registrationData.age = xss(registrationData.age);
+    registrationData.musicGenre = xss(registrationData.musicGenre);
+    registrationData.movieGenre = xss(registrationData.movieGenre);
 
     const newUserObj = {
       FirstName: registrationData.fname,

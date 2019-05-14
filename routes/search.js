@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const songsRecommender = require("../data/recommendation-generator");
+const xss = require("xss");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -21,7 +21,6 @@ router.get("/user", async (req, res) => {
     
       let loggedInUserId = req.session.userData._id;
       for(i=0; i<users.length; i++) {
-        console.log('THIS IS IT:', users[i]._id, loggedInUserId);
         if(users[i]._id == loggedInUserId) {
           users.splice(i, 1);
           break;
@@ -65,6 +64,7 @@ router.get("/user", async (req, res) => {
   }
 
 router.post("/user", async (req, res) => {
+  req.body['keyword'] = xss(req.body['keyword']);
     const searchQuery = req.body['keyword'];
     let result = [];
     const users = await data.users.getAllUsers();
@@ -76,8 +76,6 @@ router.post("/user", async (req, res) => {
         }
       }
     }
-
-    // result = getUnique();
     
     res.render("search", {
         hasResults: true,
@@ -90,6 +88,7 @@ router.post("/user", async (req, res) => {
   
 
   router.post("/music", async (req, res) => {
+    req.body['keyword'] = xss(req.body['keyword']);
     const searchQuery = req.body['keyword'];
     const result = await data.recommender.getSearchedMusic(searchQuery);
        

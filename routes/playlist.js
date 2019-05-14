@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
+const xss = require("xss");
 
 async function isLoggedInUser(userData, playlistInfo) {
     let isLoggedInUser;
@@ -88,6 +89,10 @@ router.get("/:id/public", async (req, res) => {
 router.post("/:id", async (req, res) => {
   let mediaObj;
   if (typeof req.body.name !== "undefined") {
+    req.body.name = xss(req.body.name);
+    req.body.artistName = xss(req.body.artistName);
+    req.body.artistUrl = xss(req.body.artistUrl);
+    req.body.previewUrl = xss(req.body.previewUrl);
     mediaObj = {
       name: req.body.name,
       artist: req.body.artistName,
@@ -95,6 +100,12 @@ router.post("/:id", async (req, res) => {
       previewUrl: req.body.previewUrl
     };
   } else if (typeof req.body.title !== "undefined") {
+    req.body.poster = xss(req.body.poster);
+    req.body.title = xss(req.body.title);
+    req.body.year = xss(req.body.year);
+    req.body.director = xss(req.body.director);
+    req.body.imdbRating = xss(req.body.imdbRating);
+    req.body.actors = xss(req.body.actors);
     mediaObj = [{
       poster: req.body.poster,
       title: req.body.title,

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
+const xss = require("xss");
 const bcrypt = require("bcryptjs");
 const data = require("../data");
 
@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
   if (!loginData.password) {
     error = "The email or the password is not correct.";
   }
-
+  loginData.userEmail = xss(loginData.userEmail);
+  loginData.password = xss(loginData.password);
   selectedUser = await data.users.getUserByEmail(loginData.userEmail);
 
 
