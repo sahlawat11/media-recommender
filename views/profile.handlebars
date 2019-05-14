@@ -41,7 +41,11 @@
                     </div>
                     <div class="card-body">
                         {{#each userPlaylists}}
-                        <p id="{{@index}}userPlaylist"><a href="/playlist/{{this._id}}">{{this.Name}}</a></p>
+                        <p id="{{@index}}userPlaylist">
+                            <div class="playlist-button">
+                                <a href="/playlist/{{this._id}}">{{this.Name}}</a>
+                            </div>
+                        </p>
                         {{/each}}
                     </div>
                 </div>
