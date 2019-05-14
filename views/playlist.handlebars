@@ -1,37 +1,26 @@
-<body>
-    <main>
-        <section>
-            <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="/profile/my-profile">Home</a>
-                <a class="navbar-brand" href="/search">Search</a>
-                <a class="navbar-brand" href="/logout">Logout</a>
-            </nav>
-
-        </section>
-        <section>
-            <div class="container">
-                <div class="playlists">
-                    <article>
-                        <h3>Playlist: {{playlistInfo.Name}}</h3>
-                        {{#if playlistInfo.Media.length}}
-                            {{#each playlistInfo.Media}}
-                                <div class="playlist-tracks">
-                                <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by <span class="artist-name">{{this.artist}}</span></p>
-                                <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
-                                </div>
-                                {{/each}}
-                        {{else}}
-                            <p class="italics-text">This playlist is empty.</p>
-                        {{/if}}
-
-                    </article>
-                </div>
+<section>
+    <div class="container">
+        <div class="card text-white bg-dark" style="width: 18rem;">
+            <div class="card-header">
+                <h3>Playlist: {{playlistInfo.Name}}</h3>
             </div>
-        </section>
-        <section>
-            {{!-- <div class="container">
-                <a class="logout-btn" href="/profile/my-profile">Back</a>
-            </div> --}}
-        </section>
-    </main>
-</body>
+            {{#if playlistInfo.Media.length}}
+            <ul class="list-group list-group-flush text-white bg-dark ">
+
+                {{#each playlistInfo.Media}}
+                <li class="list-group-item">
+                    <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by
+                        <span class="artist-name">{{this.artist}}</span></p>
+                    <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                </li>
+                {{/each}}
+
+
+            </ul>
+            {{else}}
+            <p class="italics-text">This playlist is empty.</p>
+            {{/if}}
+        </div>
+
+    </div>
+</section>
