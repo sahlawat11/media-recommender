@@ -5,7 +5,11 @@ const bcrypt = require("bcryptjs");
 const data = require("../data");
 
 router.get("/", async (req, res) => {
+  if(req.session.loggedIn) {
+    res.redirect("/profile/my-profile");
+  } else {
   res.render("login");
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -34,6 +38,7 @@ router.post("/", async (req, res) => {
       try {
         req.session.loggedIn = true;
         const tmp_user_obj = selectedUser;
+        tmp_user_obj.sendEmail = true;
         delete tmp_user_obj.HashedPassword;
         req.session.userData = tmp_user_obj;
 

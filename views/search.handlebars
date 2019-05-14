@@ -1,16 +1,14 @@
-<body>
-    <main>
-        <section class="container">
-            <h1>Search - Media Recommender</h1>
-            <div class="search-category">
-                <span><a href="/search/user">User</a></span> |
-                <span><a href="/search/music">Music</a></span> |
-                <span><a href="/search/movies">Movies</a></span>
-            </div>
+<main>
+    <section class="container">
+        <h1>Search</h1>
+        <div class="search-category">
+            <span><a href="/search/user">User</a></span> |
+            <span><a href="/search/music">Music</a></span> |
+            <span><a href="/search/movies">Movies</a></span>
+        </div>
 
 
         {{#if isUser}}
-        {{#if userList.length}}
             <form action="/search/user" method="POST" id="user-search-form">
                 <div class="form-group">
                     <label for="keyword">Enter User Name:
@@ -19,9 +17,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
-                        {{else}}
-            <p class="italics-text">No other users are registered.</p>
-            {{/if}}
+                        
             {{/if}}
 
             {{#if isMusic}}
@@ -41,7 +37,9 @@
                     <p id={{@index}}><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
                 {{/each}}
             </div>
-            {{/if}}
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        {{/if}}
 
             <div class="users-list">
                 {{#each userList}}

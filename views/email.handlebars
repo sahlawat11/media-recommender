@@ -1,0 +1,19 @@
+
+  <body>
+    <main>
+      <section class="container">
+        <h1>Recommendation</h1>
+        {{#if isMusic}}
+        <p>Type: Music</p>
+        <p>Title: {{Title}}</p>
+        <p>Artist: <a href="{{ArtistLink}}">{{Artist}}</a>    <i>(*You can click on artist name to find more tracks)</i></p>
+        {{else}}
+        <p>Type: Movie</p>
+        <p>Title: {{Title}}</p>
+        <p>Director: {{Director}}</p>
+        <p>Imdb Rating: {{IMDBRating}}</p>
+        <p>Actors: {{Actors}}</p>
+        {{/if}}  
+    </section>
+    </main>
+  </body>

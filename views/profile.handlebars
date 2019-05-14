@@ -1,55 +1,28 @@
-<body>
-    <main>
-        <section>
-            <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/profile/my-profile">Home</a>
-  <a class="navbar-brand" href="/search">Search</a>
-  <a class="navbar-brand" href="/logout">Logout</a>
-</nav>
-           
-        </section>
-        <section>
-            <div class="container">
-                <div class="row">
-                <div class="user-info col-md-6">
-                    <article class="user-data">
-                        {{#if isLoggedInUserProfile}}
-                        <h3>My Info</h3>
-                        {{else}}
-                        <h3>User Info</h3>
-                        {{/if}}
-                        
-                        <p>First Name: {{userData.FirstName}}</p>
-                        <p>Last Name: {{userData.LastName}}</p>
-                        <p>Email: {{userData.Email}}</p>
-                        <p>Gender: {{userData.Gender}}</p>
-                        <p>Location: {{userData.Location}}</p>
-                        <p>Age: {{userData.Age}}</p>
-                    </article>
-                </div>
 
-                <div class="playlists col-md-6">
-                    <article>
-                        <h3>Playlists</h3>
-                        {{#each userPlaylists}}
-                        <p id="{{@index}}userPlaylist"><a href="/playlist/{{this._id}}">{{this.Name}}</a></p>
-                        {{/each}}
-                    </article>
-                </div>
-                </div>
+<section>
+    <div class="container">
 
-                {{#if isLoggedInUserProfile}}
-                <div class="recommendations row">
-                    <article class="music-recommendation col-sm-5">
+        {{#if isLoggedInUserProfile}}
+        <div class="row main-body recommendation-row">
+            <div class="col-md-5">
+                <div class="card text-white bg-dark margin">
+                    <div class="card-header">
                         <h3>Music Recommendation</h3>
+                    </div>
+                    <div class="card-body">
                         <p>Here is a track for you:</p>
-                        <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_black">{{recommendedSong.artist.name}}</a></span></p>
+                        <p><span class="song-name"><a href={{this.previewUrl}}
+                                    target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span
+                                class="artist-name"><a href={{recommendedSong.artist.artistUrl}}
+                                    target="_black">{{recommendedSong.artist.name}}</a></span></p>
                         {{#if recommendedSong.previewUrl}}
-                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on
+                            Spotify</p>
                         {{else}}
                         <p class="italics-text">Preview not available.</p>
                         {{/if}}
-                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
+                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks
+                            by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                         <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
                             <input type="hidden" name="name" value="{{recommendedSong.name}}" />
                             <input type="hidden" name="artistName" value="{{recommendedSong.artist.name}}" />
@@ -57,13 +30,20 @@
                             <input type="hidden" name="previewUrl" value="{{recommendedSong.previewUrl}}" />
                             <a onclick="document.getElementById('add-music-form').submit();">Add to Favorites</a>
                         </form>
-                    </article>
-
-                    <article class="movie-recommendation col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div style="space"></div>
+            <div class="col-md-5">
+                <div class="card text-white bg-dark margin">
+                    <div class="card-header">
                         <h3>Movie of the day</h3>
+                    </div>
+                    <div class="card-body">
                         <img src={{recommendedMovie.Poster}}>
-                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span class="artist-name">{{recommendedMovie.Director}}</span></p>
-                        <p>Rating: {{recommendedMovie.imdbRating}}/5</p>
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span
+                                class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <p>IMDB Rating: {{recommendedMovie.imdbRating}}/5</p>
                         <p>Actors: {{recommendedMovie.Actors}}</p>
 
                         <form id="add-movie-form" method="post" action="/playlist/{{userData.WatchLater}}">
@@ -79,13 +59,46 @@
                     </article>
 
                 </div>
-
-                    
-
-                    
-                
-                {{/if}}
             </div>
-        </section>
-    </main>
-</body>
+        </div>  
+    </div>
+    {{/if}}
+
+    <div class="row main-body user-info-row">
+            <div class="col-md-5">
+                <div class="card text-white bg-dark bottom-margin">
+
+                    <div class="card-header">
+                        {{#if isLoggedInUserProfile}}
+                        <h3>My Info</h3>
+                        {{else}}
+                        <h3>User Info</h3>
+                        {{/if}}
+
+                    </div>
+                    <div class="card-body">
+                        <p>First Name : {{userData.FirstName}}</p>
+                        <p>Last Name : {{userData.LastName}}</p>
+                        <p>Email : {{userData.Email}}</p>
+                        <p>Gender : {{userData.Gender}}</p>
+                        <p>Location : {{userData.Location}}</p>
+                        <p>Age : {{userData.Age}}</p>
+                    </div>
+                </div>
+            </div>
+            <div style="space"></div>
+            <div class="col-md-5">
+                <div class="card text-white bg-dark margin">
+                    <div class="card-header">
+                        <h3>Playlists</h3>
+                    </div>
+                    <div class="card-body">
+                        {{#each userPlaylists}}
+                        <p id="{{@index}}userPlaylist"><a href="/playlist/{{this._id}}">{{this.Name}}</a></p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>

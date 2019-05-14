@@ -15,13 +15,15 @@ router.get("/my-profile", async (req, res) => {
       const watchLaterPlayListTmpObj = await data.playlists.getPlaylistById(userData.WatchLater);
       userPlaylists.push(favPlayListTmpObj);
       userPlaylists.push(watchLaterPlayListTmpObj);
-
       // generating the recommendation
       const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
       const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
-      // let recommendedSong;
-      // let recommendedMovie;
+      if(req.session.userData.sendEmail) {
+        req.session.userData.sendEmail = false;
+        await data.recommender.sendRecommendationEmail(res, recommendedSong, userData.Email, "Music");
+        await data.recommender.sendRecommendationEmail(res, recommendedMovie, userData.Email, "Movie");
+      }
 
     res.render("profile", {
       userData: req.session.userData,

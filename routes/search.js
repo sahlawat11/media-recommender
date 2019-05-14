@@ -21,6 +21,7 @@ router.get("/user", async (req, res) => {
     
       let loggedInUserId = req.session.userData._id;
       for(i=0; i<users.length; i++) {
+        console.log('THIS IS IT:', users[i]._id, loggedInUserId);
         if(users[i]._id == loggedInUserId) {
           users.splice(i, 1);
           break;
@@ -55,18 +56,28 @@ router.get("/user", async (req, res) => {
     }
   });
 
+  function getUnique(arr, comp) {
+    const unique = arr
+         .map(e => e[comp])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter(e => arr[e]).map(e => arr[e]);
+     return unique;
+  }
 
 router.post("/user", async (req, res) => {
     const searchQuery = req.body['keyword'];
     let result = [];
     const users = await data.users.getAllUsers();
+    const loggedInUserId = req.session.userData._id;
     for(i=0; i<users.length; i++) {
       if(users[i].FirstName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].LastName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].Email.toLowerCase().includes(searchQuery.toLowerCase())) {
-        if(result.indexOf(users[i]) < 0) {
+        if(users[i]._id != loggedInUserId) {
           result.push(users[i]);
         }
       }
     }
+
+    // result = getUnique();
     
     res.render("search", {
         hasResults: true,

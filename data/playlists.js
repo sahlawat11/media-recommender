@@ -89,10 +89,12 @@ async function addToPlaylist(media, playlistId) {
   if(media.length === 0) {
     return
   }
+  console.log('THIS HAS ENETERED HERE', media);
   return this.getPlaylistById(playlistId).then(currentList => {
     updatedList = currentList;
+    console.log('THIS IS THE TEST:', updatedList);
     updatedList.Media = updatedList.Media.concat(media);
-    if(currentList.Type === 'movie') {
+    if(currentList.Type === 'movies') {
       updatedList.Media = getUnique(updatedList.Media, 'title');
     } else {
       updatedList.Media = getUnique(updatedList.Media, 'name')
@@ -108,6 +110,7 @@ async function addToPlaylist(media, playlistId) {
 
 module.exports = {
   getAllPlaylists,
+  getPlaylistByObjectId,
   getPlaylistById,
   getPlaylistByObjectId,
   search,
