@@ -28,6 +28,7 @@ async function searchMovieByName(name){
 
   module.exports={
       addMovies,
+      searchMovieByName,
       getAllMovies,
       getMovieByImdbId
   }

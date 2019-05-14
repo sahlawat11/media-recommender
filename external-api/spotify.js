@@ -158,7 +158,7 @@ const getByArtistId = async (artistId, callback) => {
 /**
  * Gets music recommendations from the Spotify API by genres
  * @param {function} callback
- * @param {string} genres genres to search for recommendations
+ * @param {...string} genres genres to search for recommendations
  * @returns JSON of artist info
  */
 const getRecs = async (genres, callback) => {

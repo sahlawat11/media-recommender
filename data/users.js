@@ -32,7 +32,9 @@ async function getUserByObjId(id) {
 
 async function getUserByName(name) {      
   return users().then(userCollection => {
-  return userCollection.find({ Firstname: name, LastName: name }).then(users1 => {
+  //return userCollection.findOne({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
+  //return userCollection.find({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
+  return userCollection.findOne({$or: [{FirstName: name}, {LastName: name}, {FullName: name}]}).then(users1 => {
       if (!users1) throw "User "+name+" not found";
       return users1;
     });
@@ -113,6 +115,25 @@ async function addUser(info){
           });
   });
 }
+/*
+async function addPlaylist(UserId,listId,type){
+  if(!UserId||!listId||!type){
+    "incomplete info"
+  }
+  let info = await getUserById(UserId);
+  if(type=="music"){
+    info.MusicLists.push(listId);
+  }
+  if(type=="movie"){
+    info.MovieLists.push(listId)
+  }
+  return users().then(userCollection => {
+    return userCollection.findOne({ Email: email }).then(user => {
+      if (!user) throw "User with email: "+email+" not found";
+      return user;
+    });
+  });
+}*/
 
 module.exports={
   getAllUsers,
