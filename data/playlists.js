@@ -18,7 +18,7 @@ const playlists = mongoCollections.playlists;
       }
         return playlists().then(playlistCollection => {
           return playlistCollection.findOne({ _id: obj }).then(playlist => {
-            if (!playlist) throw "User not found";
+            if (!playlist) throw "PlayList not found";
             return playlist;
           });
         });
@@ -107,7 +107,7 @@ async function getAllPlaylists(){
     return playlistCollection.find({}).toArray();
   });
 }
-
+/*
 async function getPlaylistById(id) {
   console.log(id)
   postParsedId = ObjectId.createFromHexString(id);
@@ -118,7 +118,7 @@ async function getPlaylistById(id) {
     });
   });
 }
-
+*/
 async function getPlaylistByObjectId(id) {
   return playlists().then(playlistCollection => {
     return playlistCollection.findOne({ _id: id }).then(playlist => {
@@ -148,6 +148,17 @@ async function setPlaylistStatus(id,status){
     let updatedList = {
       Status:status
     };
+    async function search(name,type){
+      const allLists=this.getAllPlaylists();
+      allLists.forEach(element => {
+        const media = element.Media;
+        let obj = media.find(o => o.Name === name|| o.Type === type);
+        if(obj!=undefined){
+          return obj;
+        }
+      });
+      throw "not found"
+    }
 
     return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
       return this.getUserById(id);
@@ -202,4 +213,3 @@ module.exports = {
   addPlayList,
   addToPlaylist
 }
-
