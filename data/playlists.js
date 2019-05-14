@@ -80,30 +80,20 @@ async function addPlayList(info){
 function getUnique(arr, comp) {
   const unique = arr
        .map(e => e[comp])
-     // store the keys of the unique objects
     .map((e, i, final) => final.indexOf(e) === i && i)
-    // eliminate the dead keys & store unique objects
     .filter(e => arr[e]).map(e => arr[e]);
    return unique;
 }
 
 async function addToPlaylist(media, playlistId) {
-  console.log('this is the media we received:', media);
   if(media.length === 0) {
     return
   }
-  
   return this.getPlaylistById(playlistId).then(currentList => {
-    console.log('**********1:', currentList);
     updatedList = currentList;
-    for(i=0; i<media.length; i++) {
-      if(updatedList.Media.indexOf(media[i]) < 0) {
-        updatedList.Media.push(media[i]);
-      }
-    }
-    // updatedList.Media = updatedList.Media.concat(media);
+    updatedList.Media = updatedList.Media.concat(media);
+    updatedList.Media = getUnique(updatedList.Media, 'title');
     
-    console.log('**********2:', updatedList);
   return playlists().then(playlistCollection => {
     return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {
       return this.getPlaylistById(playlistId);

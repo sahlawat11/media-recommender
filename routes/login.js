@@ -12,12 +12,7 @@ router.post("/", async (req, res) => {
   let loginData = req.body;
   let error;
   let selectedUser;
-  console.log(
-    "this is the data:",
-    req.body,
-    loginData.userEmail,
-    loginData.password
-  );
+
   if (!loginData.userEmail) {
     error = "The email or the password is not correct.";
   }

@@ -59,14 +59,21 @@ router.get("/user", async (req, res) => {
 router.post("/user", async (req, res) => {
     const searchQuery = req.body['keyword'];
     let result = [];
-    result = await data.users.getUserByName(searchQuery);
+    const users = await data.users.getAllUsers();
+    for(i=0; i<users.length; i++) {
+      if(users[i].FirstName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].LastName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].Email.toLowerCase().includes(searchQuery.toLowerCase())) {
+        if(result.indexOf(users[i]) < 0) {
+          result.push(users[i]);
+        }
+      }
+    }
     
-    console.log("***********:", result);
-    // res.render("search", {
-    //     hasResults: true,
-    //     resultList: result,
-    //     searchType: "User"
-    // });
+    res.render("search", {
+        hasResults: true,
+        resultList: result,
+        searchType: "User",
+        isUser: true
+    });
     // console.log(
     //   "this is the data:",
     //   req.body,
