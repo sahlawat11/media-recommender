@@ -7,20 +7,58 @@
             {{#if playlistInfo.Media.length}}
             <ul class="list-group list-group-flush text-white bg-dark ">
 
+</section>
+<section>
+    <div class="container">
+        <div class="playlists">
+            <article>
+                <h3 class="playlist-header">Playlist: {{playlistInfo.Name}} <span class="playlist-status-{{playlistInfo.Status}}">({{playlistInfo.Status}})</span></h3>
+                {{#if hidePlaylist}}
+                {{else}}
+                {{#if isLoggedInUser}}
+                {{#if isPublic}}
+                <a href="/playlist/{{playlistInfo._id}}/private">Make playlist private.</a>
+                {{else}}
+                <a href="/playlist/{{playlistInfo._id}}/public">Make playlist public.</a>
+                {{/if}}
+                {{else}}
+                {{#if isMusicPlaylist}}
+                <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/favorites" target="_blank"> You
+                        can import all the songs by clicking here.</a></p>
+                {{else}}
+                <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/watchlater" target="_blank"> You
+                        can import all the movies by clicking here.</a></p>
+                {{/if}}
+                {{/if}}
+                {{#if playlistInfo.Media.length}}
                 {{#each playlistInfo.Media}}
-                <li class="list-group-item">
+                {{#if this.name}}
+                <div class="playlist-tracks">
                     <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by
                         <span class="artist-name">{{this.artist}}</span></p>
                     <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
-                </li>
+                </div>
+                {{else}}
+                <div class="playlist-movies">
+                    <img src={{this.poster}}>
+                    <p><span class="song-name">{{this.title}}, {{this.year}}</span> by <span class="artist-name">{{this.director}}</span></p>
+                    <p>Rating: {{this.imdbRating}}/5</p>
+                    <p>Actors: {{this.actors}}</p>
+                </div>
+
+                {{/if}}
                 {{/each}}
-
-
-            </ul>
-            {{else}}
-            <p class="italics-text">This playlist is empty.</p>
-            {{/if}}
+                {{else}}
+                <p class="italics-text">This playlist is empty.</p>
+                {{/if}}
+                {{/if}}
+                {{/if}}
+            </article>
         </div>
-
     </div>
+</section>
+<section>
+    {{!-- <div class="container">
+        <a class="logout-btn" href="/profile/my-profile">Back</a>
+    </div> --}}
 </section>

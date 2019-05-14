@@ -1,16 +1,17 @@
 {{!-- <section>
-            <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/profile/my-profile">Home</a>
-  <a class="navbar-brand" href="/search">Search</a>
-  <a class="navbar-brand" href="/logout">Logout</a>
-</nav>
-           
-        </section> --}}
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/profile/my-profile">Home</a>
+        <a class="navbar-brand" href="/search">Search</a>
+        <a class="navbar-brand" href="/logout">Logout</a>
+    </nav>
+
+</section> --}}
+<br>
 <section>
     <div class="container">
 
         <div class="row main-body">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card text-white bg-dark margin">
 
                     <div class="card-header">
@@ -32,8 +33,8 @@
                     </div>
                 </div>
             </div>
-            <div style="space"></div>
-            <div class="col-md-5">
+
+            <div class="col-md-6">
                 <div class="card text-white bg-dark margin">
                     <div class="card-header">
                         <h3>Playlists</h3>
@@ -48,24 +49,22 @@
         </div>
         {{#if isLoggedInUserProfile}}
         <div class="row main-body">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card text-white bg-dark margin">
                     <div class="card-header">
                         <h3>Music Recommendation</h3>
                     </div>
                     <div class="card-body">
                         <p>Here is a track for you:</p>
-                        <p><span class="song-name"><a href={{this.previewUrl}}
-                                    target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span
-                                class="artist-name"><a href={{recommendedSong.artist.artistUrl}}
-                                    target="_black">{{recommendedSong.artist.name}}</a></span></p>
+                        <p><span class="song-name"><a href="{{this.previewUrl}}" target="_blank">{{this.name}}{{recommendedSong.name}}</a></span>
+                            by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_blank">{{recommendedSong.artist.name}}</a></span></p>
                         {{#if recommendedSong.previewUrl}}
-                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on
+                        <p>Preview it <a href="{{recommendedSong.previewUrl}}" target="_blank">here</a> or search on
                             Spotify</p>
                         {{else}}
                         <p class="italics-text">Preview not available.</p>
                         {{/if}}
-                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks
+                        <p>Click <a href="{{recommendedSong.artist.artistUrl}}" target="_blank">here</a> for more tracks
                             by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                         <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
                             <input type="hidden" name="name" value="{{recommendedSong.name}}" />
@@ -77,18 +76,19 @@
                     </div>
                 </div>
             </div>
-            <div style="space"></div>
-            <div class="col-md-5">
+            <br>
+            <div class="col-md-6">
                 <div class="card text-white bg-dark margin">
                     <div class="card-header">
                         <h3>Movie of the day</h3>
                     </div>
                     <div class="card-body">
-                        <img src={{recommendedMovie.Poster}}>
-                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span
-                                class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <img src="{{recommendedMovie.Poster}}" alt="Poster">
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by
+                            <span class="artist-name">{{recommendedMovie.Director}}</span></p>
                         <p>Rating: {{recommendedMovie.imdbRating}}/10</p>
                         <p>Actors: {{recommendedMovie.Actors}}</p>
+
                         <form id="add-movie-form" method="post" action="/playlist/{{userData.WatchLater}}">
                             <input type="hidden" name="poster" value="{{recommendedMovie.Poster}}" />
                             <input type="hidden" name="title" value="{{recommendedMovie.Title}}" />
@@ -96,13 +96,14 @@
                             <input type="hidden" name="director" value="{{recommendedMovie.Director}}" />
                             <input type="hidden" name="imdbRating" value="{{recommendedMovie.imdbRating}}" />
                             <input type="hidden" name="actors" value="{{recommendedMovie.Actors}}" />
-                            <a onclick="document.getElementById('add-movie-form').submit();">Add to Watch Later</ a>
+                            <a onclick="document.getElementById('add-movie-form').submit();">Add to Watch Later</a>
                         </form>
-                    </div>
+                        
+                    </article>
+
                 </div>
             </div>
         </div>
-
         {{/if}}
     </div>
 </section>

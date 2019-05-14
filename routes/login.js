@@ -12,12 +12,7 @@ router.post("/", async (req, res) => {
   let loginData = req.body;
   let error;
   let selectedUser;
-  console.log(
-    "this is the data:",
-    req.body,
-    loginData.userEmail,
-    loginData.password
-  );
+
   if (!loginData.userEmail) {
     error = "The email or the password is not correct.";
   }
@@ -27,7 +22,6 @@ router.post("/", async (req, res) => {
 
   selectedUser = await data.users.getUserByEmail(loginData.userEmail);
 
-  console.log("this is the selected user:", selectedUser);
 
   if (typeof selectedUser === "undefined") {
     error = "The email or the password is not correct.";
@@ -36,7 +30,6 @@ router.post("/", async (req, res) => {
       loginData.password,
       selectedUser.HashedPassword
     );
-    console.log("THIS IS A MATCH", isMatch);
     if (isMatch) {
       try {
         req.session.loggedIn = true;

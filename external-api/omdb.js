@@ -71,19 +71,16 @@ const getByIdByName = async (name, num) => {
 const getRecList = async (genres) => {
   // Get all movies
   const idList = await movies.getAllMovies();
-  console.log('THESE ARE ALL THE MOVIES', idList, genres);
   let recList = [];
   // Filter to match by genre
   for (i = 0; i < idList.length; i++) {
     let movieObj = idList[i];
-    console.log("**************:", movieObj);
     for (let j = 0; j < movieObj.Genres.length; j++) {
       if (genres.includes(movieObj.Genres[j].toLowerCase())) {
         recList.push(movieObj.MovieId);
       }
     }
   }
-  console.log('RETURNING RECOMMENDATION LIST:', recList);
   return recList;
 }
 
@@ -93,17 +90,13 @@ const getRecList = async (genres) => {
  * @returns {Array} list of objects of matching movies
  */
 const getRecs = async (genres) => {
-  console.log('THIS HAS BEEN NOT RECEIVED SUCCESSFULLY');
   const idList = await getRecList(genres);
-  console.log('THIS HAS BEEN RECEIVED SUCCESSFULLY', idList);
   let recList = [];
   // Use ids to get full objects of each rec
   for (let i = 0 ; (i < idList.length && i < 10); i++) {
     let rec = await getById(idList[i]);
     recList.push(rec);
   }
-  // console.log('RETURNING THIS MOVIE RECOMMENDATION:', recList, recList.length);
-  // Some kind of narrowing filter here
   recMovie = recList[Math.floor(Math.random()*recList.length)];
   return recMovie;
 }
