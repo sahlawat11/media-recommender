@@ -46,13 +46,13 @@ router.post("/", async (req, res) => {
     }
   }
 
+  console.log(loginData)
   if (error) {
-    res.status(401).render("login"),
-      {
-        error: error,
-        hasErrors: true,
-        data: loginData
-      };
+    res.status(401).render("login",{
+      error: error,
+      hasErrors: true,
+      data: loginData
+    });
     return;
   }
 });

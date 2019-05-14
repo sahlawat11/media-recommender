@@ -46,7 +46,7 @@ const main = async () => {
         "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
         "FavoriteMusicGenres": ["Pop","Rap"],
         "FavoriteMovieGenres": ["Thriller","Romance"],
-        "Favorites": ["Pulp Fiction", "The Breakfast Club"],
+        "Favorites": [playlist._id],
         "MusicLists": [playlist._id],
         "MovieLists": [playlist._id],
         "WatchLater": playlist._id

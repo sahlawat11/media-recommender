@@ -20,6 +20,11 @@
 				<h4><a href="/register">Register</a></h4>
 				<div class="clear"> </div>
 			</div>
+			<div class="error">
+				{{#if hasErrors}}
+					<p>Error: {{error}}</p>
+				{{/if}}
+			</div>
 		</form>
 	</div>
 </div>
