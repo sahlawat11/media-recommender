@@ -3,25 +3,23 @@
     <div class="container">
 
         {{#if isLoggedInUserProfile}}
-        <div class="row main-body recommendation-row">
+        <div class="row main-body recommendation-row top-margin">
             <div class="col-md-5">
-                <div class="card text-white bg-dark margin">
+                <div class="card text-white bg-dark">
                     <div class="card-header">
-                        <h3>Music Recommendation</h3>
+                        <h2>Music Recommendation</h2>
                     </div>
                     <div class="card-body">
                         <p>Here is a track for you:</p>
-                        <p><span class="song-name"><a href={{this.previewUrl}}
-                                    target="_blank">{{this.name}}{{recommendedSong.name}}</a></span> by <span
-                                class="artist-name"><a href={{recommendedSong.artist.artistUrl}}
-                                    target="_black">{{recommendedSong.artist.name}}</a></span></p>
+                        <p><span class="song-name"><a href="{{recommendedSong.previewUrl}}" target='_blank'>{{this.name}}{{recommendedSong.name}}</a></span> by <span
+                                class="artist-name"><a href="{{recommendedSong.artist.artistUrl}}" target='_blank'>{{recommendedSong.artist.name}}</a></span></p>
                         {{#if recommendedSong.previewUrl}}
-                        <p>Preview it <a href={{recommendedSong.previewUrl}} target="_blank">here</a> or search on
+                        <p>Preview it <a href="{{recommendedSong.previewUrl}}" target='_blank' aria-label="song preview link">here</a> or search on
                             Spotify</p>
                         {{else}}
                         <p class="italics-text">Preview not available.</p>
                         {{/if}}
-                        <p>Click <a href={{recommendedSong.artist.artistUrl}} target="_black">here</a> for more tracks
+                        <p>Click <a href="{{recommendedSong.artist.artistUrl}}" target='_blank' aria-label="artist page link">here</a> for more tracks
                             by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                         <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
                             <input type="hidden" name="name" value="{{recommendedSong.name}}" />
@@ -33,14 +31,13 @@
                     </div>
                 </div>
             </div>
-            <div style="space"></div>
             <div class="col-md-5">
-                <div class="card text-white bg-dark margin">
+                <div class="card text-white bg-dark top-margin">
                     <div class="card-header">
-                        <h3>Movie of the day</h3>
+                        <h2>Movie of the day</h2>
                     </div>
                     <div class="card-body">
-                        <img src={{recommendedMovie.Poster}}>
+                        <img src={{recommendedMovie.Poster}} alt="movie-poster">
                         <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span
                                 class="artist-name">{{recommendedMovie.Director}}</span></p>
                         <p>IMDB Rating: {{recommendedMovie.imdbRating}}/5</p>
@@ -55,8 +52,6 @@
                             <input type="hidden" name="actors" value="{{recommendedMovie.Actors}}" />
                             <a onclick="document.getElementById('add-movie-form').submit();">Add to Watch Later</a>
                         </form>
-                        
-                    </article>
 
                 </div>
             </div>
@@ -66,13 +61,13 @@
 
     <div class="row main-body user-info-row">
             <div class="col-md-5">
-                <div class="card text-white bg-dark bottom-margin">
+                <div class="card text-white bg-dark top-margin">
 
                     <div class="card-header">
                         {{#if isLoggedInUserProfile}}
                         <h3>My Info</h3>
                         {{else}}
-                        <h3>User Info</h3>
+                        <h2>User Info</h2>
                         {{/if}}
 
                     </div>
@@ -86,7 +81,6 @@
                     </div>
                 </div>
             </div>
-            <div style="space"></div>
             <div class="col-md-5">
                 <div class="card text-white bg-dark margin">
                     <div class="card-header">

@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="playlists">
                     <article>
-                        <h3 class="playlist-header">Playlist: {{playlistInfo.Name}}  <span class="playlist-status-{{playlistInfo.Status}}">({{playlistInfo.Status}})</span></h3>
+                        <h2 class="playlist-header">Playlist: {{playlistInfo.Name}}  <span class="playlist-status-{{playlistInfo.Status}}">({{playlistInfo.Status}})</span></h2>
                         {{#if hidePlaylist}}
                         {{else}}
                         {{#if isLoggedInUser}}
@@ -26,9 +26,9 @@
                         {{/if}}
                         {{else}}
                         {{#if isMusicPlaylist}}
-                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/favorites" target="_blank"> You can import all the songs by clicking here.</a></p>
+                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/favorites" target="_blank" aria-label="link to import music"> You can import all the songs by clicking here.</a></p>
                         {{else}}
-                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/watchlater" target="_blank"> You can import all the movies by clicking here.</a></p>
+                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/watchlater" target="_blank" aria-label="link to import movies"> You can import all the movies by clicking here.</a></p>
                         {{/if}}
                         {{/if}}
                         {{#if playlistInfo.Media.length}}
@@ -36,7 +36,7 @@
                             {{#if this.name}}
                                 <div class="playlist-tracks">
                                 <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by <span class="artist-name">{{this.artist}}</span></p>
-                                <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
+                                <p>Preview it <a href={{this.previewUrl}} target="_blank" aria-label="song preview link">here</a> or search on Spotify</p>
                                 </div>
                             {{else}}
                             <div class="playlist-movies">
