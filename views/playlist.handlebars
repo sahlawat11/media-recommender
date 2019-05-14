@@ -21,6 +21,12 @@
                         {{else}}
                         <a href="/playlist/{{playlistInfo._id}}/public">Make playlist public.</a>
                         {{/if}}
+                        {{else}}
+                        {{#if isMusicPlaylist}}
+                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/favorites" target="_blank"> You can import all the songs by clicking here.</a></p>
+                        {{else}}
+                        <p>Like this playlist?<a href="/playlist/{{playlistInfo._id}}/import/watchlater" target="_blank"> You can import all the movies by clicking here.</a></p>
+                        {{/if}}
                         {{/if}}
                         {{#if playlistInfo.Media.length}}
                             {{#each playlistInfo.Media}}
