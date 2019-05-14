@@ -61,7 +61,7 @@
      margin:3% auto 0;
      width: 80%;
  }
- i {
+ form i {
      float: right;
      color: black;
  }
@@ -174,4 +174,26 @@
      padding-top:2em;
  }
  /*--footer--*/
- 
+ .col-md-6 {
+     padding-bottom: 20px;
+ }
+ #add-music-form a {
+    color: #4f3c51;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    background:#c1a4c4;
+     border:2px solid #c1a4c4;
+     border-radius: 0.5em;
+     -webkit-border-radius:0.5em;
+     -moz-border-radius:0.5em;
+     -o-border-radius:0.5em;
+ }
+ #add-music-form :hover {
+    background: #fff;
+    color:#6C496F;
+    border:2px solid #6C496F;
+}
+#add-music-form {
+    background: rgba(255, 255, 255, 0);
+}
