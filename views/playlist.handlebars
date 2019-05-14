@@ -12,7 +12,12 @@
             <div class="container">
                 <div class="playlists">
                     <article>
-                        <h3>Playlist: {{playlistInfo.Name}}</h3>
+                        <h3 class="playlist-header">Playlist: {{playlistInfo.Name}}  <span class="playlist-status-{{playlistInfo.Status}}">({{playlistInfo.Status}})</span></h3>
+                        {{#if isPublic}}
+                        <a href="/playlist/{{playlistInfo._id}}/private">Make playlist private.</a>
+                        {{else}}
+                        <a href="/playlist/{{playlistInfo._id}}/public">Make playlist public.</a>
+                        {{/if}}
                         {{#if playlistInfo.Media.length}}
                             {{#each playlistInfo.Media}}
                             {{#if this.name}}

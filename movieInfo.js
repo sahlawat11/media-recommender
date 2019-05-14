@@ -1,3 +1,7 @@
+/**
+ * this data is taken from the IMDB API for movie recommendation since the API does not support querying by genres.
+ */
+
 module.exports = [
     {
         "MovieId": "tt2724064",

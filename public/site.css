@@ -23,6 +23,12 @@ img {
 .bg-purple {
   background-color: #6d4a70 !important;
 }
+.playlist-status-public {
+  color: green;
+}
+.playlist-status-private {
+  color: red;
+}
 
 .music-genre {
   width: 520px;

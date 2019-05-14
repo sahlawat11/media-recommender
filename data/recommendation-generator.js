@@ -9,10 +9,6 @@ async function recommendedMusicCallback(body) {
   globalRecommendedSongObj = body;
 }
 
-async function recommendedMovieCallback(body) {
-  globalRecommendedMovieObj = body;
-}
-
 async function getRecommendedMusic(genres) {
     const recommenderSongs = await spotifyRecommender.getRecs(genres, recommendedMusicCallback);
     let resultingTrack;
@@ -39,14 +35,12 @@ async function recommendedSearchMusicCallback(body) {
 }
 
 async function getSearchedMusic(searchQuery) {
-  const searchedSongs = await spotifyRecommender.search(searchQuery, recommendedSearchMusicCallback);
-  let resultingTracks = [];
+  const searchedSongs = await spotifyRecommender.searchByTrack(searchQuery, recommendedSearchMusicCallback);
+  let resultingTracks;
   let result;
   let promise = new Promise(function(resolve, reject) {
-    inter = setInterval(() => {
-      console.log('THIS IS A TEST:', globalSongSearchObj);
+    setInterval(() => {
       if(typeof globalSongSearchObj !== 'undefined') {
-        clearInterval(inter);
         for(i=0; i<globalSongSearchObj.length; i++) {
           track = {
             name: globalSongSearchObj[i].name,
@@ -55,6 +49,9 @@ async function getSearchedMusic(searchQuery) {
               name: globalSongSearchObj[i].artists[0].name,
               artistUrl: globalSongSearchObj[i].artists[0].external_urls.spotify
           }
+        }
+        if(typeof result === 'undefined') {
+          result = [];
         }
         resultingTracks = resultingTracks.concat([track]);
       }
@@ -74,5 +71,6 @@ async function getRecommendedMovie(genres) {
 module.exports={
   getRecommendedMusic,
   getRecommendedMovie,
-  getSearchedMusic
+  getSearchedMusic,
+  globalSongSearchObj
 }

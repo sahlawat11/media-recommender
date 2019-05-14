@@ -39,19 +39,21 @@ async function search(name){
   throw "not found"
 }
 
-async function setPlaylistStatus(id,status){
-  if(!status) {
+async function setPlaylistStatus(id,status) {
+  if(!status || !id) {
     return
   }
-  return this.getPlaylistById(id).then(currentList => {
-    let updatedList = {
-      Status:status
-    };
 
-    return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
-      return this.getUserById(id);
+  return this.getPlaylistById(id).then(currentList => {
+    updatedList = currentList;
+    updatedList.Status = status;
+
+  return playlists().then(playlistCollection => {
+    return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(id) }, updatedList).then(() => {
+      return this.getPlaylistById(id);
     });
   });
+});
 }
 
 async function addPlayList(info){
@@ -88,7 +90,7 @@ async function addToPlaylist(media, playlistId) {
     return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {
       return this.getPlaylistById(playlistId);
     });
-  })
+  });
 });
 }
 

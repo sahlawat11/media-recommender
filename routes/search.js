@@ -126,10 +126,10 @@ router.post("/user", async (req, res) => {
 
   router.post("/music", async (req, res) => {
     const searchQuery = req.body['keyword'];
-    const result = await data.recommender.getSearchedMusic(searchQuery);    
-    
-    console.log('THIS IS IT:', result);
-
+    const result = await data.recommender.getSearchedMusic(searchQuery);
+    setTimeout(() => {
+      console.log('THIS IS IT:',  songsRecommender.globalSongSearchObj, result);
+    });    
   });
 
 
