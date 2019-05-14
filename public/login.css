@@ -1,7 +1,6 @@
  /* reset */
  html,body,div,span,
  applet,object,iframe,
- h1,h2,h3,h4,h5,h6,p,
  blockquote,pre,a,abbr,
  acronym,address,big,cite,
  code,del,dfn,em,img,ins,
@@ -41,16 +40,6 @@
  body{
     font-family: 'Droid Sans', sans-serif;
     font-size:100%;
-    background: -moz-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
-   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(109,74,112,1)), color-stop(100%, rgba(0,0,0,1))); /* safari4+,chrome */
-   background:-webkit-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* safari5.1+,chrome10+ */
-   background: -o-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* opera 11.10+ */
-   background: -ms-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* ie10+ */
-   background:radial-gradient(ellipse at center, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* w3c */
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d4a70', endColorstr='#000000',GradientType=1 ); /* ie6-9 */
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-attachment: fixed;
    }
  .message {
      box-shadow: 0 0 0 1px rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.1) inset, 0 1px 2px rgba(0,0,0,0.4);
@@ -61,8 +50,8 @@
      -moz-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
      -webkit-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
      box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
-     margin: 7% auto 0;
-     width: 33%;
+     margin: 3% auto 0;
+     width: 30%;
  }
  .message.register  {
      background: rgba(255, 255, 255, 0.33);
@@ -74,8 +63,7 @@
  }
  i {
      float: right;
-     margin-right: 10px;
-     margin-top: 7px;
+     color: black;
  }
  .login-head {
      padding: 2em 0;
@@ -102,6 +90,7 @@
  form {
      padding: 3em 2em;
      background: #F2F2F2;
+     color: black;
  }
  form p{
      border: 2px ridge rgba(187, 185, 189, 0.11);
@@ -112,7 +101,7 @@
      list-style:none;
      margin-bottom:12px;
      background:#F0EEF0;
-     z-index: aut;
+     z-index: auto;
  }
  
  input[type="number"], input[type="text"], input[type="email"], input[type="password"] {
@@ -123,11 +112,11 @@
      font-size:20px;
      outline: none;
      background: none;
-     border:none;
+     border: thin;
  }
- input[type="number"], input[type="text"], input[type="email"]:hover, input[type="password"]:hover{
+ input[type="number"]:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
      color:#9E61A3;
-     
+     border: #6D4A70;
  }
  .submit h4 a{
      float:left;
@@ -171,7 +160,7 @@
  /* footer */
  .footer{
      position: absolute;
-     bottom: 76px;
+     bottom: 67px;
      left: 38%;
  }
  .footer p{
