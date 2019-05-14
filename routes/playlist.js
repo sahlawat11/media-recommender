@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 
+async function isLoggedInUser(userData, playlistInfo) {
+    let isLoggedInUser;
+    console.log('LET ME CHECK THIS:', playlistInfo, userData.Email);
+    if(playlistInfo.Owner === userData.Email) {
+        isLoggedInUser = true;
+    } else {
+        isLoggedInUser = false;
+    }
+    return isLoggedInUser;
+}
+
 router.get("/:id", async (req, res) => {
   if (!req.session.loggedIn) {
     res.status(403).render("unauthorized");
@@ -10,9 +21,14 @@ router.get("/:id", async (req, res) => {
     playlistInfo = await data.playlists.getPlaylistById(req.params.id);
     playlistInfo.Media = playlistInfo.Media.reverse();
     isPlaylistPublic = playlistInfo.Status === "public";
+    isLoggedInUserObj = await isLoggedInUser(req.session.userData, playlistInfo);
+    const hidePlaylist = !isPlaylistPublic && !isLoggedInUserObj;
+    console.log('THIS IS CRAZY:', hidePlaylist);
     res.render("playlist", {
       playlistInfo: playlistInfo,
-      isPublic: isPlaylistPublic
+      isPublic: isPlaylistPublic,
+      isLoggedInUser: isLoggedInUserObj,
+      hidePlaylist: hidePlaylist
     });
   }
 });
@@ -64,7 +80,6 @@ router.post("/:id", async (req, res) => {
       actors: req.body.actors
     };
   }
-  console.log("THE MOVIE HAS BEEN ADDED:", mediaObj, req.body);
 
   newObj = await data.playlists.addToPlaylist(mediaObj, req.params.id);
   newObj.Media = newObj.Media.reverse();

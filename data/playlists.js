@@ -97,6 +97,7 @@ async function addToPlaylist(media, playlistId) {
 module.exports = {
   getAllPlaylists,
   getPlaylistById,
+  getPlaylistByObjectId,
   search,
   setPlaylistStatus,
   addPlayList,

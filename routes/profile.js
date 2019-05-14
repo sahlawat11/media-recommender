@@ -38,10 +38,17 @@ router.get("/:id", async (req, res) => {
       res.status(403).render("unauthorized")
       return;
     } else {
+      let userPlaylists = [];
         const selectedUser = await data.users.getUserById(req.params.id);
+        console.log('THIS IS THE SELECTED USER:', selectedUser);
+        const favPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.Favorites);
+      const watchLaterPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.WatchLater);
+      userPlaylists.push(favPlayListTmpObj);
+      userPlaylists.push(watchLaterPlayListTmpObj);
       res.render("profile", {
         userData: selectedUser,
-        isLoggedInUserProfile: false
+        isLoggedInUserProfile: false,
+        userPlaylists: userPlaylists
       });
     }
   });
