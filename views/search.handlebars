@@ -23,6 +23,11 @@
 
             {{#if hasResults}}
             <div class="search-results">
+                {{#if this.user}}
+                    {{#each resultList}}
+                        <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
+                    {{/each}}
+                {{/if}}
                 {{#if this.music}}
                     {{#each resultList}}
                         <p id={{@index}}>Song: <a href={{this.Link}}>{{this.Name}}</a></p>

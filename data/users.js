@@ -34,7 +34,7 @@ async function getUserByName(name) {
   return users().then(userCollection => {
   //return userCollection.findOne({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
   //return userCollection.find({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
-  return userCollection.findOne({ FullName: name }).then(users1 => {
+  return userCollection.findOne({$or: [{FirstName: name}, {LastName: name}, {FullName: name}]}).then(users1 => {
       if (!users1) throw "User "+name+" not found";
       return users1;
     });

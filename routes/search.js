@@ -53,18 +53,18 @@ router.get("/user", async (req, res) => {
 router.post("/", async (req, res) => {
     let keyword = req.body.keyword;
     let searchType = req.body.searchType;
-    let result;
-    let hasResult;
-    console.log(searchType)
+    let result = [];
+    console.log(keyword)
     switch(searchType){
       case "User":
-        result = await users.getUserByName(keyword);
-        hasResult = (!result==undefined)
-        //res.render("search", {
-        res.render("profile",{
-          hasResults: hasResult,
-          UserData: result,
-      });
+        result.push(await users.getUserByName(keyword));
+        hasResult = (result.length!=0)
+          res.render("search", {
+            hasResults: hasResult,
+            resultList: result,
+            searchType: searchType,
+            user: true
+          });
         break;
 
       case "Music":
