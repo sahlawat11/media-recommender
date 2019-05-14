@@ -18,6 +18,7 @@ async function getRecommendedMusic(genres) {
   let promise = new Promise(function(resolve, reject) {
     setInterval(() => {
       if(typeof globalRecommendedSongObj !== 'undefined') {
+        //console.log("an obj: "+globalRecommendedSongObj)
         resultingTrack = {
           name: globalRecommendedSongObj.tracks[0].name,
           artist: {
