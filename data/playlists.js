@@ -193,7 +193,8 @@ async function addToPlaylist(media, playlistId) {
   return await getPlaylistById(playlistId).then(currentList => {
     updatedList = currentList;
     updatedList.Media = updatedList.Media.concat(media);
-    if(currentList.Type === 'movie') {
+    console.log(currentList.Type)
+    if(currentList.Type === 'movies') {
       updatedList.Media = getUnique(updatedList.Media, 'title');
     } else {
       updatedList.Media = getUnique(updatedList.Media, 'name')
