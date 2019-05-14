@@ -40,11 +40,11 @@
                     </div>
                     <div class="card-body">
                         {{#each userPlaylists}}
-                        <p id="{{@index}}userPlaylist">
+                        <div id="{{@index}}userPlaylist">
                             <div class="playlist-button">
                                 <a href="/playlist/{{this._id}}">{{this.Name}}</a>
                             </div>
-                        </p>
+                        </div>
                         {{/each}}
                     </div>
                 </div>
@@ -67,7 +67,8 @@
                         {{else}}
                         <p class="italics-text">Preview not available.</p>
                         {{/if}}
-                        <p>Click <a href="{{recommendedSong.artist.artistUrl}}" target="_blank">here</a> for more tracks
+                        <p>Click <a href="{{recommendedSong.artist.artistUrl}}" target="_blank">here</a> for more
+                            tracks
                             by <span class="artist-name">{{recommendedSong.artist.name}}</span></p>
                         <form id="add-music-form" method="post" action="/playlist/{{userData.Favorites}}">
                             <input type="hidden" name="name" value="{{recommendedSong.name}}" />
@@ -101,12 +102,11 @@
                             <input type="hidden" name="actors" value="{{recommendedMovie.Actors}}" />
                             <a onclick="document.getElementById('add-movie-form').submit();">Add to Watch Later</a>
                         </form>
-                        
-                    </article>
 
+                    </div>
                 </div>
             </div>
+            {{/if}}
         </div>
-        {{/if}}
     </div>
 </section>
