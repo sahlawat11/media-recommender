@@ -17,16 +17,11 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(favPlayListTmpObj);
       userPlaylists.push(watchLaterPlayListTmpObj);
       */
-      
-      let musicLists=[],movieLists=[],WatchLater={};
-      /*
-      userData.MusicLists.forEach(element => {
-        try{
-          userPlaylists.p
-        }catch(e){
-  
-        }
-      });*/
+
+      try{
+        userPlaylists.push(await data.playlists.getPlaylistById(userData.WatchLater))
+      }catch(e){        }
+
       
       // generating the recommendation
       const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
@@ -37,7 +32,7 @@ router.get("/my-profile", async (req, res) => {
 
     res.render("profile", {
       userData: req.session.userData,
-      //userPlaylists: userPlaylists,
+      userPlaylists: userPlaylists,
       recommendedSong: recommendedSong,
       recommendedMovie: recommendedMovie,
       isLoggedInUserProfile: true

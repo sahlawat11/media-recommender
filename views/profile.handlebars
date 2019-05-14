@@ -87,11 +87,12 @@
                         <h3>Movie of the day</h3>
                     </div>
                     <div class="card-body">
-                        <img src={{recommendedMovie.Poster}}>
-                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by <span
-                                class="artist-name">{{recommendedMovie.Director}}</span></p>
+                        <img src="{{recommendedMovie.Poster}}" alt="Poster">
+                        <p><span class="song-name">{{recommendedMovie.Title}}, {{recommendedMovie.Year}}</span> by
+                            <span class="artist-name">{{recommendedMovie.Director}}</span></p>
                         <p>Rating: {{recommendedMovie.imdbRating}}/10</p>
                         <p>Actors: {{recommendedMovie.Actors}}</p>
+
                         <form id="add-movie-form" method="post" action="/playlist/{{userData.WatchLater}}">
                             <input type="hidden" name="poster" value="{{recommendedMovie.Poster}}" />
                             <input type="hidden" name="title" value="{{recommendedMovie.Title}}" />

@@ -126,76 +126,9 @@ router.post("/", async (req, res) => {
       default:
         break;
     }
-    /*
-    if(searchType==="User"){
-      console.log("serch a user")
-      result = await users.getUserByName(keyword)
-    }
-    else{
-      console.log("search a media")
-      result = await playlists.search(keyword,searchType);
-    }
-    */
-
-/*
-    const users = data.users;
-    const searchQuery = req.body['keyword'];
-    let result = [];
-    const users = await data.users.getAllUsers();
-    for(i=0; i<users.length; i++) {
-      if(users[i].FirstName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].LastName.toLowerCase().includes(searchQuery.toLowerCase()) || users[i].Email.toLowerCase().includes(searchQuery.toLowerCase())) {
-        if(result.indexOf(users[i]) < 0) {
-          result.push(users[i]);
-        }
-    }*/
     console.log("***********:", result);
     console.log("------------------------------------------------");
-
-
-    // console.log(
-    //   "this is the data:",
-    //   req.body,
-    //   loginData.userEmail,
-    //   loginData.password
-    // );
-    // if (!loginData.userEmail) {
-    //   error = "The email or the password is not correct.";
-    // }
-    // if (!loginData.password) {
-    //   error = "The email or the password is not correct.";
-    // }
-  
-    // for (i = 0; i < users.length; i++) {
-    //   if (loginData.userEmail === users[i].userEmail) {
-    //     selectedUser = Object.assign({}, users[i]);
-    //   }
-    // }
-    // console.log("this is the selected user:", selectedUser);
-  
-    // if (typeof selectedUser === "undefined") {
-    //   error = "The email or the password is not correct.";
-    // } else {
-    //   const isMatch = await bcrypt.compare(
-    //     loginData.password,
-    //     selectedUser.hashedPassword
-    //   );
-    //   console.log("THIS IS A MATCH", isMatch);
-    //   if (isMatch) {
-    //     try {
-    //       req.session.loggedIn = true;
-    //       const tmp_user_obj = selectedUser;
-    //       delete tmp_user_obj.hashedPassword;
-    //       req.session.userData = tmp_user_obj;
-  
-    //       res.redirect("/my-profile");
-    //     } catch (e) {
-    //       console.log("Error.", e);
-    //     }
-    //   } else {
-    //     error = "The email or the password is not correct.";
-    //   }
-    // }
-  
+  });
 
   router.post("/music", async (req, res) => {
     const searchQuery = req.body['keyword'];
