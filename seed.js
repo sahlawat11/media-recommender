@@ -11,24 +11,6 @@ const main = async () => {
     const db = await dbConnection();
     await db.dropDatabase();
     
-    let userinfo ={
-        "FirstName": "John",
-        "LastName": "Doe",
-        "Email": "JDoe@gmail.com",
-        "Gender": "M",
-        "Location": "Hoboken",
-        "AboutMe": "description",
-        "Age": "25",
-        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
-        "FavoriteMusicGenres": ["Pop","Rap"],
-        "FavoriteMovieGenres": ["Thriller","Romance"],
-        "Favorites": ["Pulp Fiction", "The Breakfast Club"],
-        "MusicLists": ["7b7997a2-c0d22-4f2c-b24a","7b6916a2-dd0f2-4g8g-h23d"],
-        "MovieLists": ["7b7997a2-c0d12-4f8c-b17a","7b6936a2-dw0f2-4g8g-h16d"],
-        "WatchLater": "7b7997a2-c0d2-4f8c-b27a1"
-    }
-    const user = await users.addUser(userinfo);
-    console.log(user);
     let listinfo ={
         "Name": "to be calm",
         "Type": "music",
@@ -51,9 +33,30 @@ const main = async () => {
     }
     const playlist = await playlists.addPlayList(listinfo);
     console.log(playlist);
-
     await movies.addMovies(movieInfo)
     
+    let userinfo ={
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "JDoe@gmail.com",
+        "Gender": "M",
+        "Location": "Hoboken",
+        "AboutMe": "description",
+        "Age": "25",
+        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
+        "FavoriteMusicGenres": ["Pop","Rap"],
+        "FavoriteMovieGenres": ["Thriller","Romance"],
+        "Favorites": ["Pulp Fiction", "The Breakfast Club"],
+        "MusicLists": [playlist._id],
+        "MovieLists": [playlist._id],
+        "WatchLater": playlist._id
+    }
+    const user = await users.addUser(userinfo);
+    console.log(user);
+    console.log(await playlists.getPlaylistByObjectId(playlist._id))
+    console.log(await playlists.getPlaylistByObjectId(user.MusicLists[0]))
+    console.log(await playlists.getPlaylistByObjectId(user.MovieLists[0]))
+    console.log(await playlists.getPlaylistByObjectId(user.WatchLater))
     //const MovieLists;
     console.log("Done seeding database");
   

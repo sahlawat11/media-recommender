@@ -114,6 +114,25 @@ async function addUser(info){
           });
   });
 }
+/*
+async function addPlaylist(UserId,listId,type){
+  if(!UserId||!listId||!type){
+    "incomplete info"
+  }
+  let info = await getUserById(UserId);
+  if(type=="music"){
+    info.MusicLists.push(listId);
+  }
+  if(type=="movie"){
+    info.MovieLists.push(listId)
+  }
+  return users().then(userCollection => {
+    return userCollection.findOne({ Email: email }).then(user => {
+      if (!user) throw "User with email: "+email+" not found";
+      return user;
+    });
+  });
+}*/
 
 module.exports={
   getAllUsers,
