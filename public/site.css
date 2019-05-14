@@ -179,7 +179,7 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
 }
 .song-name {
   color: red;
-  float: right;
+  float: left;
 } */
 .song-name a {
   font-weight: 500;

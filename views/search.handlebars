@@ -1,3 +1,11 @@
+<div>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+</div>
 <section class="container">
     <h1>Search</h1>
     <div class="search-category">
@@ -34,30 +42,30 @@
     </form>
     {{/if}}
 
-            {{#if hasResults}}
-            <div class="search-results">
-                {{#if this.user}}
-                    {{#each resultList}}
-                        <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
-                    {{/each}}
-                {{/if}}
-                {{#if this.music}}
-                    {{#each resultList}}
-                        <p id={{@index}}>Song: <a href={{this.Link}}>{{this.Name}}</a></p>
-                        <p id={{@index}}>Artist: <a href={{this.ArtistLink}}>{{this.Artist}}</a></p>
-                    {{/each}}
-                {{/if}}
+    {{#if hasResults}}
+    <div class="search-results">
+        {{#if this.user}}
+        {{#each resultList}}
+        <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
+        {{/each}}
+        {{/if}}
+        {{#if this.music}}
+        {{#each resultList}}
+        <p id={{@index}}>Song: <a href={{this.Link}}>{{this.Name}}</a></p>
+        <p id={{@index}}>Artist: <a href={{this.ArtistLink}}>{{this.Artist}}</a></p>
+        {{/each}}
+        {{/if}}
 
-                {{#if this.movie}}
-                    {{#each resultList}}
-                        <p id={{@index}}>MovieId: {{this.MovieId}}</p>
-                        <p id={{@index}}>Title: {{this.Name}}</p>
-                        {{!-- <p id={{@index}}>Actor: {{this.Artist}}</p> --}}
-                        <p id={{@index}}>Generes: {{this.Genres}}</p>
-                    {{/each}}
-                {{/if}}
-            </div>
-            {{/if}}
+        {{#if this.movie}}
+        {{#each resultList}}
+        <p id={{@index}}>MovieId: {{this.MovieId}}</p>
+        <p id={{@index}}>Title: {{this.Name}}</p>
+        {{!-- <p id={{@index}}>Actor: {{this.Artist}}</p> --}}
+        <p id={{@index}}>Generes: {{this.Genres}}</p>
+        {{/each}}
+        {{/if}}
+    </div>
+    {{/if}}
 
     <div class="users-list">
         {{#each userList}}

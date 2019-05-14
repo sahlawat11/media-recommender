@@ -1,11 +1,10 @@
-{{!-- <section>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/profile/my-profile">Home</a>
-        <a class="navbar-brand" href="/search">Search</a>
-        <a class="navbar-brand" href="/logout">Logout</a>
+<div>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </nav>
-
-</section> --}}
+</div>
 <br>
 <section>
     <div class="container">
@@ -60,8 +59,8 @@
                     </div>
                     <div class="card-body">
                         <p>Here is a track for you:</p>
-                        <p><span class="song-name"><a href="{{this.previewUrl}}" target="_blank">{{this.name}}{{recommendedSong.name}}</a></span>
-                            by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_blank">{{recommendedSong.artist.name}}</a></span></p>
+                        <p><span class="song-name"><a href="{{recommendedSong.previewUrl}}" target="_blank">{{this.name}}{{recommendedSong.name}}</a></span>
+                            &nbsp;-- by <span class="artist-name"><a href={{recommendedSong.artist.artistUrl}} target="_blank">{{recommendedSong.artist.name}}</a></span></p>
                         {{#if recommendedSong.previewUrl}}
                         <p>Preview it <a href="{{recommendedSong.previewUrl}}" target="_blank">here</a> or search on
                             Spotify</p>

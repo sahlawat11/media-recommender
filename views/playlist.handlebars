@@ -1,3 +1,10 @@
+<div>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+</div>
 <section>
     <div class="container">
         <div class="card text-white bg-dark col-md-5" >
@@ -34,7 +41,7 @@
                 {{#each playlistInfo.Media}}
                 {{#if this.name}}
                 <div class="playlist-tracks">
-                    <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> by
+                    <p><span class="song-name"><a href={{this.previewUrl}} target="_blank">{{this.name}}</a></span> &nbsp;-- by
                         <span class="artist-name">{{this.artist}}</span></p>
                     <p>Preview it <a href={{this.previewUrl}} target="_blank">here</a> or search on Spotify</p>
                 </div>
