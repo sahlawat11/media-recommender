@@ -6,39 +6,39 @@
         <span><a href="/search/movies"><i class="fas fa-film"></i> Movies</a></span>
     </div>
 
-    {{#if isUser}}
-    {{#if userList.length}}
-    <form action="/search/user" method="POST" id="user-search-form">
-        <p class="form-group">
-            <label for="keyword">Enter User Name:
-                <input type="text" name="keyword" class="form-control" id="keyword" required />
-            </label>
-        </p>
-        <input type="submit" class="btn btn-default">
-        <div class="clear"> </div>
-    </form>
-    {{else}}
-    <p class="italics-text">No other users are registered.</p>
-    {{/if}}
-    {{/if}}
-
-    {{#if isMusic}}
-    <form action="/search/music" method="POST" id="music-search-form">
-        <p class="form-group">
-            <label for="keyword">Enter Song Name:
-                <input type="text" name="keyword" class="form-control" id="keyword" required />
-            </label>
-        </p>
-        <input type="submit" class="btn btn-default">
-        <div class="clear"> </div>
-    </form>
+     {{#if searchType}}
+            <form action="/search/" method="POST" id="search-form">
+                <div class="form-group">
+                    <label for="keyword">Enter {{searchType}} Name:
+                        <input type="text" name="keyword" class="form-control" id="keyword" />
+                        <input type="hidden" name="searchType" value="{{searchType}}" class="form-control" id="searchType" />
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
     {{/if}}
 
     {{#if hasResults}}
     <div class="search-results">
-        {{#each resultList}}
-        <p id={{@index}}><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
-        {{/each}}
+        {{#if this.user}}
+            {{#each resultList}}
+                <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
+            {{/each}}
+        {{/if}}
+        {{#if this.music}}
+            {{#each resultList}}
+                <p id={{@index}}>Song: <a href={{this.Link}}>{{this.Name}}</a></p>
+                <p id={{@index}}>Artist: <a href={{this.ArtistLink}}>{{this.Artist}}</a></p>
+            {{/each}}
+        {{/if}} 
+
+        {{#if this.movie}}
+            {{#each resultList}}
+                <p id={{@index}}>MovieId: {{this.MovieId}}</p>
+                <p id={{@index}}>Title: {{this.Name}}</p>
+                <p id={{@index}}>Generes: {{this.Genres}}</p>
+            {{/each}}
+        {{/if}}
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
     </form>
