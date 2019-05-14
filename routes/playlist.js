@@ -107,6 +107,8 @@ router.post("/:id", async (req, res) => {
 
   newObj = await data.playlists.addToPlaylist(mediaObj, req.params.id);
   newObj.Media = newObj.Media.reverse();
+
+  console.log(newObj)
   res.render("playlist", {
     playlistInfo: newObj
   });
