@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
+const songsRecommender = require("../data/recommendation-generator");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -17,8 +18,16 @@ router.get("/user", async (req, res) => {
       return;
     } else {
     const users = await data.users.getAllUsers();
+    
+      let loggedInUserId = req.session.userData._id;
+      for(i=0; i<users.length; i++) {
+        if(users[i]._id == loggedInUserId) {
+          users.splice(i, 1);
+          break;
+        }
+      }
       res.render("search", {
-          searchType: "User",
+          isUser: true,
           userList: users
       });
     }
@@ -30,7 +39,7 @@ router.get("/user", async (req, res) => {
       return;
     } else {
       res.render("search", {
-          searchType: "Music"
+          isMusic: true
       });
     }
   });
@@ -41,17 +50,13 @@ router.get("/user", async (req, res) => {
       return;
     } else {
       res.render("search", {
-          searchType: "Movie"
+          isMovie: true
       });
     }
   });
 
 
-router.post("/", async (req, res) => {
-    let loginData = req.body;
-    let error;
-    let selectedUser;
-    // console.log('THESE ARE ALL THE USERS', users);
+router.post("/user", async (req, res) => {
     const searchQuery = req.body['keyword'];
     let result = [];
     result = await data.users.getUserByName(searchQuery);
@@ -116,5 +121,16 @@ router.post("/", async (req, res) => {
     //   return;
     // }
   });
+
+  
+
+  router.post("/music", async (req, res) => {
+    const searchQuery = req.body['keyword'];
+    const result = await data.recommender.getSearchedMusic(searchQuery);    
+    
+    console.log('THIS IS IT:', result);
+
+  });
+
 
 module.exports = router;

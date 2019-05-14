@@ -8,7 +8,6 @@ router.get("/my-profile", async (req, res) => {
     return;
   } else {
       userData = req.session.userData;
-      console.log('THIS IS THE USER DATA:', userData);
 
       // initializing user playlists to show on the profile
       userPlaylists = [];
@@ -18,11 +17,11 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(watchLaterPlayListTmpObj);
 
       // generating the recommendation
-      const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
-      console.log('THIS IS THE SONG:', recommendedSong);
-      const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
+      // const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+      // const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
-      console.log("TRHIS IS IT:", recommendedMovie);
+      let recommendedSong;
+      let recommendedMovie;
 
     res.render("profile", {
       userData: req.session.userData,

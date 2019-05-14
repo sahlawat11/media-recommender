@@ -9,10 +9,25 @@
             </div>
 
 
-        {{#if searchType}}
-            <form action="/search" method="POST" id="search-form">
+        {{#if isUser}}
+        {{#if userList.length}}
+            <form action="/search/user" method="POST" id="user-search-form">
                 <div class="form-group">
-                    <label for="keyword">Enter {{searchType}} Name:
+                    <label for="keyword">Enter User Name:
+                        <input type="text" name="keyword" class="form-control" id="keyword" />
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+                        {{else}}
+            <p class="italics-text">No other users are registered.</p>
+            {{/if}}
+            {{/if}}
+
+            {{#if isMusic}}
+            <form action="/search/music" method="POST" id="music-search-form">
+                <div class="form-group">
+                    <label for="keyword">Enter Song Name:
                         <input type="text" name="keyword" class="form-control" id="keyword" />
                     </label>
                 </div>
@@ -30,6 +45,7 @@
 
             <div class="users-list">
                 {{#each userList}}
+                
                     <p id={{@index}}+"userlist"><a href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
                 {{/each}}
             </div>

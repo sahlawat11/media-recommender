@@ -3,6 +3,7 @@ const omdbRecommender = require("../external-api/omdb");
 
 let globalRecommendedSongObj;
 let globalRecommendedMovieObj;
+let globalSongSearchObj;
 
 async function recommendedMusicCallback(body) {
   globalRecommendedSongObj = body;
@@ -33,13 +34,45 @@ async function getRecommendedMusic(genres) {
   return promise;    
 }
 
+async function recommendedSearchMusicCallback(body) {
+  globalSongSearchObj = body.tracks;
+}
+
+async function getSearchedMusic(searchQuery) {
+  const searchedSongs = await spotifyRecommender.search(searchQuery, recommendedSearchMusicCallback);
+  let resultingTracks = [];
+  let result;
+  let promise = new Promise(function(resolve, reject) {
+    inter = setInterval(() => {
+      console.log('THIS IS A TEST:', globalSongSearchObj);
+      if(typeof globalSongSearchObj !== 'undefined') {
+        clearInterval(inter);
+        for(i=0; i<globalSongSearchObj.length; i++) {
+          track = {
+            name: globalSongSearchObj[i].name,
+            previewUrl: globalSongSearchObj[i].previewUrl,
+            artist: {
+              name: globalSongSearchObj[i].artists[0].name,
+              artistUrl: globalSongSearchObj[i].artists[0].external_urls.spotify
+          }
+        }
+        resultingTracks = resultingTracks.concat([track]);
+      }
+      result = resultingTracks;
+      resolve(result);
+    }
+    }, 2000);
+  });
+return promise;    
+}
+
 async function getRecommendedMovie(genres) {
   const recommendedMovie = await omdbRecommender.getRecs(genres);
-  console.log('********* movies:', recommendedMovie);
   return recommendedMovie;
 }
 
 module.exports={
   getRecommendedMusic,
-  getRecommendedMovie
+  getRecommendedMovie,
+  getSearchedMusic
 }
