@@ -32,7 +32,7 @@ async function getUserByObjId(id) {
 
 async function getUserByName(name) {      
   return users().then(userCollection => {
-  return userCollection.find({ Firstname: /.*name.*/, LastName: /.*name.*/ }).then(users1 => {
+  return userCollection.find({ Firstname: name, LastName: name }).then(users1 => {
       if (!users1) throw "User "+name+" not found";
       return users1;
     });
@@ -84,7 +84,6 @@ async function registration(Userinfo){
 }
 
 async function addUser(info){
-  console.log('THIS IS THE PROBLEM HERE:', info);
   return users().then(usersCollection => {
     let newUser={
         FirstName: info.FirstName,

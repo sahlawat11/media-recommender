@@ -39,30 +39,21 @@ async function search(name){
   throw "not found"
 }
 
-async function setPlaylistStatus(id,status){
-  if(!status) {
+async function setPlaylistStatus(id,status) {
+  if(!status || !id) {
     return
   }
-  return this.getPlaylistById(id).then(currentList => {
-    let updatedList = {
-      Status:status
-    };
-    async function search(name,type){
-      const allLists=this.getAllPlaylists();
-      allLists.forEach(element => {
-        const media = element.Media;
-        let obj = media.find(o => o.Name === name|| o.Type === type);
-        if(obj!=undefined){
-          return obj;
-        }
-      });
-      throw "not found"
-    }
 
-    return playlistCollection.updateOne({ _id: id }, updatedList).then(() => {
-      return this.getUserById(id);
+  return this.getPlaylistById(id).then(currentList => {
+    updatedList = currentList;
+    updatedList.Status = status;
+
+  return playlists().then(playlistCollection => {
+    return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(id) }, updatedList).then(() => {
+      return this.getPlaylistById(id);
     });
   });
+});
 }
 
 async function addPlayList(info){
@@ -86,20 +77,32 @@ async function addPlayList(info){
   });
 }
 
+function getUnique(arr, comp) {
+  const unique = arr
+       .map(e => e[comp])
+    .map((e, i, final) => final.indexOf(e) === i && i)
+    .filter(e => arr[e]).map(e => arr[e]);
+   return unique;
+}
+
 async function addToPlaylist(media, playlistId) {
-  if(typeof media === 'undefined') {
+  if(media.length === 0) {
     return
   }
-
   return this.getPlaylistById(playlistId).then(currentList => {
     updatedList = currentList;
-    updatedList.Media.push(media);
-
+    updatedList.Media = updatedList.Media.concat(media);
+    if(currentList.Type === 'movie') {
+      updatedList.Media = getUnique(updatedList.Media, 'title');
+    } else {
+      updatedList.Media = getUnique(updatedList.Media, 'name')
+    }
+    
   return playlists().then(playlistCollection => {
     return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {
       return this.getPlaylistById(playlistId);
     });
-  })
+  });
 });
 }
 
@@ -107,6 +110,7 @@ module.exports = {
   getAllPlaylists,
   getPlaylistByObjectId,
   getPlaylistById,
+  getPlaylistByObjectId,
   search,
   setPlaylistStatus,
   addPlayList,

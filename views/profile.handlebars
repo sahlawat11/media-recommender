@@ -88,8 +88,19 @@
                             <span class="artist-name">{{recommendedMovie.Director}}</span></p>
                         <p>Rating: {{recommendedMovie.imdbRating}}/5</p>
                         <p>Actors: {{recommendedMovie.Actors}}</p>
-                        <p><a>Add to Watch Later</a></p>
-                    </div>
+
+                        <form id="add-movie-form" method="post" action="/playlist/{{userData.WatchLater}}">
+                            <input type="hidden" name="poster" value="{{recommendedMovie.Poster}}" />
+                            <input type="hidden" name="title" value="{{recommendedMovie.Title}}" />
+                            <input type="hidden" name="year" value="{{recommendedMovie.Year}}" />
+                            <input type="hidden" name="director" value="{{recommendedMovie.Director}}" />
+                            <input type="hidden" name="imdbRating" value="{{recommendedMovie.imdbRating}}" />
+                            <input type="hidden" name="actors" value="{{recommendedMovie.Actors}}" />
+                            <a onclick="document.getElementById('add-movie-form').submit();">Add to Watch Later</a>
+                        </form>
+                        
+                    </article>
+
                 </div>
             </div>
         </div>

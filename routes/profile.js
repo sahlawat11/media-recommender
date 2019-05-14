@@ -8,7 +8,6 @@ router.get("/my-profile", async (req, res) => {
     return;
   } else {
       userData = req.session.userData;
-      console.log('THIS IS THE USER DATA:', userData);
 
       // initializing user playlists to show on the profile
       userPlaylists = [];
@@ -18,10 +17,10 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(watchLaterPlayListTmpObj);
       // generating the recommendation
       const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
-      console.log('THIS IS THE SONG:', recommendedSong);
       const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
-      console.log("TRHIS IS IT:", recommendedMovie);
+      // let recommendedSong;
+      // let recommendedMovie;
 
     res.render("profile", {
       userData: req.session.userData,
@@ -38,25 +37,16 @@ router.get("/:id", async (req, res) => {
       res.status(403).render("unauthorized")
       return;
     } else {
-        const users = data.users;
-        let userData;
-        for(i=0; i<users.length; i++) {
-            if(users[i]._id.toString() === req.params.id.toString()) {
-                userData = users[i];
-            }
-        }
-      //   const playlists = data.playlists;
-      //   let userPlaylist=userData.musicLists.concat(movieLists);
-      //   for(i=0; i<userPlaylist.length; i++) {
-          
-      //     userPlaylist[i] = playlists.getPlaylistById(userPlaylist[i]);
-          
-      // }
-        console.log('THIS IS THE USER DATA:', userData);
+      let userPlaylists = [];
         const selectedUser = await data.users.getUserById(req.params.id);
-        res.render("profile", {
-          userData: selectedUser,
-          isLoggedInUserProfile: false
+        const favPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.Favorites);
+      const watchLaterPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.WatchLater);
+      userPlaylists.push(favPlayListTmpObj);
+      userPlaylists.push(watchLaterPlayListTmpObj);
+      res.render("profile", {
+        userData: selectedUser,
+        isLoggedInUserProfile: false,
+        userPlaylists: userPlaylists
       });
     }
   });
