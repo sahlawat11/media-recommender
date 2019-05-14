@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
+const users = data.users;
+const movies = data.movies;
+const spotify = require("../external-api/spotify")
 const songsRecommender = require("../data/recommendation-generator");
 
 router.get("/", async (req, res) => {
@@ -27,7 +30,7 @@ router.get("/user", async (req, res) => {
         }
       }
       res.render("search", {
-          isUser: true,
+          searchType: "user",
           userList: users
       });
     }
@@ -39,7 +42,7 @@ router.get("/user", async (req, res) => {
       return;
     } else {
       res.render("search", {
-          isMusic: true
+          searchType: "music"
       });
     }
   });
@@ -50,7 +53,7 @@ router.get("/user", async (req, res) => {
       return;
     } else {
       res.render("search", {
-          isMovie: true
+          searchType: "movie"
       });
     }
   });
@@ -59,10 +62,11 @@ router.get("/user", async (req, res) => {
 router.post("/", async (req, res) => {
     let keyword = req.body.keyword;
     let searchType = req.body.searchType;
+    console.log(searchType)
     let result = [];
     console.log(keyword)
     switch(searchType){
-      case "User":
+      case "user":
         result.push(await users.getUserByName(keyword));
         hasResult = (result.length!=0)
           res.render("search", {
@@ -73,7 +77,7 @@ router.post("/", async (req, res) => {
           });
         break;
 
-      case "Music":
+      case "music":
         console.log(keyword);
         spotify.search(keyword,async function(body){
           result = []
@@ -102,7 +106,7 @@ router.post("/", async (req, res) => {
 
         break;
 
-      case "Movie":
+      case "movie":
         console.log(keyword)
         try{
           result =[];
