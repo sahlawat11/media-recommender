@@ -7,8 +7,22 @@ const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const path = require("path");
 const api = require("./external-api/format");
+const mailer = require('express-mailer');
+const keys = require('./external-api/keys/keys');
 
 const exphbs = require("express-handlebars");
+
+mailer.extend(app, {
+  from: keys.googleUser,
+  host: 'smtp.gmail.com', // hostname
+  secureConnection: true, // use SSL
+  port: 465, // port for secure SMTP
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+  auth: {
+    user: keys.googleUser,
+    pass: keys.googlePass
+  }
+});
 
 app.set('trust proxy', 1)
 app.use(session({
