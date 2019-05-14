@@ -1,3 +1,11 @@
+<div>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+</div>
 <section class="container">
     <h1>Search</h1>
     <div class="search-category">
@@ -6,43 +14,61 @@
         <span><a href="/search/movies"><i class="fas fa-film"></i> Movies</a></span>
     </div>
 
-     {{#if searchType}}
-            <form action="/search/" method="POST" id="search-form">
-                <div class="form-group">
-                    <label for="keyword">Enter {{searchType}} Name:
-                        <input type="text" name="keyword" class="form-control" id="keyword" />
-                        <input type="hidden" name="searchType" value="{{searchType}}" class="form-control" id="searchType" />
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+    {{#if searchType}}
+    <form action="/search/" method="POST" id="search-form">
+        <p class="form-group">
+            <label for="keyword">Enter {{searchType}} Name:
+                <input type="text" name="keyword" class="form-control" id="keyword" />
+                <input type="hidden" name="searchType" value="{{searchType}}" class="form-control" id="searchType" />
+            </label>
+        </p>
+        <input type="submit" class="btn btn-default">
+        <div class="clear"> </div>
+    </form>
     {{/if}}
 
     {{#if hasResults}}
     <div class="search-results">
         {{#if this.user}}
-            {{#each resultList}}
-                <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
-            {{/each}}
+        {{#each resultList}}
+        <p id={{@index}}>Name: <a href="/profile/{{this._id}}">{{this.FullName}}</a></p>
+        {{/each}}
         {{/if}}
-        {{#if this.music}}
+        <form>
+            {{#if this.music}}
             {{#each resultList}}
+            <div class="card bg-info">
                 <p id={{@index}}>Song: <a href={{this.Link}}>{{this.Name}}</a></p>
                 <p id={{@index}}>Artist: <a href={{this.ArtistLink}}>{{this.Artist}}</a></p>
+            </div>
+            <br>
             {{/each}}
-        {{/if}} 
+            {{else}}
+            <div class="card bg-info">
+                <p id={{@index}}>No find</p>
+            </div>
+            {{/if}}
 
-        {{#if this.movie}}
+
+            {{#if this.movie}}
             {{#each resultList}}
+            <div class="card bg-info">
                 <p id={{@index}}>MovieId: {{this.MovieId}}</p>
                 <p id={{@index}}>Title: {{this.Name}}</p>
                 <p id={{@index}}>Generes: {{this.Genres}}</p>
+            </div>
+            <br>
             {{/each}}
-        {{/if}}
+
+            {{/if}}
+        </form>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    {{else}}
+    <div class="card bg-info">
+        <p>No result, Please input the whole name!</p>
+    </div>
     {{/if}}
+
 
     <div class="users-list">
         {{#each userList}}
