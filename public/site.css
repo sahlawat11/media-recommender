@@ -96,3 +96,7 @@ img {
 .search-results, .users-list {
   margin-top: 40px;
 }
+.warning-text {
+  color: red;
+  font-weight: 400;
+}

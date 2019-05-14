@@ -4,7 +4,6 @@ const data = require("../data");
 
 async function isLoggedInUser(userData, playlistInfo) {
     let isLoggedInUser;
-    console.log('LET ME CHECK THIS:', playlistInfo, userData.Email);
     if(playlistInfo.Owner === userData.Email) {
         isLoggedInUser = true;
     } else {
@@ -24,7 +23,6 @@ router.get("/:id", async (req, res) => {
     isLoggedInUserObj = await isLoggedInUser(req.session.userData, playlistInfo);
     const hidePlaylist = !isPlaylistPublic && !isLoggedInUserObj;
     const isMusicPlaylist = playlistInfo.Type === 'music';
-    console.log('THIS IS CRAZY:', hidePlaylist);
     res.render("playlist", {
       playlistInfo: playlistInfo,
       isPublic: isPlaylistPublic,
@@ -40,20 +38,10 @@ router.get("/:id/import/favorites", async (req, res) => {
         res.status(403).render("unauthorized");
         return;
       } else {
-        // let playlistStatus = await data.playlists.setPlaylistStatus(
-        //   req.params.id,
-        //   "public"
-        // );
-        // console.log("THE STATUS HAS BEEN CHANGED:", playlistStatus);
-        // res.redirect("/playlist/"+req.params.id);
         playlistInfo = await data.playlists.getPlaylistById(req.params.id);
-        console.log('this has been called:', req.params, playlistInfo);
         loggedInUserPlaylist = await data.playlists.getPlaylistById(req.session.userData.Favorites);
         loggedInUserPlaylistId = loggedInUserPlaylist._id.toString();
-        console.log('*************:', loggedInUserPlaylistId);
-        console.log('THIS IS THE LOGGED IN DATA:', loggedInUserPlaylist);
         updatedPlaylist = await data.playlists.addToPlaylist(playlistInfo.Media, loggedInUserPlaylistId);
-        console.log('THIS IS THE UPDATED PLAYLIST:', updatedPlaylist);
         res.redirect("/playlist/"+loggedInUserPlaylistId);
       }
 });
@@ -64,13 +52,9 @@ router.get("/:id/import/watchlater", async (req, res) => {
         return;
       } else {
         playlistInfo = await data.playlists.getPlaylistById(req.params.id);
-        console.log('this has been called:', req.params, playlistInfo);
         loggedInUserPlaylist = await data.playlists.getPlaylistById(req.session.userData.WatchLater);
         loggedInUserPlaylistId = loggedInUserPlaylist._id.toString();
-        console.log('*************:', loggedInUserPlaylistId);
-        console.log('THIS IS THE LOGGED IN DATA:', loggedInUserPlaylist);
         updatedPlaylist = await data.playlists.addToPlaylist(playlistInfo.Media, loggedInUserPlaylistId);
-        console.log('THIS IS THE UPDATED PLAYLIST:', updatedPlaylist);
         res.redirect("/playlist/"+loggedInUserPlaylistId);
       }
 });
@@ -84,7 +68,6 @@ router.get("/:id/private", async (req, res) => {
       req.params.id,
       "private"
     );
-    console.log("THE STATUS HAS BEEN CHANGED:", playlistStatus);
     res.redirect("/playlist/"+req.params.id);
   }
 });
@@ -98,7 +81,6 @@ router.get("/:id/public", async (req, res) => {
           req.params.id,
           "public"
         );
-        console.log("THE STATUS HAS BEEN CHANGED:", playlistStatus);
         res.redirect("/playlist/"+req.params.id);
       }
 });

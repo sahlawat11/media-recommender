@@ -92,7 +92,11 @@ async function addToPlaylist(media, playlistId) {
   return this.getPlaylistById(playlistId).then(currentList => {
     updatedList = currentList;
     updatedList.Media = updatedList.Media.concat(media);
-    updatedList.Media = getUnique(updatedList.Media, 'title');
+    if(currentList.Type === 'movie') {
+      updatedList.Media = getUnique(updatedList.Media, 'title');
+    } else {
+      updatedList.Media = getUnique(updatedList.Media, 'name')
+    }
     
   return playlists().then(playlistCollection => {
     return playlistCollection.findOneAndUpdate({ _id: ObjectId.createFromHexString(playlistId) }, updatedList).then(() => {

@@ -84,7 +84,6 @@ async function registration(Userinfo){
 }
 
 async function addUser(info){
-  console.log('THIS IS THE PROBLEM HERE:', info);
   return users().then(usersCollection => {
     let newUser={
         FirstName: info.FirstName,

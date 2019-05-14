@@ -17,11 +17,11 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(watchLaterPlayListTmpObj);
 
       // generating the recommendation
-      // const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
-      // const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
+      const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+      const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
 
-      let recommendedSong;
-      let recommendedMovie;
+      // let recommendedSong;
+      // let recommendedMovie;
 
     res.render("profile", {
       userData: req.session.userData,
@@ -40,7 +40,6 @@ router.get("/:id", async (req, res) => {
     } else {
       let userPlaylists = [];
         const selectedUser = await data.users.getUserById(req.params.id);
-        console.log('THIS IS THE SELECTED USER:', selectedUser);
         const favPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.Favorites);
       const watchLaterPlayListTmpObj = await data.playlists.getPlaylistByObjectId(selectedUser.WatchLater);
       userPlaylists.push(favPlayListTmpObj);
