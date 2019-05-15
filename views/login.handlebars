@@ -1,20 +1,29 @@
-    <section class="container">
-      <h2>Login</h2>
+<section class="container">
+  <div class="message login">
+    <div class="inset">
+      <div class="login-head">
+        <h1>&nbsp;Login</h1>
+      </div>
       <form action="/login" method="POST" id="login-form">
-        <div class="form-group">
-          <label for="userEmail">Email address:
-            <input type="email" name="userEmail" class="form-control" id="userEmail" required/>
-          </label>
+        <div class="form-group form-inline">
+          <input type="email" name="userEmail" class="form-control" id="userEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}"
+            value="Email Address" required> <i class="fas fa-user"></i>
         </div>
-        <div class="form-group">
-          <label for="password">Password:
-            <input type="password" class="form-control" name="password" id="password" required/>
-          </label>
+        <div class="form-group form-inline">
+          <input type="password" class="form-control" name="password" id="password" value="password" onfocus="this.value = '';"
+            onblur="if (this.value == '') {this.value = 'password';}" required /> <i class="fas fa-lock"></i>
         </div>
-        <button type="submit" class="btn btn-default submit-btn">Submit</button>
-        <a class="register-link" href="/register">Register</a>
+        <div class="submit">
+          <input type="submit" value="Sign in">
+          <a href="/register">Register</a>
+        </div>
       </form>
       {{#if hasErrors}}
       <p class="error">{{error}}</p>
       {{/if}}
-    </section>
+    </div>
+  </div>
+</section>
+<div class="footer">
+  <p>Copyright &copy; 2019S_CS546_Group3 &nbsp; &nbsp; &nbsp;</p>
+</div>
