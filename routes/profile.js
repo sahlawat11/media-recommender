@@ -16,8 +16,18 @@ router.get("/my-profile", async (req, res) => {
       userPlaylists.push(favPlayListTmpObj);
       userPlaylists.push(watchLaterPlayListTmpObj);
       // generating the recommendation
-      const recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
-      const recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
+      let recommendedSong;
+      let recommendedMovie;
+      try {
+        recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+      } catch(e) {
+        console.log("Failed to get song recommendation.");
+      }
+      try {
+        recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
+      } catch(e) {
+        console.log("Failed to get movies recommendation");
+      }
 
       if(req.session.userData.sendEmail) {
         req.session.userData.sendEmail = false;

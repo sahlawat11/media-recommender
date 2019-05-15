@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const xss = require("xss");
 
 async function isLoggedInUser(userData, playlistInfo) {
     let isLoggedInUser;
@@ -89,10 +88,10 @@ router.get("/:id/public", async (req, res) => {
 router.post("/:id", async (req, res) => {
   let mediaObj;
   if (typeof req.body.name !== "undefined") {
-    req.body.name = xss(req.body.name);
-    req.body.artistName = xss(req.body.artistName);
-    req.body.artistUrl = xss(req.body.artistUrl);
-    req.body.previewUrl = xss(req.body.previewUrl);
+    req.body.name = req.body.name;
+    req.body.artistName = req.body.artistName;
+    req.body.artistUrl = req.body.artistUrl;
+    req.body.previewUrl = req.body.previewUrl;
     mediaObj = {
       name: req.body.name,
       artist: req.body.artistName,
@@ -100,12 +99,12 @@ router.post("/:id", async (req, res) => {
       previewUrl: req.body.previewUrl
     };
   } else if (typeof req.body.title !== "undefined") {
-    req.body.poster = xss(req.body.poster);
-    req.body.title = xss(req.body.title);
-    req.body.year = xss(req.body.year);
-    req.body.director = xss(req.body.director);
-    req.body.imdbRating = xss(req.body.imdbRating);
-    req.body.actors = xss(req.body.actors);
+    req.body.poster = req.body.poster;
+    req.body.title = req.body.title;
+    req.body.year = req.body.year;
+    req.body.director = req.body.director;
+    req.body.imdbRating = req.body.imdbRating;
+    req.body.actors = req.body.actors;
     mediaObj = [{
       poster: req.body.poster,
       title: req.body.title,
@@ -118,9 +117,7 @@ router.post("/:id", async (req, res) => {
 
   newObj = await data.playlists.addToPlaylist(mediaObj, req.params.id);
   newObj.Media = newObj.Media.reverse();
-  res.render("playlist", {
-    playlistInfo: newObj
-  });
+res.redirect("/playlist/"+req.params.id)
 });
 
 module.exports = router;
