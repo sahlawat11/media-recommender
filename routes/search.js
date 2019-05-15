@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const xss = require("xss");
+const spotify = require("../external-api/spotify");
+const omdb = require("../external-api/omdb");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -18,7 +20,6 @@ router.get("/user", async (req, res) => {
       return;
     } else {
     const users = await data.users.getAllUsers();
-    
       let loggedInUserId = req.session.userData._id;
       for(i=0; i<users.length; i++) {
         if(users[i]._id == loggedInUserId) {
@@ -55,14 +56,6 @@ router.get("/user", async (req, res) => {
     }
   });
 
-  function getUnique(arr, comp) {
-    const unique = arr
-         .map(e => e[comp])
-      .map((e, i, final) => final.indexOf(e) === i && i)
-      .filter(e => arr[e]).map(e => arr[e]);
-     return unique;
-  }
-
 router.post("/user", async (req, res) => {
   req.body['keyword'] = xss(req.body['keyword']);
     const searchQuery = req.body['keyword'];
@@ -76,22 +69,55 @@ router.post("/user", async (req, res) => {
         }
       }
     }
-    
     res.render("search", {
         hasResults: true,
         resultList: result,
         searchType: "User",
+        user: true,
         isUser: true
     });
   });
 
   
-
   router.post("/music", async (req, res) => {
-    req.body['keyword'] = xss(req.body['keyword']);
-    const searchQuery = req.body['keyword'];
-    const result = await data.recommender.getSearchedMusic(searchQuery);
-       
+    const searchQuery = xss(req.body.keyword);
+    spotify.search(searchQuery,async function(body) {
+      result = []
+      body.tracks.items.forEach(element => {
+        let temp = {
+          Name:element.name,
+          Link:element.external_urls.spotify,
+          PreviewUrl: element.preview_url,
+          Artist: element.artists[0].name,
+          ArtistLink: element.artists[0].external_urls.spotify
+        }
+        result.push(temp)
+      });
+      hasResult = result.length !== 0
+      res.render("search", {
+        hasResults: hasResult,
+        resultList: result,
+        music: true,
+        isMusic: true
+      });
+    })
+  });
+
+  router.post("/movie", async (req, res) => {
+    const searchQuery = xss(req.body.keyword);
+    try {
+      const result = await omdb.getByName(searchQuery);
+      hasResult = true;
+      res.render("search", {
+        hasResults: hasResult,
+        resultList: result.Search,
+        searchType: 'movie',
+        movie: true,
+        isMovie: true
+      });
+    } catch(e) {
+      hasResult = false;
+    }    
   });
 
 
