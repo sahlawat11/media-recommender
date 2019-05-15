@@ -15,7 +15,7 @@ const main = async () => {
         "Name": "to be calm",
         "Type": "music",
         "Owner": "Sunii Kim",
-        "Status": "private",
+        "Status": "public",
 
         "Media": [{
             "Name": "Nonstop",
@@ -43,7 +43,7 @@ const main = async () => {
         "Location": "Hoboken",
         "AboutMe": "description",
         "Age": "25",
-        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
+        "HashedPassword": bcrypt.hashSync("123456",salt).toString(), //Note: save hashed Password here
         "FavoriteMusicGenres": ["Pop","Rap"],
         "FavoriteMovieGenres": ["Thriller","Romance"],
         "Favorites": [playlist._id],
