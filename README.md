@@ -37,4 +37,11 @@ Video Demo : [todo]
 -OMDB API  
 -Spotify API  
 -`express-mailer`  
--
+-`bcrypt`  
+-`body-parser`  
+-`express-session`  
+-`node-uuid`  
+-`omdb-api-pt`  
+-`request`  
+-`xss`
+
