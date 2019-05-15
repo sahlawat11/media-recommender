@@ -18,7 +18,8 @@
     <header class="main-header">
 
       <h1>Media Recommender</h1>
-      {{#if isLoggedInUserProfile}}
+      {{#if isNotLoggedIn}}
+      {{else}}
       <section>
         <nav class="navbar nav-bar">
           <a class="navbar-brand" href="/profile/my-profile">Home</a>

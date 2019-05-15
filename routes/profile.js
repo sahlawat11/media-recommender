@@ -4,7 +4,9 @@ const data = require("../data");
 
 router.get("/my-profile", async (req, res) => {
   if (!req.session.loggedIn) {
-    res.status(403).render("unauthorized")
+    res.status(403).render("unauthorized", {
+      isNotLoggedIn: true
+    })
     return;
   } else {
       userData = req.session.userData;
@@ -20,6 +22,7 @@ router.get("/my-profile", async (req, res) => {
       let recommendedMovie;
       try {
         recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
+        console.log('RECOMMENDED SONG:', recommendedSong);
       } catch(e) {
         console.log("Failed to get song recommendation.");
       }
@@ -47,7 +50,9 @@ router.get("/my-profile", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     if (!req.session.loggedIn) {
-      res.status(403).render("unauthorized")
+      res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+      })
       return;
     } else {
       let userPlaylists = [];

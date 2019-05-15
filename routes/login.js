@@ -8,7 +8,9 @@ router.get("/", async (req, res) => {
   if(req.session.loggedIn) {
     res.redirect("/profile/my-profile");
   } else {
-  res.render("login");
+  res.render("login", {
+    isNotLoggedIn: true
+  });
   }
 });
 
@@ -64,7 +66,8 @@ router.post("/", async (req, res) => {
     res.status(401).render("login",
       {
         error: error,
-        hasErrors: true
+        hasErrors: true,
+        isNotLoggedIn: true
       });
     return;
   }

@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
 
 router.get("/logout", async (req, res) => {
   req.session.destroy(() => {
-    res.render("logout");
+    res.render("logout", {
+      isNotLoggedIn: true
+    });
   });
 });
 

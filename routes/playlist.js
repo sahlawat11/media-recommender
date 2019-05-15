@@ -14,7 +14,9 @@ async function isLoggedInUser(userData, playlistInfo) {
 
 router.get("/:id", async (req, res) => {
   if (!req.session.loggedIn) {
-    res.status(403).render("unauthorized");
+    res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+    });
     return;
   } else {
     playlistInfo = await data.playlists.getPlaylistById(req.params.id);
@@ -35,7 +37,9 @@ router.get("/:id", async (req, res) => {
 
 router.get("/:id/import/favorites", async (req, res) => {
     if (!req.session.loggedIn) {
-        res.status(403).render("unauthorized");
+        res.status(403).render("unauthorized", {
+            isNotLoggedIn: true
+        });
         return;
       } else {
         playlistInfo = await data.playlists.getPlaylistById(req.params.id);
@@ -48,7 +52,9 @@ router.get("/:id/import/favorites", async (req, res) => {
 
 router.get("/:id/import/watchlater", async (req, res) => {
     if (!req.session.loggedIn) {
-        res.status(403).render("unauthorized");
+        res.status(403).render("unauthorized", {
+            isNotLoggedIn: true
+        });
         return;
       } else {
         playlistInfo = await data.playlists.getPlaylistById(req.params.id);
@@ -61,7 +67,9 @@ router.get("/:id/import/watchlater", async (req, res) => {
 
 router.get("/:id/private", async (req, res) => {
   if (!req.session.loggedIn) {
-    res.status(403).render("unauthorized");
+    res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+    });
     return;
   } else {
     let playlistStatus = await data.playlists.setPlaylistStatus(
@@ -74,7 +82,9 @@ router.get("/:id/private", async (req, res) => {
 
 router.get("/:id/public", async (req, res) => {
     if (!req.session.loggedIn) {
-        res.status(403).render("unauthorized");
+        res.status(403).render("unauthorized", {
+            isNotLoggedIn: true
+        });
         return;
       } else {
         let playlistStatus = await data.playlists.setPlaylistStatus(

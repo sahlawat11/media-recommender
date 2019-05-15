@@ -7,7 +7,9 @@ const omdb = require("../external-api/omdb");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
-    res.status(403).render("unauthorized")
+    res.status(403).render("unauthorized", {
+      isNotLoggedIn: true
+    })
     return;
   } else {
     res.render("search");
@@ -36,7 +38,9 @@ router.get("/user", async (req, res) => {
 
   router.get("/music", async (req, res) => {
     if (!req.session.loggedIn) {
-      res.status(403).render("unauthorized")
+      res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+      })
       return;
     } else {
       res.render("search", {
@@ -47,7 +51,9 @@ router.get("/user", async (req, res) => {
 
   router.get("/movies", async (req, res) => {
     if (!req.session.loggedIn) {
-      res.status(403).render("unauthorized")
+      res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+      })
       return;
     } else {
       res.render("search", {
