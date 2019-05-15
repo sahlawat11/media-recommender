@@ -92,7 +92,6 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       isNotLoggedIn: true
     }
   } else {
-    console.log(recommendationObj)
     emailBodyOptions = {
       to: email, // Send to. This can be a comma delimited string just like a normal email to field.
       subject: "We have a new recommendation for you!", // Email subject
