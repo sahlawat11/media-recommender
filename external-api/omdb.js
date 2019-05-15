@@ -22,7 +22,6 @@ const getByName = async name => {
       search: name,
       plot: "full",
     });
-    console.log('this is the response:', response);
     return response;
   } catch (error) {
     console.log(error);

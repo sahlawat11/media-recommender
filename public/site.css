@@ -35,14 +35,24 @@ input[type="text"] {
 img {
   width: 200px;
 }
+img.custom-img-size {
+  width: 100px;
+  margin-bottom: 30px;
+}
 
 .search-category {
   margin-top: 40px;
   margin-bottom: 20px;
   font-size: 20px;
 }
+.register-link {
+  margin-left: 10px;
+}
 .visibility {
   color: #00FFFF;
+}
+.error {
+  color: red;
 }
 .visibility:hover {
   color: #00FFFF;
@@ -88,14 +98,9 @@ img {
   padding: 10px;
 }
 .playlists table {
+  
   padding: 10px;
-}
-.custom-img-size {
-  width: 100px;
-  margin-bottom: 30px;
-}
-.movie-search-title {
-  margin-left: 20px;
+
 }
 .submit-btn {
   background: white;
@@ -204,12 +209,6 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
   font-size: 25px;
   font-weight: 700;
   padding-right: 10px;
-}
-.song-name-custom {
-  color: #00FFFF;
-  font-size: 20px;
-  font-weight: 700;
-  padding-right: 5px;
 }
 .song-name a {
   color: #00FFFF;

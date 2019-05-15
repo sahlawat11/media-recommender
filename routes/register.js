@@ -16,20 +16,25 @@ router.post("/", async (req, res) => {
   let registrationData = req.body;
   let error;
   let hashedPass;
+  let hasEmailError = false;
+  let hasPasswordMismatch = false;
   const users = await data.users.getAllUsers();
   registrationData.password1 = xss(registrationData.password1);
   registrationData.password2 = xss(registrationData.password2);
   if (registrationData.password1 !== registrationData.password2) {
-    return;
+    error = "Passwords do not match. Please enter again."
+    hasPasswordMismatch = true;
   }
-  registrationData.email = xss(registrationData.email);
+  if(typeof error === 'undefined') {
+    registrationData.email = xss(registrationData.email);
   for(i=0; i<users.length; i++) {
-    console.log('this is it:', users[i]);
     if(users[i].Email === registrationData.email) {
       error = "User with this email already exist";
+      hasEmailError = true;
     }
   }
-  if(typeof error !== 'undefined') {
+  }
+  if(typeof error === 'undefined') {
   bcrypt.hash(registrationData.password1, 8, async function(err, hash) {
     hashedPass = hash;
     registrationData.fname = xss(registrationData.fname);
@@ -93,11 +98,13 @@ router.post("/", async (req, res) => {
 }
 
   if (error) {
-    res.status(401).render("register"),
+    res.status(401).render("register",
       {
         error: error,
         hasErrors: true,
-      };
+        hasEmailError: hasEmailError,
+        hasPasswordMismatch: hasPasswordMismatch
+      });
     return;
   }
 });
