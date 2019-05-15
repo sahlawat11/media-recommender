@@ -22,7 +22,7 @@ which are available on your profile page, as well as through email notifications
 -With the server running, head to the address of the website, which is `localhost:3000` by default  
 -Sign up by filling out the user's information (ex user name, password and so on)  
 -After registering as a user, you may use any functionality of the website. This includes editing your playlists,  
-commenting on other users' playlists, getting recommendations, searching and more  
+getting recommendations, searching and more  
 -After an account has been created, you can log in in the future, instead of signing up again  
   
 ## Tutorial  
