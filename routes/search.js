@@ -18,7 +18,9 @@ router.get("/", async (req, res) => {
 
 router.get("/user", async (req, res) => {
     if (!req.session.loggedIn) {
-      res.status(403).render("unauthorized")
+      res.status(403).render("unauthorized", {
+        isNotLoggedIn: true
+      });
       return;
     } else {
     const users = await data.users.getAllUsers();

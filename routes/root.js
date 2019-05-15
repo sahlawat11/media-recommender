@@ -6,7 +6,9 @@ router.get("/", async (req, res) => {
   if(req.session.loggedIn) {
     res.redirect("/profile/my-profile");
   } else {
-  res.render("root");
+  res.render("root", {
+    isNotLoggedIn: true
+  });
   }
 });
 
