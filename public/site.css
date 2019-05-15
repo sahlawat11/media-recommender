@@ -45,8 +45,14 @@ img.custom-img-size {
   margin-bottom: 20px;
   font-size: 20px;
 }
+.register-link {
+  margin-left: 10px;
+}
 .visibility {
   color: #00FFFF;
+}
+.error {
+  color: red;
 }
 .visibility:hover {
   color: #00FFFF;

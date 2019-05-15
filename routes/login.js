@@ -23,6 +23,8 @@ router.post("/", async (req, res) => {
   if (!loginData.password) {
     error = "The email or the password is not correct.";
   }
+
+  if(typeof error === 'undefined') {
   loginData.userEmail = xss(loginData.userEmail);
   loginData.password = xss(loginData.password);
   selectedUser = await data.users.getUserByEmail(loginData.userEmail);
@@ -51,14 +53,15 @@ router.post("/", async (req, res) => {
       error = "The email or the password is not correct.";
     }
   }
+}
 
   if (error) {
-    res.status(401).render("login"),
+    res.status(401).render("login",
       {
         error: error,
         hasErrors: true,
         data: loginData
-      };
+      });
     return;
   }
 });

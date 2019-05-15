@@ -1,10 +1,15 @@
 <div class="message register" id="register">
   <div class="inset container">
     <div class="register-head">
-      <h1>Media Recommender - Registeration</h1>
+      <h1>Registeration</h1>
     </div>
 
     <form action="/register" method="POST" id="registeration-form">
+    {{#if hasErrors}}
+      {{#if hasPasswordMismatch}}
+      <p class="error">Error: {{error}}</p>
+      {{/if}}
+      {{/if}}
       <p>
         <label for="fname">First Name:</label>
         <input type="text" class="form-control" id="fname" name="fname" required />
@@ -20,7 +25,9 @@
         <input type="email" name="email" class="form-control" id="email" required />
       </p>
       {{#if hasErrors}}
-      <p class="error">{{error}}</p>
+      {{#if hasEmailError}}
+      <p class="error">Error: {{error}}</p>
+      {{/if}}
       {{/if}}
       <div class="clear"> </div>
       <p>
@@ -121,6 +128,7 @@
         <label for="password2">Confirm Password:</label>
         <input type="password" name="password2" class="form-control" id="password2" required />
       </p>
+      
       <div class="submit">
         <input type="submit" value="Submit">
         <div class="clear"> </div>
