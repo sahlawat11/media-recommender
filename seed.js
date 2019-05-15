@@ -11,53 +11,62 @@ const main = async () => {
     const db = await dbConnection();
     await db.dropDatabase();
     
-    let userinfo ={
-        "FirstName": "John",
-        "LastName": "Doe",
-        "Email": "JDoe@gmail.com",
-        "Gender": "M",
-        "Location": "Hoboken",
-        "AboutMe": "description",
-        "Age": "25",
-        "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
-        "HashedPassword": bcrypt.hashSync("ljksdajflkj",salt).toString(), //Note: save hashed Password here
-        "FavoriteMusicGenres": ["Pop","Rap"],
-        "FavoriteMovieGenres": ["Thriller","Romance"],
-        "Favorites": ["Pulp Fiction", "The Breakfast Club"],
-        "MusicLists": ["7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310","7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710"],
-        "MovieLists": ["7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310","7b696a2-d0f2-4g8g-h67d-7a1d4b6b6710"],
-        "WatchLater": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310"
-    }
-    const user = await users.addUser(userinfo);
-    console.log(user);
-    let listinfo ={
-        "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    let listinfo1 ={
         "Name": "to be calm",
         "Type": "music",
         "Owner": "Sunii Kim",
-        "Status": "private",
-
+        "Status": "public",
         "Media": [{
-            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
-            "Name": "Nonstop",
-            "Artist": "Drake",
-            "Type": "Music",
-            "Link": "https://open.spotify.com/album/1ATL5GLyefJaxhQzSPVrLX?si=4PqBwHBHRo2d0UpJe2wgJQ",
-            "Genres": ["Rap", "Hip-Hop", "Pop"]
-            }],
+            "name": "It Never Rains in Southern California",
+            "artist": "Albert Hammond",
+            "artistUrl": "https://open.spotify.com/artist/34E3csCxpXunPGEkOVVX2g",
+            "previewUrl":"https://open.spotify.com/album/0gdQF4mVBPjv5hhjtoe3hM"
+        }],
 
         "Comments":[{
-            "_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
             "User_id": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b8124",
             "User_name": "Tianxin Liu",
             "Comment": "Good music!"
         }]
     }
-    const playlist = await playlists.addPlayList(listinfo);
-    console.log(playlist);
+    let listinfo2 = {
+        "Name":"Watch Later",
+        "Type":"movies",
+        "Owner":"Sunii Kim",
+        "Status":"public",
+        "Media":[{
+            "poster":"https://m.media-amazon.com/images/M/MV5BMWM4NTFhYjctNzUyNi00NGMwLTk3NTYtMDIyNTZmMzRlYmQyXkEyXkFqcGdeQXVyMTAwMzUyOTc@._V1_SX300.jpg",
+            "title":"The Sixth Sense",
+            "year":"1999",
+            "director":"M. Night Shyamalan",
+            "rating":"8.1",
+            "actors":"Bruce Willis, Haley Joel Osment, Toni Collette, Olivia Williams"}]
+    }
+
+    const playlist1 = await playlists.addPlayList(listinfo1);
+    const playlist2 = await playlists.addPlayList(listinfo2);
 
     await movies.addMovies(movieInfo)
     
+    let userinfo ={
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "JDoe@gmail.com",
+        "Gender": "Male",
+        "Location": "Hoboken",
+        "AboutMe": "description",
+        "Age": "25",
+        "HashedPassword": bcrypt.hashSync("123456",salt).toString(), //Note: save hashed Password here
+        "FavoriteMusicGenres": ["party","country"],
+        "FavoriteMovieGenres": ["drama","romantic"],
+        "Favorites": playlist1._id,
+        "MusicLists": [],
+        "MovieLists": [],
+        "WatchLater": playlist2._id
+    }
+    const user = await users.addUser(userinfo);
+    console.log(user);
+    console.log(await playlists.getPlaylistByObjectId(user.Favorites))
     //const MovieLists;
     console.log("Done seeding database");
   

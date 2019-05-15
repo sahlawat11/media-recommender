@@ -91,13 +91,14 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       ArtistLink: recommendationObj.artist.artistUrl
     }
   } else {
+    console.log(recommendationObj)
     emailBodyOptions = {
       to: email, // Send to. This can be a comma delimited string just like a normal email to field.
       subject: "We have a new recommendation for you!", // Email subject
       isMusic: false,
-      Title: recommendationObj.Title + ', ' + recommendationObj.Year,
+      Title: recommendationObj.title + ', ' + recommendationObj.year,
       Director: recommendationObj.Director,
-      IMDBRating: recommendationObj.imdbRating + '/5',
+      IMDBRating: recommendationObj.imdbRating + '/10', //5 or 10
       Actors: recommendationObj.Actors
     }
   }
