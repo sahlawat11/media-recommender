@@ -8,7 +8,10 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="../../public/tota11y.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous" />
   <link rel="stylesheet" href="/public/site.css">
+  <link rel="stylesheet" href="/public/login.css">
 </head>
 
 <body>
@@ -18,26 +21,12 @@
     <header class="main-header">
 
       <h1>Media Recommender</h1>
-      {{#if isNotLoggedIn}}
-      {{else}}
-      <section>
-        <nav class="navbar nav-bar">
-          <a class="navbar-brand" href="/profile/my-profile">Home</a>
-          <a class="navbar-brand" href="/search">Search</a>
-          <a class="navbar-brand" href="/logout">Logout</a>
-        </nav>
 
-      </section>
-      {{/if}}
     </header>
     <main class="main-body">
       {{{body}}}
     </main>
 
-    {{!-- <footer class="main-footer">
-         
-            © 2019 All Rights Reserved.
-        </footer>   --}}
   </div>
 </body>
 

@@ -1,4 +1,11 @@
 <section>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+</section>
+<section>
     <div class="container">
         <div class="card text-white bg-dark" style="width: 18rem;">
             <ul class="list-group list-group-flush text-white bg-dark ">
@@ -36,7 +43,7 @@
                                 </div>
                             {{else}}
                             <div class="playlist-movies">
-                                <img src={{this.poster}}>
+                                <img src={{this.poster}} alt="Poster">
                         <p><span class="song-name">{{this.title}}, {{this.year}}</span> by <span class="artist-name">{{this.director}}</span></p>
                         <p>Rating: {{this.rating}}/10</p>
                         <p>Actors: {{this.actors}}</p>
