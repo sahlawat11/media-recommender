@@ -2,9 +2,6 @@
  margin: 0;
  padding: 0;
 }
-html {
-  /* background-image: url("./images/bg.jpg"); */
-}
 body{
  background: -moz-radial-gradient(center, ellipse cover, rgba(109,74,112,1) 0%, rgba(0,0,0,1) 100%); /* ff3.6+ */
 background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(109,74,112,1)), color-stop(100%, rgba(0,0,0,1))); /* safari4+,chrome */
@@ -22,10 +19,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d4a70', end
 }
 a {
   cursor: pointer;
-  color: #00FFFF;
+  color: #767676;
 }
 a:hover {
-  color: #00FFFF;
+  color: #767676;
 }
 
 input[type="text"] {

@@ -1,73 +1,81 @@
-    <section class="container">
-        <h1>Search</h1>
-        <div class="search-category">
-            <span><a href="/search/user">User</a></span> |
-            <span><a href="/search/music">Music</a></span> |
-            <span><a href="/search/movies">Movies</a></span>
+<section>
+        <nav class="navbar nav-bar">
+          <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+          <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+          <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+
+      </section>
+<section class="container">
+    <h1>Search</h1>
+    <div class="search-category">
+        <span><a href="/search/user"><i class="fas fa-user"></i> User</a></span> |
+        <span><a href="/search/music"><i class="fas fa-music"></i> Music</a></span> |
+        <span><a href="/search/movies"><i class="fas fa-film"></i> Movies</a></span>
+    </div>
+
+    {{#if isUser}}
+    <form action="/search/user" method="POST" id="user-search-form">
+        <div class="form-group">
+            <label for="keyword">Enter User Name:
+                <input type="text" name="keyword" class="form-control" id="keyword" required />
+            </label>
         </div>
+        <button type="submit" class="btn btn-default submit-btn">Submit</button>
+    </form>
 
+    {{/if}}
 
-        {{#if isUser}}
-            <form action="/search/user" method="POST" id="user-search-form">
-                <div class="form-group">
-                    <label for="keyword">Enter User Name:
-                        <input type="text" name="keyword" class="form-control" id="keyword" required/>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default submit-btn">Submit</button>
-            </form>
-                        
-            {{/if}}
+    {{#if isMusic}}
+    <form action="/search/music" method="POST" id="music-search-form">
+        <div class="form-group">
+            <label for="keyword">Enter Song Name:
+                <input type="text" name="keyword" class="form-control" id="keyword" required />
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default submit-btn">Submit</button>
+    </form>
+    {{/if}}
 
-            {{#if isMusic}}
-            <form action="/search/music" method="POST" id="music-search-form">
-                <div class="form-group">
-                    <label for="keyword">Enter Song Name:
-                        <input type="text" name="keyword" class="form-control" id="keyword" required/>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default submit-btn">Submit</button>
-            </form>
-            {{/if}}
+    {{#if isMovie}}
+    <form action="/search/movie" method="POST" id="movie-search-form">
+        <div class="form-group">
+            <label for="keyword">Enter Movie Name:
+                <input type="text" name="keyword" class="form-control" id="keyword" required />
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default submit-btn">Submit</button>
+    </form>
+    {{/if}}
 
-            {{#if isMovie}}
-            <form action="/search/movie" method="POST" id="movie-search-form">
-                <div class="form-group">
-                    <label for="keyword">Enter Movie Name:
-                        <input type="text" name="keyword" class="form-control" id="keyword" required/>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default submit-btn">Submit</button>
-            </form>
-            {{/if}}
+    {{#if hasResults}}
+    {{#if user}}
+    <div class="search-results">
+        {{#each resultList}}
+        <p id="{{@index}}-user"><a target='_blank' href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
+        {{/each}}
+    </div>
+    {{/if}}
 
-            {{#if hasResults}}
-                {{#if user}}
-                    <div class="search-results">
-                    {{#each resultList}}
-                        <p id="{{@index}}-user"><a target='_blank' href="/profile/{{this._id}}">{{this.FirstName}} {{this.LastName}}</a></p>
-                    {{/each}}
-                    </div>
-                {{/if}}
+    {{#if music}}
+    <div class="search-results">
+        {{#each resultList}}
+        <p id="{{@index}}-music"><a target='_blank' href="{{this.Link}}" class="song-name-custom">{{this.Name}}</a> by
+            <a target='_blank' href="{{this.ArtistLink}}" class="artist-name">{{this.Artist}}</a></p>
+        {{/each}}
+    </div>
+    {{/if}}
 
-                {{#if music}}
-                    <div class="search-results">
-                    {{#each resultList}}
-                        <p id="{{@index}}-music"><a target='_blank' href="{{this.Link}}" class="song-name-custom">{{this.Name}}</a>  by <a target='_blank' href="{{this.ArtistLink}}" class="artist-name">{{this.Artist}}</a></p>
-                    {{/each}}
-                    </div>
-                {{/if}}
+    {{#if movie}}
+    <div class="search-results">
+        {{#each resultList}}
+        <div>
+            <img class="custom-img-size" src="{{this.Poster}}">
+            <span class="movie-search-title" id="{{@index}}-movie">{{this.Title}}, {{this.Year}}</span>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+    {{/if}}
 
-                {{#if movie}}
-                    <div class="search-results">
-                    {{#each resultList}}
-                    <div>
-                    <img class="custom-img-size" src="{{this.Poster}}">
-                        <span class="movie-search-title" id="{{@index}}-movie">{{this.Title}}, {{this.Year}}</span>
-                        </div>
-                    {{/each}}
-                    </div>
-                {{/if}}
-        {{/if}}
-
-        </section>
+</section>
