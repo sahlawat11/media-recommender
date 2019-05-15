@@ -22,12 +22,14 @@ router.get("/my-profile", async (req, res) => {
       let recommendedMovie;
       try {
         recommendedSong = await data.recommender.getRecommendedMusic(userData.FavoriteMusicGenres);
-        console.log('RECOMMENDED SONG:', recommendedSong);
+        console.log('RECOMMENDATION SONG:', recommendedSong);
       } catch(e) {
         console.log("Failed to get song recommendation.");
       }
       try {
         recommendedMovie = await data.recommender.getRecommendedMovie(userData.FavoriteMovieGenres);
+        console.log('RECOMMENDATION MOVIE:', recommendedMovie);
+
       } catch(e) {
         console.log("Failed to get movies recommendation");
       }

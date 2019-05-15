@@ -15,7 +15,10 @@ const constructorMethod = app => {
   app.use("/search", searchRoutes);
   app.use("/playlist", playlistRoutes);
   app.use("*", (req, res) => {
-    res.status(404).json({ error: "Not found" });
+    res.status(404).render("page-not-found", {
+      isNotLoggedIn: true
+    });
+    return;
   });
 };
 

@@ -4,8 +4,6 @@ const users = data.users;
 const playlists = data.playlists;
 const movies = data.movies;
 const movieInfo = require("./movieInfo")
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
 
 const main = async () => {
     const db = await dbConnection();
@@ -29,7 +27,6 @@ const main = async () => {
     "FavoriteMusicGenres":["disco","electronic"],
     "FavoriteMovieGenres":["crime","romantic"],
     "Favorites": playlist1._id,
-    "MusicLists":[],"MovieLists":[],
     "WatchLater":playlist2._id
 }
     const user = await users.addUser(userinfo);

@@ -88,7 +88,8 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       isMusic: true,
       Title: recommendationObj.name,
       Artist: recommendationObj.artist.name,
-      ArtistLink: recommendationObj.artist.artistUrl
+      ArtistLink: recommendationObj.artist.artistUrl,
+      isNotLoggedIn: true
     }
   } else {
     console.log(recommendationObj)
@@ -96,10 +97,11 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       to: email, // Send to. This can be a comma delimited string just like a normal email to field.
       subject: "We have a new recommendation for you!", // Email subject
       isMusic: false,
-      Title: recommendationObj.title + ', ' + recommendationObj.year,
+      Title: recommendationObj.Title + ', ' + recommendationObj.Year,
       Director: recommendationObj.Director,
-      IMDBRating: recommendationObj.imdbRating + '/10', //5 or 10
-      Actors: recommendationObj.Actors
+      IMDBRating: recommendationObj.imdbRating + '/10',
+      Actors: recommendationObj.Actors,
+      isNotLoggedIn: true
     }
   }
 
