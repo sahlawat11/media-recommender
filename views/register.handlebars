@@ -1,47 +1,47 @@
 <div class="message register" id="register">
-  <div class="inset container">
+  <div class="inset">
     <div class="register-head">
       <h1>Media Recommender - Registeration</h1>
     </div>
 
     <form action="/register" method="POST" id="registeration-form">
-      <p>
+      <div class="form-group">
         <label for="fname">First Name:</label>
         <input type="text" class="form-control" id="fname" name="fname" required />
-      </p>
+      </div>
       <div class="clear"> </div>
-      <p>
+      <div class="form-group">
         <label for="lname">Last Name:</label>
         <input type="text" name="lname" class="form-control" id="lname" required />
-      </p>
+      </div>
       <div class="clear"> </div>
-      <p>
+      <div class="form-group">
         <label for="email">Email address:</label>
         <input type="email" name="email" class="form-control" id="email" required />
-      </p>
+      </div>
       {{#if hasErrors}}
       <p class="error">{{error}}</p>
       {{/if}}
       <div class="clear"> </div>
-      <p>
+      <div class="form-group">
         Gender:<br>
         <label for="male">Male</label>
         <input type="radio" name="gender" id="male" checked><br>
         <label for="female">Female</label>
         <input type="radio" name="gender" id="female"><br>
-      </p>
+      </div>
       <div class="clear"> </div>
-      <p>
+      <div class="form-group">
         <label for="location">Location:</label>
         <input type="text" name="location" class="form-control" id="location" required />
-      </p>
+      </div>
       <div class="clear"> </div>
-      <p>
+      <div class="form-group">
         <label for="age">Age:</label>
         <input type="number" name="age" class="form-control" id="age" min="1" max="100" required />
-      </p>
+      </div>
 
-      <p class="form-group music-genre">
+      <div class="form-group music-genre">
         <label>Favourate Music Genre: <span class="italics-text warning-text">(*Please select between 1-5 generes)</span></label><br>
         <label for="musicGenre1"><input type="checkbox" id="musicGenre1" name="musicGenre" value="acoustic"><span>acoustic</span></label>
         <label for="musicGenre2"><input type="checkbox" id="musicGenre2" name="musicGenre" value="alternative"><span>alternative</span></label>
@@ -93,7 +93,7 @@
         <label for="musicGenre48"><input type="checkbox" name="musicGenre" id="musicGenre48" value="trance"><span>trance</span></label>
         <label for="musicGenre49"><input type="checkbox" name="musicGenre" id="musicGenre49" value="work-out"><span>work-out</span></label>
         <label for="musicGenre50"><input type="checkbox" name="musicGenre" id="musicGenre50" value="world-music"><span>world-music</span></label><br>
-      </p>
+      </div>
 
       <div class="form-group movie-genre-checkbox">
         <label>Favourate Movie Genre:</label><br>
@@ -113,14 +113,14 @@
 
       </div>
 
-      <p>
+      <div class="form-group">
         <label for="password1">Password:</label>
         <input type="password" name="password1" class="form-control" id="password1" required />
-      </p>
-      <p>
+      </div>
+      <div class="form-group">
         <label for="password2">Confirm Password:</label>
         <input type="password" name="password2" class="form-control" id="password2" required />
-      </p>
+      </div>
       <div class="submit">
         <input type="submit" value="Submit">
         <div class="clear"> </div>
