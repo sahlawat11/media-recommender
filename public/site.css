@@ -197,19 +197,19 @@ background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,
   margin-top: 5%;
 }
 .song-name {
-  color: #00FFFF;
+  color: #009999;
   font-size: 25px;
   font-weight: 700;
   padding-right: 10px;
 }
 .song-name-custom {
-  color: #00FFFF;
+  color: #009999;
   font-size: 20px;
   font-weight: 700;
   padding-right: 5px;
 }
 .song-name a {
-  color: #00FFFF;
+  color: #009999;
   font-weight: 700;
   font-size: 25px;
 }
