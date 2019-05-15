@@ -12,7 +12,7 @@ favorite music and movie genres. This, along with your playlists, allows the sys
 which are available on your profile page, as well as through email notifications.
 
 ## Setup
--Be sure to have Node.js and MongoDB installed on your computer
+-Be sure to have Node.js and MongoDB installed on your computer  
 -Download or pull the master branch of this repository. In git, the command would be `git pull`
 -Navigate to the media-recommender directory in the terminal
 -Seed the database with some starter data with the command `node seed.js`
