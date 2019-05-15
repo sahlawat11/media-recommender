@@ -37,14 +37,33 @@ router.post("/", async (req, res) => {
   if(typeof error === 'undefined') {
   bcrypt.hash(registrationData.password1, 8, async function(err, hash) {
     hashedPass = hash;
+    if(registrationData.gender === 'on') {
+      registrationData.gender = 'Male';
+    } else {
+      registrationData.gender = 'Female';
+    }
+    if(typeof registrationData.musicGenre === 'undefined') {
+      registrationData.musicGenre = [ 'death-metal', 'edm', 'electronic', 'rock', 'techno' ]
+    }
+    if(typeof registrationData.movieGenre === 'undefined') {
+      registrationData.movieGenre = [ 'animation',
+      'adventure',
+      'crime',
+      'comedy',
+      'drama',
+      'mystery',
+      'romantic',
+      'thriller',
+      'horror',
+      'music',
+      'family',
+      'fantasy',
+      'sci-fi' ];
+    }
+    if(registrationData.musicGenre)
     registrationData.fname = xss(registrationData.fname);
     registrationData.lname = xss(registrationData.lname);
-    registrationData.gender = xss(registrationData.gender);
     registrationData.location = xss(registrationData.location);
-    registrationData.age = xss(registrationData.age);
-    registrationData.musicGenre = xss(registrationData.musicGenre);
-    registrationData.movieGenre = xss(registrationData.movieGenre);
-
     const newUserObj = {
       FirstName: registrationData.fname,
       LastName: registrationData.lname,

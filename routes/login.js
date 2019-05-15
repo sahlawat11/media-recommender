@@ -27,10 +27,15 @@ router.post("/", async (req, res) => {
   if(typeof error === 'undefined') {
   loginData.userEmail = xss(loginData.userEmail);
   loginData.password = xss(loginData.password);
+  try {
   selectedUser = await data.users.getUserByEmail(loginData.userEmail);
+  } catch {
+    console.log('User not found.');
+    error = "The email or the password is not correct."
+  }
 
 
-  if (typeof selectedUser === "undefined") {
+  if (typeof error !== 'undefined' || typeof selectedUser === "undefined") {
     error = "The email or the password is not correct.";
   } else {
     const isMatch = await bcrypt.compare(
@@ -59,8 +64,7 @@ router.post("/", async (req, res) => {
     res.status(401).render("login",
       {
         error: error,
-        hasErrors: true,
-        data: loginData
+        hasErrors: true
       });
     return;
   }
