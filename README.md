@@ -51,6 +51,6 @@ Video Demo : Uploaded to Canvas.
 -`xss`
 
 ## User Credentials
-email: RStevens@gmail.com
-password: 123456
+-email: RStevens@gmail.com
+-password: 123456
 
