@@ -1,9 +1,15 @@
-
+<section>
+    <nav class="navbar nav-bar">
+        <a class="navbar-brand" href="/profile/my-profile"><i class="fas fa-home"></i> Home</a>
+        <a class="navbar-brand" href="/search"><i class="fas fa-search"></i> Search</a>
+        <a class="navbar-brand" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+</section>
 <section>
     <div class="container">
 
         {{#if isLoggedInUserProfile}}
-        <div class="row main-body recommendation-row top-margin">
+        <div class="row main-body recommendation-row">
             <div class="col-md-6">
                 <div class="card text-white bg-dark">
                     <div class="card-header">

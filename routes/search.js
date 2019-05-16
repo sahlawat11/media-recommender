@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
     })
     return;
   } else {
-    res.render("search");
+    res.render("search",{
+        isUser:true
+    });
   }
 });
 

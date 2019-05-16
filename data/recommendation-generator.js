@@ -88,7 +88,8 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       isMusic: true,
       Title: recommendationObj.name,
       Artist: recommendationObj.artist.name,
-      ArtistLink: recommendationObj.artist.artistUrl
+      ArtistLink: recommendationObj.artist.artistUrl,
+      isNotLoggedIn: true
     }
   } else {
     emailBodyOptions = {
@@ -97,8 +98,9 @@ async function sendRecommendationEmail(response, recommendationObj, email, media
       isMusic: false,
       Title: recommendationObj.Title + ', ' + recommendationObj.Year,
       Director: recommendationObj.Director,
-      IMDBRating: recommendationObj.imdbRating + '/5',
-      Actors: recommendationObj.Actors
+      IMDBRating: recommendationObj.imdbRating + '/10',
+      Actors: recommendationObj.Actors,
+      isNotLoggedIn: true
     }
   }
 

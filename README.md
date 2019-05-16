@@ -13,23 +13,28 @@ which are available on your profile page, as well as through email notifications
   
 ## Setup  
 -Be sure to have Node.js and MongoDB installed on your computer  
+-Be sure your MongoDB is running on your computer
 -Download or pull the master branch of this repository. In git, the command would be `git pull`  
--Navigate to the media-recommender directory in the terminal  
+-Navigate to the media-recommender directory in the terminal
+-Install all the dependencies with the command `npm install`
 -Seed the database with some starter data with the command `node seed.js`  
 -Start the application with the command `npm start`  
   
 ## Use  
--With the server running, head to the address of the website, which is `localhost:3000` by default  
+-With the server running, head to the address of the website, which is `localhost:3000` by default
+-Login to the application using crediential give at the bottom of this document
+OR  
 -Sign up by filling out the user's information (ex user name, password and so on)  
--After registering as a user, you may use any functionality of the website. This includes editing your playlists,  
-commenting on other users' playlists, getting recommendations, searching and more  
+-After registering as a user, you may use any functionality of the website. This includes adding media to your playlists,  
+getting recommendations, searching and more  
 -After an account has been created, you can log in in the future, instead of signing up again  
   
 ## Tutorial  
-Video Demo : [todo]  
+Video Demo : Uploaded to Canvas.
   
 ## Technologies  
--JavaScript (Node.js)  
+-JavaScript
+-Node.js  
 -MongoDB  
 -HTML  
 -CSS  
@@ -44,4 +49,8 @@ Video Demo : [todo]
 -`omdb-api-pt`  
 -`request`  
 -`xss`
+
+## User Credentials
+email: RStevens@gmail.com
+password: 123456
 
