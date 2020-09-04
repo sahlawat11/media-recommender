@@ -27,7 +27,7 @@
     "express-handlebars": "^3.1.0",
     "express-mailer": "^0.3.1",
     "express-session": "^1.16.1",
-    "mongodb": "^2.2.36",
+    "mongodb": "^3.1.13",
     "node-uuid": "^1.4.8",
     "omdb-api-pt": "^2.0.1",
     "request": "^2.88.0",
